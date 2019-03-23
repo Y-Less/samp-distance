@@ -65,6 +65,7 @@ stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
     #undef GetPlayerDistanceFromPoint
 #else
     #define _ALS_GetPlayerDistanceFromPoint
+	native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 #endif
 #define GetPlayerDistanceFromPoint( dist_GetPlayerDistanceFromPoint(
 
@@ -107,6 +108,7 @@ stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
     #undef GetVehicleDistanceFromPoint
 #else
     #define _ALS_GetVehicleDistFromPoint
+	native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
 #define GetVehicleDistanceFromPoint( dist_GetVehicleDistFromPoint(
 
