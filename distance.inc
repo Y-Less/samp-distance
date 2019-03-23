@@ -191,6 +191,7 @@ stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ig
             }
         } else {
             new vw = GetPlayerVirtualWorld(playerid);
+            
             foreach (new i : Player) {
                 if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
                     continue;
@@ -205,6 +206,7 @@ stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ig
     } else {
         if (ignoreVW) {
             new interior = GetPlayerInterior(playerid);
+
             foreach (new i : Player) {
                 if (i == ignoredid || interior != GetPlayerInterior(i)) {
                     continue;
@@ -217,8 +219,8 @@ stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ig
             }
         }
         else {
-            new vw = GetPlayerVirtualWorld(playerid);
-            new interior = GetPlayerInterior(playerid);
+            new vw = GetPlayerVirtualWorld(playerid), interior = GetPlayerInterior(playerid);
+
             foreach (new i : Player) {
                 if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
                     continue;
@@ -311,6 +313,7 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
                 }
             } else {
                 new vw = GetPlayerVirtualWorld(playerid);
+
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
                         continue;
@@ -326,6 +329,7 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
         } else {
             if (ignoreVW) {
                 new interior = GetPlayerInterior(playerid);
+
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || interior != GetVehicleInterior(i)) {
                         continue;
@@ -337,8 +341,8 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
                     }
                 }
             } else {
-                new vw = GetPlayerVirtualWorld(playerid);
-                new interior = GetPlayerInterior(playerid);
+                new vw = GetPlayerVirtualWorld(playerid), interior = GetPlayerInterior(playerid);
+
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
                         continue;
@@ -430,6 +434,7 @@ stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
                 }
             } else {
                 new vw = GetVehicleVirtualWorld(vehicleid);
+                
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
                         continue;
@@ -445,6 +450,7 @@ stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
         } else {
             if (ignoreVW) {
                 new interior = GetVehicleInterior(vehicleid);
+                
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || interior != GetVehicleInterior(i)) {
                         continue;
@@ -456,8 +462,8 @@ stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
                     }
                 }
             } else {
-                new vw = GetVehicleVirtualWorld(vehicleid);
-                new interior = GetVehicleInterior(vehicleid);
+                new vw = GetVehicleVirtualWorld(vehicleid), interior = GetVehicleInterior(vehicleid);
+
                 foreach (new i : Vehicle) {
                     if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
                         continue;
@@ -513,6 +519,7 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 #endif
             if (ignoreVW) {
                 new vw = GetVehicleVirtualWorld(vehicleid);
+
                 foreach (new i : Player) {
                     if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
                         continue;
@@ -539,6 +546,7 @@ oooooo     oooo           oooo         o8o            oooo                    oo
         } else {
             if (ignoreVW) {
                 new interior = GetVehicleInterior(vehicleid);
+
                 foreach (new i : Player) {
                     if (i == ignoredid || interior != GetPlayerInterior(i)) {
                         continue;
@@ -550,8 +558,8 @@ oooooo     oooo           oooo         o8o            oooo                    oo
                     }
                 }
             } else {
-                new vw = GetVehicleVirtualWorld(vehicleid);
-                new interior = GetVehicleInterior(vehicleid);
+                new vw = GetVehicleVirtualWorld(vehicleid), interior = GetVehicleInterior(vehicleid);
+
                 foreach (new i : Player) {
                     if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
                         continue;
@@ -568,4 +576,3 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 
         return closestid;
     }
-
