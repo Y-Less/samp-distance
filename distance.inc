@@ -27,7 +27,7 @@ stock Float:GetDistanceBetweenPoints(Float:x1, Float:y1, Float:z1, Float:x2, Flo
 
 
 stock bool:IsPointInRangeOfPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:range) {
-    return GetDistanceBetweenPoints(x1, y1, z1, x2, y2, z2) <= range;
+    return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
 }
 
 
@@ -37,7 +37,7 @@ stock Float:GetDistanceBetweenPoints2D(Float:x1, Float:y1, Float:x2, Float:y2) {
 
 
 stock bool:IsPointInRangeOfPoint2D(Float:x1, Float:y1, Float:x2, Float:y2, Float:range) {
-    return GetDistanceBetweenPoints2D(x1, y1, x2, y2) <= range;
+    return VectorSize(x1 - x2, y1 - y2, 0.0) <= range;
 }
 
 
