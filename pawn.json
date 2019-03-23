@@ -1,0 +1,30 @@
+{
+	"user": "kristoisberg",
+	"repo": "samp-distance",
+	"entry": "test.pwn",
+	"output": "test.amx",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"pawn-lang/YSI-Includes"
+	],
+	"builds": [
+		{
+			"name": "main",
+			"version": "3.10.9"
+		},
+		{
+			"name": "pre",
+			"version": "3.10.9",
+			"args": [
+				"-l"
+			]
+		},
+		{
+			"name": "asm",
+			"version": "3.10.9",
+			"args": [
+				"-a"
+			]
+		}
+	]
+}
