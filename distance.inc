@@ -150,12 +150,11 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o       
 */
 
 stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
-    if (!IsPlayerConnected(playerid1) || !IsPlayerConnected(playerid2)) {
+    new Float:x, Float:y, Float:z;
+
+    if (!GetPlayerPos(playerid2, x, y, z)) {
         return FLOAT_INFINITY;
     }
-
-    new Float:x, Float:y, Float:z;
-    GetPlayerPos(playerid2, x, y, z);
 
     return GetPlayerDistanceFromPoint(playerid1, x, y, z);
 }
@@ -197,12 +196,11 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b                  `8'   
 */
 
 stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
-    if (!IsPlayerConnected(playerid) || !IsValidVehicle(vehicleid)) {
+    new Float:x, Float:y, Float:z;
+
+    if (!GetVehiclePos(vehicleid, x, y, z)) {
         return FLOAT_INFINITY;
     }
-
-    new Float:x, Float:y, Float:z;
-    GetVehiclePos(vehicleid, x, y, z);
 
     return GetPlayerDistanceFromPoint(playerid, x, y, z);
 }
@@ -242,12 +240,11 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 */
 
 stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
-    if (!IsValidVehicle(vehicleid1) || !IsValidVehicle(vehicleid2)) {
+    new Float:x, Float:y, Float:z;
+
+    if (!GetVehiclePos(vehicleid2, x, y, z)) {
         return FLOAT_INFINITY;
     }
-
-    new Float:x, Float:y, Float:z;
-    GetVehiclePos(vehicleid2, x, y, z);
 
     return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
 }
