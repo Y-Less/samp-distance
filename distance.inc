@@ -54,11 +54,11 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o       
 */
 
 stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) {
-    if (!IsPlayerConnected(playerid)) {
-        return FLOAT_INFINITY;
+    if (IsPlayerConnected(playerid)) {
+		return GetPlayerDistanceFromPoint(playerid, x, y, z);
     }
 
-    return GetPlayerDistanceFromPoint(playerid, x, y, z);
+	return FLOAT_INFINITY;
 }
 
 #if defined _ALS_GetPlayerDistanceFromPoint
@@ -73,11 +73,11 @@ stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
 stock Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y) {
     new Float:x2, Float:y2, Float:z2;
 
-    if (!GetPlayerPos(playerid, x2, y2, z2)) {
-        return FLOAT_INFINITY;
+    if (GetPlayerPos(playerid, x2, y2, z2)) {
+		return GetDistanceBetweenPoints2D(x, y, x2, y2);
     }
 
-    return GetDistanceBetweenPoints2D(x, y, x2, y2);
+	return FLOAT_INFINITY;
 }
 
 
@@ -97,11 +97,11 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 */
 
 stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
-    if (!Iter_Contains(Vehicle, vehicleid)) {
-        return FLOAT_INFINITY;
+    if (Iter_Contains(Vehicle, vehicleid)) {
+		return GetVehicleDistanceFromPoint(vehicleid, x, y, z);
     }
 
-    return GetVehicleDistanceFromPoint(vehicleid, x, y, z);
+	return FLOAT_INFINITY;
 }
 
 #if defined _ALS_GetVehicleDistFromPoint
@@ -121,11 +121,11 @@ stock bool:IsVehicleInRangeOfPoint(vehicleid, Float:range, Float:x, Float:y, Flo
 stock Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y) {
     new Float:x2, Float:y2, Float:z2;
 
-    if (!GetVehiclePos(vehicleid, x2, y2, z2)) {
-        return FLOAT_INFINITY;
+    if (GetVehiclePos(vehicleid, x2, y2, z2)) {
+		return GetDistanceBetweenPoints2D(x, y, x2, y2);
     }
 
-    return GetDistanceBetweenPoints2D(x, y, x2, y2);
+	return FLOAT_INFINITY;
 }
 
 
@@ -149,11 +149,11 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o       
 stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
     new Float:x, Float:y, Float:z;
 
-    if (!GetPlayerPos(playerid2, x, y, z)) {
-        return FLOAT_INFINITY;
+    if (GetPlayerPos(playerid2, x, y, z)) {
+		return GetPlayerDistanceFromPoint(playerid1, x, y, z);
     }
 
-    return GetPlayerDistanceFromPoint(playerid1, x, y, z);
+	return FLOAT_INFINITY;
 }
 
 
@@ -195,11 +195,11 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b                  `8'   
 stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
     new Float:x, Float:y, Float:z;
 
-    if (!GetVehiclePos(vehicleid, x, y, z)) {
-        return FLOAT_INFINITY;
+    if (GetVehiclePos(vehicleid, x, y, z)) {
+		return GetPlayerDistanceFromPoint(playerid, x, y, z);
     }
 
-    return GetPlayerDistanceFromPoint(playerid, x, y, z);
+	return FLOAT_INFINITY;
 }
 
 
@@ -239,11 +239,11 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
     new Float:x, Float:y, Float:z;
 
-    if (!GetVehiclePos(vehicleid2, x, y, z)) {
-        return FLOAT_INFINITY;
+    if (GetVehiclePos(vehicleid2, x, y, z)) {
+		return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
     }
 
-    return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
+	return FLOAT_INFINITY;
 }
 
 
