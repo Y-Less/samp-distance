@@ -7,7 +7,7 @@ This library offers a bunch of functions for getting the distance between variou
 * **Incorrect return values** - If a distance check fails because an entity does not exist, the result of the check is `NaN`, not `0.0` as the standard library would return, `9999.9999`, `-1.0` or any other nonsense. As you might know, comparing `NaN` to any value, even itself, always returns `false`, making it easy to distinguish if the function failed and avoiding incorrect behaviour in code using those functions.
 * **Inconsistent and non-descriptive function names** - A function name I saw in the topic mentioned above is `IsCoordNearCoord`, which has a similar behaviour to `IsPlayerInRangeOfPoint` from the standard library, but a completely different name structure. Some other examples are `GetClosestPlayer` and `GetClosestVehicle`, commonly used names for functions returning the closest player/vehicle to a player. The more you read the previous sentence, the more you will realise that the names are missing something...
 
-Huge thanks to Y_Less for his contributions to this library and productive conversations with him!
+Huge thanks to Y_Less for his contributions to this library and the productive conversations with him!
 
 
 ## Installation
@@ -95,6 +95,44 @@ GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreV
 
 
 **Note:** The functions with an asterisk (*) next to them only support the `ignoreInterior` argument if the `GetVehicleInterior` function is available (added by YSF, some other library or by a new SA-MP version (yeah, right)). 
+
+
+## Examples
+
+```pawn
+CMD:pay(playerid, params[]) {
+    new playerid2, amount;
+
+    if (sscanf(params, "ui", playerid2, amount)) {
+        return SendClientMessage(playerid, COLOR_WHITE, "USAGE: /pay <Player name/ID> <Amount>");
+    }
+
+    if (!IsPlayerInRangeOfPlayer(playerid, playerid2, 5.0)) {
+        // fails if the other player is not connected or not near enough to the player
+        return SendClientMessage(playerid, COLOR_RED, "The specified player is not near you!");
+    }
+
+    GivePlayerMoney(playerid, -amount);
+    GivePlayerMoney(playerid2, amount);
+    return 1;
+}
+```
+
+```pawn
+CMD:fixtires(playerid) {
+    new vehicleid = GetClosestVehicleToPlayer(playerid);
+
+    if (!IsPlayerInRangeOfVehicle(playerid, vehicleid, 10.0)) {
+        // fails if no vehicle was found in the same interior and virtual world as the player or the closest one is not near enough to the player
+        return SendClientMessage(playerid, COLOR_RED, "You are not near any vehicle!");
+    }
+
+    new panels, doors, lights, tires;
+    GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+    SetVehicleDamageStatus(vehicleid, panels, doors, lights, 0);
+    return 1;
+}
+```
 
 
 ## Testing
