@@ -81,7 +81,7 @@ stock Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y) {
         return FLOAT_INFINITY;
     }
 
-	return GetDistanceBetweenPoints2D(x, y, x2, y2);
+    return GetDistanceBetweenPoints2D(x, y, x2, y2);
 }
 
 
@@ -128,7 +128,7 @@ stock Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y) {
         return FLOAT_INFINITY;
     }
 
-	return GetDistanceBetweenPoints2D(x, y, x2, y2);
+    return GetDistanceBetweenPoints2D(x, y, x2, y2);
 }
 
 
@@ -151,13 +151,13 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o       
 
 stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
     if (!IsPlayerConnected(playerid1) || !IsPlayerConnected(playerid2)) {
-		return FLOAT_INFINITY;
-	}
+        return FLOAT_INFINITY;
+    }
 
-	new Float:x, Float:y, Float:z;
-	GetPlayerPos(playerid2, x, y, z);
+    new Float:x, Float:y, Float:z;
+    GetPlayerPos(playerid2, x, y, z);
 
-	return GetPlayerDistanceFromPoint(playerid1, x, y, z);
+    return GetPlayerDistanceFromPoint(playerid1, x, y, z);
 }
 
 
@@ -202,9 +202,9 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
     }
 
     new Float:x, Float:y, Float:z;
-	GetVehiclePos(vehicleid, x, y, z);
+    GetVehiclePos(vehicleid, x, y, z);
 
-	return GetPlayerDistanceFromPoint(playerid, x, y, z);
+    return GetPlayerDistanceFromPoint(playerid, x, y, z);
 }
 
 
@@ -217,7 +217,7 @@ stock GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID) {
     new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2, vw = GetPlayerVirtualWorld(playerid);
 
     foreach (new i : Vehicle) {
-		if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
+        if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
             continue;
         }
 
@@ -243,18 +243,18 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 
 stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
     if (!IsValidVehicle(vehicleid1) || !IsValidVehicle(vehicleid2)) {
-		return FLOAT_INFINITY;
-	}
+        return FLOAT_INFINITY;
+    }
 
-	new Float:x, Float:y, Float:z;
-	GetVehiclePos(vehicleid2, x, y, z);
+    new Float:x, Float:y, Float:z;
+    GetVehiclePos(vehicleid2, x, y, z);
 
-	return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
+    return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
 }
 
 
 stock bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range) {
-	return GetDistanceBetweenVehicles(vehicleid1, vehicleid2) <= range && GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2);
+    return GetDistanceBetweenVehicles(vehicleid1, vehicleid2) <= range && GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2);
 }
 
 
@@ -262,7 +262,7 @@ stock GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID) {
     new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2, vw = GetVehicleVirtualWorld(vehicleid);
 
     foreach (new i : Vehicle) {
-		if (vehicleid == i || i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
+        if (vehicleid == i || i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
             continue;
         }
 
