@@ -9,10 +9,10 @@
 
 
 stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
-	new Float:x, Float:y, Float:z;
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	if (_DISTANCE_A(...Valid)(a) && _DISTANCE_B(...Pos)(b, x, y, z)) {
-		return _DISTANCE_A(...Distance)(a, x, y, z);
+	if (_DISTANCE_A(...Pos)(a, x1, y1, z1) && _DISTANCE_B(...Pos)(b, x2, y2, z2)) {
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 	}
 
 	return FLOAT_NAN;
@@ -21,22 +21,22 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 
 #if defined DISTANCE_INT
 stock bool:DISTANCE_AB(Is...InRangeOf...)(a, b, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
-	new Float:x, Float:y, Float:z;
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	return _DISTANCE_A(...Valid)(a)
-		&& _DISTANCE_B(...Pos)(b, x, y, z)
-		&& _DISTANCE_A(...Distance)(a, x, y, z) <= range
+	return _DISTANCE_A(...Pos)(a, x1, y1, z1)
+		&& _DISTANCE_B(...Pos)(b, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
 		&& (ignoreVW || _DISTANCE_A(...VW)(a) == _DISTANCE_B(...VW)(b))
 		&& (ignoreInterior || _DISTANCE_A(...Interior)(a) == _DISTANCE_B(...Interior)(b))
 	;
 }
 #else
 stock bool:DISTANCE_AB(Is...InRangeOf...)(a, b, Float:range, bool:ignoreVW = false) {
-	new Float:x, Float:y, Float:z;
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	return _DISTANCE_A(...Valid)(a)
-		&& _DISTANCE_B(...Pos)(b, x, y, z)
-		&& _DISTANCE_A(...Distance)(a, x, y, z) <= range
+	return _DISTANCE_A(...Pos)(a, x1, y1, z1)
+		&& _DISTANCE_B(...Pos)(b, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
 		&& (ignoreVW || _DISTANCE_A(...VW)(a) == _DISTANCE_B(...VW)(b))
 	;
 }
