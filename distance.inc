@@ -66,7 +66,7 @@ stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
 #else
     #define _ALS_GetPlayerDistanceFromPoint
 #endif
-#define GetPlayerDistanceFromPoint dist_GetPlayerDistanceFromPoint
+#define GetPlayerDistanceFromPoint( dist_GetPlayerDistanceFromPoint(
 
 
 stock Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y) {
@@ -108,7 +108,7 @@ stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
 #else
     #define _ALS_GetVehicleDistFromPoint
 #endif
-#define GetVehicleDistanceFromPoint dist_GetVehicleDistFromPoint
+#define GetVehicleDistanceFromPoint( dist_GetVehicleDistFromPoint(
 
 
 stock bool:IsVehicleInRangeOfPoint(vehicleid, Float:range, Float:x, Float:y, Float:z) {
