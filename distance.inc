@@ -11,11 +11,6 @@
 #include <YSI_Data\y_iterate>
 
 
-#if !defined IsValidVehicle
-    native IsValidVehicle(vehicleid);
-#endif
-
-
 /*
 ooooooooo.              o8o                  .           ooooooooo.              o8o                  .   
 `888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8   
@@ -101,7 +96,7 @@ oooooo     oooo           oooo         o8o            oooo                    oo
 */
 
 stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
-    if (!IsValidVehicle(vehicleid)) {
+    if (!Iter_Contains(Vehicle, vehicleid)) {
         return FLOAT_INFINITY;
     }
 

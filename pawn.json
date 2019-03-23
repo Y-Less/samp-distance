@@ -5,7 +5,7 @@
 	"output": "test.amx",
 	"dependencies": [
 		"sampctl/samp-stdlib",
-		"pawn-lang/YSI-Includes"
+		"pawn-lang/YSI-Includes@5.x"
 	],
 	"builds": [
 		{
