@@ -58,7 +58,7 @@ stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
         return GetPlayerDistanceFromPoint(playerid, x, y, z);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 #if defined _ALS_GetPlayerDistanceFromPoint
@@ -77,7 +77,7 @@ stock Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y) {
         return GetDistanceBetweenPoints2D(x, y, x2, y2);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 
@@ -101,7 +101,7 @@ stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
         return GetVehicleDistanceFromPoint(vehicleid, x, y, z);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 #if defined _ALS_GetVehicleDistFromPoint
@@ -125,7 +125,7 @@ stock Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y) {
         return GetDistanceBetweenPoints2D(x, y, x2, y2);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 
@@ -153,7 +153,7 @@ stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
         return GetPlayerDistanceFromPoint(playerid1, x, y, z);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 
@@ -191,7 +191,7 @@ stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ig
             }
         } else {
             new vw = GetPlayerVirtualWorld(playerid);
-            
+
             foreach (new i : Player) {
                 if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
                     continue;
@@ -257,7 +257,7 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
         return GetPlayerDistanceFromPoint(playerid, x, y, z);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 
@@ -378,7 +378,7 @@ stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
         return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
     }
 
-    return FLOAT_INFINITY;
+    return FLOAT_NAN;
 }
 
 

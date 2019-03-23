@@ -1,6 +1,13 @@
-# samp-distance
+# SA-MP Distance Functions
 
 [![sampctl](https://shields.southcla.ws/badge/sampctl-samp--distance-2f2f2f.svg?style=for-the-badge)](https://github.com/kristoisberg/samp-distance)
+
+This library offers a bunch of functions for getting the distance between various entities (2D/3D points, players, vehicles), performing proximity/distance checks between them and finding the closest entities to other entities. The idea for this library came after seeing a discussion on this topic on the forums and realising that there is no widely adopted library for performing these tasks and the homebrewed implementations often have major issues. Some of the issues this library addresses:
+
+* **Incorrect return values** - If a distance check fails because an entity does not exist, the result of the check is `NaN`, not `0.0` as the standard library would return, `9999.9999`, `-1.0` or any other nonsense. As you might know, comparing `NaN` to any value, even itself, always returns `false`, making it easy to distinguish if the function failed and avoiding incorrect behaviour in code using those functions.
+* **Inconsistent and non-descriptive function names** - A function name I saw in the topic mentioned above is `IsCoordNearCoord`, which has a similar behaviour to `IsPlayerInRangeOfPoint` from the standard library, but a completely different name structure. Some other examples are `GetClosestPlayer` and `GetClosestVehicle`, commonly used names for functions returning the closest player/vehicle to a player. The more you read the previous sentence, the more you will realise that the names are missing something...
+
+Huge thanks to Y_Less for his contributions to this library and productive conversations with him!
 
 
 ## Installation
@@ -17,14 +24,78 @@ Include in your code and begin using the library:
 #include <samp-distance>
 ```
 
-## Usage
+## Changes to the standard library
 
-<!--
-Write your code documentation or examples here. If your library is documented in
-the source code, direct users there. If not, list your API and describe it well
-in this section. If your library is passive and has no API, simply omit this
-section.
--->
+This library hooks the `GetPlayerDistanceFromPoint` and `GetVehicleDistanceFromPoint` functions to return `NaN` instead of `0.0` when the functions fail (the player/vehicle does not exist). These changes should not affect any existing code since it should be checking for invalid players/vehicles before using these functions anyway.
+
+
+## New functions
+
+### Point-Point
+
+```pawn
+Float:GetDistanceBetweenPoints(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2);
+bool:IsPointInRangeOfPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:range);
+Float:GetDistanceBetweenPoints2D(Float:x1, Float:y1, Float:x2, Float:y2);
+bool:IsPointInRangeOfPoint2D(Float:x1, Float:y1, Float:x2, Float:y2, Float:range);
+```
+
+
+### Player-Point
+
+```pawn
+Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y);
+bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y);
+```
+
+
+### Vehicle-Point
+
+```pawn
+bool:IsVehicleInRangeOfPoint(vehicleid, Float:range, Float:x, Float:y, Float:z);
+Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y);
+bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y);
+```
+
+
+### Player-Player
+
+```pawn
+Float:GetDistanceBetweenPlayers(playerid1, playerid2);
+bool:IsPlayerInRangeOfPlayer(playerid1, playerid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+```
+
+
+### Player-Vehicle
+
+```pawn
+Float:GetPlayerDistanceFromVehicle(playerid, vehicleid);
+bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+```
+
+
+### Vehicle-Vehicle
+
+```pawn
+Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2);
+bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+```
+
+
+### Vehicle-Player
+
+```pawn
+Float:GetVehicleDistanceFromPlayer(vehicleid, playerid);
+bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+```
+
+
+**Note:** The functions with an asterisk (*) next to them only support the `ignoreInterior` argument if the `GetVehicleInterior` function is available (added by YSF, some other library or by a new SA-MP version (yeah, right)). 
+
 
 ## Testing
 
