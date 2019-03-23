@@ -157,24 +157,88 @@ stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
 }
 
 
-stock bool:IsPlayerInRangeOfPlayer(playerid1, playerid2, Float:range) {
-    return GetDistanceBetweenPlayers(playerid1, playerid2) <= range && GetPlayerVirtualWorld(playerid1) == GetPlayerVirtualWorld(playerid2);
+stock bool:IsPlayerInRangeOfPlayer(playerid1, playerid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
+	new Float:x, Float:y, Float:z;
+
+	return IsPlayerConnected(playerid1)
+		&& GetPlayerPos(playerid2, x, y, z)
+		&& BAD_GetPlayerDistanceFromPoint(playerid, x, y, z) <= range
+		&& (ignoreVW || GetPlayerVirtualWorld(playerid1) == GetPlayerVirtualWorld(playerid2))
+		&& (ignoreInterior || GetPlayerInterior(playerid1) == GetPlayerInterior(playerid2))
+	;
 }
 
 
-stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_PLAYER_ID) {
-    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2, vw = GetPlayerVirtualWorld(playerid);
+stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false) {
+    new Float:x, Float:y, Float:z;
 
-    foreach (new i : Player) {
-        if (playerid == i || i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
-            continue;
-        }
-
-        if ((distance2 = GetDistanceBetweenPlayers(playerid, i)) < distance) {
-            distance = distance2;
-            closestid = i;
-        }
+    if (!GetPlayerPos(playerid, x, y, z)) {
+		return INVALID_PLAYER_ID;
     }
+
+    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
+	if (ignoreInterior)
+	{
+		if (ignoreVW)
+		{
+			foreach (new i : Player) {
+				if (i == ignoredid) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetPlayerVirtualWorld(playerid);
+			foreach (new i : Player) {
+				if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+	else
+	{
+		if (ignoreVW)
+		{
+			new interior = GetPlayerInterior(playerid);
+			foreach (new i : Player) {
+				if (i == ignoredid || interior != GetPlayerInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetPlayerVirtualWorld(playerid);
+			new interior = GetPlayerInterior(playerid);
+			foreach (new i : Player) {
+				if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
 
     return closestid;
 }
@@ -203,27 +267,107 @@ stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
 }
 
 
-stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range) {
-    return GetPlayerDistanceFromVehicle(playerid, vehicleid) <= range && GetPlayerVirtualWorld(playerid) == GetVehicleVirtualWorld(vehicleid);
+stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false
+#if defined GetVehicleInterior
+	, bool:ignoreInterior = false
+#endif
+) {
+	new Float:x, Float:y, Float:z;
+
+	return IsPlayerConnected(playerid)
+		&& GetVehiclePos(vehicleid, x, y, z)
+		&& BAD_GetPlayerDistanceFromPoint(playerid, x, y, z) <= range
+		&& (ignoreVW || GetPlayerVirtualWorld(playerid) == GetVehicleVirtualWorld(vehicleid))
+#if defined GetVehicleInterior
+		&& (ignoreInterior || GetPlayerInterior(playerid) == GetVehicleInterior(vehicleid))
+#endif
+	;
 }
 
 
-stock GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID) {
-    new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2, vw = GetPlayerVirtualWorld(playerid);
+stock GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false
+#if defined GetVehicleInterior
+	, bool:ignoreInterior = false
+#endif
+) {
+    new Float:x, Float:y, Float:z;
 
-    foreach (new i : Vehicle) {
-        if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
-            continue;
-        }
-
-        if ((distance2 = GetPlayerDistanceFromVehicle(playerid, i)) < distance) {
-            distance = distance2;
-            closestid = i;
-        }
+    if (!GetPlayerPos(playerid, x, y, z)) {
+		return INVALID_PLAYER_ID;
     }
+
+    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
+#if defined GetVehicleInterior
+	if (ignoreInterior)
+#endif
+	{
+		if (ignoreVW)
+		{
+			foreach (new i : Vehicle) {
+				if (i == ignoredid) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetPlayerVirtualWorld(playerid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#if defined GetVehicleInterior
+	else
+	{
+		if (ignoreVW)
+		{
+			new interior = GetPlayerInterior(playerid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || interior != GetVehicleInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetPlayerVirtualWorld(playerid);
+			new interior = GetPlayerInterior(playerid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#endif
 
     return closestid;
 }
+
+
 
 
 /*
@@ -247,24 +391,102 @@ stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
 }
 
 
-stock bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range) {
-    return GetDistanceBetweenVehicles(vehicleid1, vehicleid2) <= range && GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2);
+stock bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range, bool:ignoreVW = false
+#if defined GetVehicleInterior
+	, bool:ignoreInterior = false
+#endif
+) {
+	new Float:x, Float:y, Float:z;
+
+	return Iter_Contains(Vehicle, vehicleid1)
+		&& GetVehiclePos(vehicleid2, x, y, z)
+		&& BAD_GetVehicleDistanceFromPoint(vehicleid1, x, y, z) <= range
+		&& (ignoreVW || GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2))
+#if defined GetVehicleInterior
+		&& (ignoreInterior || GetVehicleInterior(vehicleid1) == GetVehicleInterior(vehicleid2))
+#endif
+	;
 }
 
 
-stock GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID) {
-    new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2, vw = GetVehicleVirtualWorld(vehicleid);
+stock GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false
+#if defined GetVehicleInterior
+	, bool:ignoreInterior = false
+#endif
+) {
+    new Float:x, Float:y, Float:z;
 
-    foreach (new i : Vehicle) {
-        if (vehicleid == i || i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
-            continue;
-        }
-
-        if ((distance2 = GetDistanceBetweenVehicles(vehicleid, i)) < distance) {
-            distance = distance2;
-            closestid = i;
-        }
+    if (!GetVehiclePos(vehicleid, x, y, z)) {
+		return INVALID_PLAYER_ID;
     }
+
+    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
+#if defined GetVehicleInterior
+	if (ignoreInterior)
+#endif
+	{
+		if (ignoreVW)
+		{
+			foreach (new i : Vehicle) {
+				if (i == ignoredid) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetVehicleVirtualWorld(vehicleid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#if defined GetVehicleInterior
+	else
+	{
+		if (ignoreVW)
+		{
+			new interior = GetVehicleInterior(vehicleid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || interior != GetVehicleInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetVehicleVirtualWorld(vehicleid);
+			new interior = GetVehicleInterior(vehicleid);
+			foreach (new i : Vehicle) {
+				if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#endif
 
     return closestid;
 }
@@ -290,19 +512,85 @@ oooooo     oooo           oooo         o8o            oooo                    oo
     IsPlayerInRangeOfVehicle(%1,%0,%2)
 
 
-stock GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID) {
-    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2, vw = GetVehicleVirtualWorld(vehicleid);
+stock GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreVW = false
+#if defined GetVehicleInterior
+	, bool:ignoreInterior = false
+#endif
+) {
+    new Float:x, Float:y, Float:z;
 
-    foreach (new i : Player) {
-        if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
-            continue;
-        }
-
-        if ((distance2 = GetPlayerDistanceFromVehicle(vehicleid, i)) < distance) {
-            distance = distance2;
-            closestid = i;
-        }
+    if (!GetVehiclePos(vehicleid, x, y, z)) {
+		return INVALID_PLAYER_ID;
     }
+
+    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
+#if defined GetVehicleInterior
+	if (ignoreInterior)
+#endif
+	{
+		if (ignoreVW)
+		{
+			new vw = GetVehicleVirtualWorld(vehicleid);
+			foreach (new i : Player) {
+				if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			foreach (new i : Player) {
+				if (i == ignoredid) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#if defined GetVehicleInterior
+	else
+	{
+		if (ignoreVW)
+		{
+			new interior = GetVehicleInterior(vehicleid);
+			foreach (new i : Player) {
+				if (i == ignoredid || interior != GetPlayerInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+		else
+		{
+			new vw = GetVehicleVirtualWorld(vehicleid);
+			new interior = GetVehicleInterior(vehicleid);
+			foreach (new i : Player) {
+				if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
+					continue;
+				}
+
+				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
+					distance = distance2;
+					closestid = i;
+				}
+			}
+		}
+	}
+#endif
 
     return closestid;
 }
+
