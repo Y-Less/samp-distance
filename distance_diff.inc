@@ -3,7 +3,7 @@
 #endif
 
 
-stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
+stock Float:DISTANCE_AB(Get...DistanceTo...)(a, b) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (_DISTANCE_A(...Pos)(a, x1, y1, z1) && _DISTANCE_B(...Pos)(b, x2, y2, z2)) {

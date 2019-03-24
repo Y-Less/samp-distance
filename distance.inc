@@ -79,7 +79,7 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 
 
 /*
-native GetPlayerDistanceFromPlayer(playerid2, playerid1);
+native GetPlayerDistanceToPlayer(playerid2, playerid1);
 native IsPlayerInRangeOfPlayer(playerid2, playerid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestPlayerToPlayer(playerid1, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -124,7 +124,7 @@ oooooo     oooo           oooo         o8o            oooo
 
 
 /*
-native GetVehicleDistanceFromVehicle(vehicleid2, vehicleid1);
+native GetVehicleDistanceToVehicle(vehicleid2, vehicleid1);
 native IsVehicleInRangeOfVehicle(vehicleid2, vehicleid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -154,7 +154,7 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 */
 
 
-#define DISTANCE_Object_Distance GetObjectDistanceFromPoint3D
+#define DISTANCE_Object_Distance GetObjectDistanceToPoint3D
 #define DISTANCE_Object_Pos GetObjectPos
 #define DISTANCE_Object_Invalid() INVALID_OBJECT_ID
 #define DISTANCE_Object_Loop(%0) for (new %0 = 0; %0 != INVALID_OBJECT_ID; ++%0) if (IsValidObject(%0))
@@ -164,7 +164,7 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 
 
 /*
-native GetObjectDistanceFromObject(objectid2, objectid1);
+native GetObjectDistanceToObject(objectid2, objectid1);
 native IsObjectInRangeOfObject(objectid2, objectid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestObjectToObject(objectid1, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -200,7 +200,7 @@ o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P
 
 
 /*
-native GetDynObjectDistanceFromDynObject(objectid2, objectid1);
+native GetDynObjectDistanceToDynObject(objectid2, objectid1);
 native IsDynObjectInRangeOfDynObject(objectid2, objectid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestDynObjectToDynObject(objectid1, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -238,7 +238,7 @@ DynObject,Vehicle,dynobj,vehicleid
 #if 0
 
 /*
-native Get\1DistanceFrom\2\(\3, \4\);
+native Get\1DistanceTo\2\(\3, \4\);
 native Is\1InRangeOf\2\(\3, \4, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false\);
 native GetClosest\1To\2\(\4, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false\);
 */
@@ -253,7 +253,7 @@ native GetClosest\1To\2\(\4, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = fal
 
 
 /*
-native Get\2DistanceFrom\1\(\4, \3\);
+native Get\2DistanceTo\1\(\4, \3\);
 native Is\2InRangeOf\1\(\4, \3, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false\);
 native GetClosest\2To\1\(\3, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false\);
 */
@@ -270,7 +270,7 @@ native GetClosest\2To\1\(\3, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = fal
 
 
 /*
-native GetVehicleDistanceFromPlayer(vehicleid, playerid);
+native GetVehicleDistanceToPlayer(vehicleid, playerid);
 native IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -287,7 +287,7 @@ native GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:
 
 
 /*
-native GetPlayerDistanceFromVehicle(playerid, vehicleid);
+native GetPlayerDistanceToVehicle(playerid, vehicleid);
 native IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -304,7 +304,7 @@ native GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool
 
 
 /*
-native GetPlayerDistanceFromObject(playerid, objectid);
+native GetPlayerDistanceToObject(playerid, objectid);
 native IsPlayerInRangeOfObject(playerid, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestPlayerToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -317,7 +317,7 @@ native GetClosestPlayerToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:i
 
 
 /*
-native GetObjectDistanceFromPlayer(objectid, playerid);
+native GetObjectDistanceToPlayer(objectid, playerid);
 native IsObjectInRangeOfPlayer(objectid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -330,7 +330,7 @@ native GetClosestObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:i
 
 
 /*
-native GetObjectDistanceFromVehicle(objectid, vehicleid);
+native GetObjectDistanceToVehicle(objectid, vehicleid);
 native IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -343,7 +343,7 @@ native GetClosestObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool
 
 
 /*
-native GetVehicleDistanceFromObject(vehicleid, objectid);
+native GetVehicleDistanceToObject(vehicleid, objectid);
 native IsVehicleInRangeOfObject(vehicleid, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestVehicleToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -356,7 +356,7 @@ native GetClosestVehicleToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:
 
 
 /*
-native GetDynObjectDistanceFromPlayer(dynobj, playerid);
+native GetDynObjectDistanceToPlayer(dynobj, playerid);
 native IsDynObjectInRangeOfPlayer(dynobj, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -369,7 +369,7 @@ native GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, boo
 
 
 /*
-native GetPlayerDistanceFromDynObject(playerid, dynobj);
+native GetPlayerDistanceToDynObject(playerid, dynobj);
 native IsPlayerInRangeOfDynObject(playerid, dynobj, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestPlayerToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -382,7 +382,7 @@ native GetClosestPlayerToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:
 
 
 /*
-native GetDynObjectDistanceFromObject(dynobj, objectid);
+native GetDynObjectDistanceToObject(dynobj, objectid);
 native IsDynObjectInRangeOfObject(dynobj, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestDynObjectToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -395,7 +395,7 @@ native GetClosestDynObjectToObject(objectid, ignoredid = INVALID_VEHICLE_ID, boo
 
 
 /*
-native GetObjectDistanceFromDynObject(objectid, dynobj);
+native GetObjectDistanceToDynObject(objectid, dynobj);
 native IsObjectInRangeOfDynObject(objectid, dynobj, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestObjectToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -408,7 +408,7 @@ native GetClosestObjectToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:
 
 
 /*
-native GetDynObjectDistanceFromVehicle(dynobj, vehicleid);
+native GetDynObjectDistanceToVehicle(dynobj, vehicleid);
 native IsDynObjectInRangeOfVehicle(dynobj, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -421,7 +421,7 @@ native GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, b
 
 
 /*
-native GetVehicleDistanceFromDynObject(vehicleid, dynobj);
+native GetVehicleDistanceToDynObject(vehicleid, dynobj);
 native IsVehicleInRangeOfDynObject(vehicleid, dynobj, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
 native GetClosestVehicleToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
 */
@@ -431,6 +431,4 @@ native GetClosestVehicleToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool
 #define DISTANCE_AB(%0...%1...%2) %0Vehicle%1DynObject%2
 
 #include "distance_diff"
-
-
 
