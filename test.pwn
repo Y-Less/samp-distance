@@ -10,18 +10,18 @@
 
 
 Test:DoesItEvenCompile() {
-    GetDistanceBetweenPoints(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-    IsPointInRangeOfPoint(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    GetDistanceBetweenPoints3D(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    IsPointInRangeOfPoint3D(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
     GetDistanceBetweenPoints2D(0.0, 0.0, 0.0, 0.0);
     IsPointInRangeOfPoint2D(0.0, 0.0, 0.0, 0.0, 0.0);
 
-    GetPlayerDistanceFromPoint(0, 0.0, 0.0, 0.0);
-    IsPlayerInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+    GetPlayerDistanceFromPoint3D(0, 0.0, 0.0, 0.0);
+    IsPlayerInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
     GetPlayerDistanceFromPoint2D(0, 0.0, 0.0);
     IsPlayerInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
 
-    GetVehicleDistanceFromPoint(0, 0.0, 0.0, 0.0);
-    IsVehicleInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+    GetVehicleDistanceFromPoint3D(0, 0.0, 0.0, 0.0);
+    IsVehicleInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
     GetVehicleDistanceFromPoint2D(0, 0.0, 0.0);
     IsVehicleInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
 

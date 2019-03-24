@@ -164,5 +164,5 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 
 #undef DISTANCE_A
 #undef DISTANCE_B
-#undef DISTANCE_LOOP
+#undef DISTANCE_AB
 
