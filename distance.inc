@@ -26,23 +26,21 @@ ooooooooo.              o8o                  .           ooooooooo.             
 o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' o888o o888o o888o   "888"
 */
 
-stock Float:GetDistanceBetweenPoints3D(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2) {
-    return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
+    if (_:y2 == _:FLOAT_NAN) {
+		return VectorSize(x1 - z1, y1 - x2, 0.0);
+	}
+
+	return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 }
 
 
-stock bool:IsPointInRangeOfPoint3D(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:range) {
-    return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
-}
+stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
+    if (_:y2 == _:FLOAT_NAN) {
+		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
+	}
 
-
-stock Float:GetDistanceBetweenPoints2D(Float:x1, Float:y1, Float:x2, Float:y2) {
-    return VectorSize(x1 - x2, y1 - y2, 0.0);
-}
-
-
-stock bool:IsPointInRangeOfPoint2D(Float:x1, Float:y1, Float:x2, Float:y2, Float:range) {
-    return VectorSize(x1 - x2, y1 - y2, 0.0) <= range;
+	return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
 }
 
 

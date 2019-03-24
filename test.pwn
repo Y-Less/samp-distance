@@ -10,33 +10,33 @@
 
 
 Test:DoesItEvenCompile1() {
-	GetDistanceBetweenPoints3D(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	IsPointInRangeOfPoint3D(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	GetDistanceBetweenPoints2D(0.0, 0.0, 0.0, 0.0);
-	IsPointInRangeOfPoint2D(0.0, 0.0, 0.0, 0.0, 0.0);
+	GetPointDistanceToPoint(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	IsPointInRangeOfPoint(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	GetPointDistanceToPoint(0.0, 0.0, 0.0, 0.0);
+	IsPointInRangeOfPoint(0.0, 0.0, 0.0, 0.0, 0.0);
 }
 
 
 Test:DoesItEvenCompile2() {
-	GetPlayerDistanceToPoint3D(0, 0.0, 0.0, 0.0);
-	IsPlayerInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
-	GetPlayerDistanceToPoint2D(0, 0.0, 0.0);
-	IsPlayerInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
+	GetPlayerDistanceToPoint(0, 0.0, 0.0, 0.0);
+	IsPlayerInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+	GetPlayerDistanceToPoint(0, 0.0, 0.0);
+	IsPlayerInRangeOfPoint(0, 0.0, 0.0, 0.0);
 
-	GetVehicleDistanceToPoint3D(0, 0.0, 0.0, 0.0);
-	IsVehicleInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
-	GetVehicleDistanceToPoint2D(0, 0.0, 0.0);
-	IsVehicleInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
+	GetVehicleDistanceToPoint(0, 0.0, 0.0, 0.0);
+	IsVehicleInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+	GetVehicleDistanceToPoint(0, 0.0, 0.0);
+	IsVehicleInRangeOfPoint(0, 0.0, 0.0, 0.0);
 
-	GetDynObjectDistanceToPoint3D(0, 0.0, 0.0, 0.0);
-	IsDynObjectInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
-	GetDynObjectDistanceToPoint2D(0, 0.0, 0.0);
-	IsDynObjectInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
+	GetDynObjectDistanceToPoint(0, 0.0, 0.0, 0.0);
+	IsDynObjectInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+	GetDynObjectDistanceToPoint(0, 0.0, 0.0);
+	IsDynObjectInRangeOfPoint(0, 0.0, 0.0, 0.0);
 
-	GetObjectDistanceToPoint3D(0, 0.0, 0.0, 0.0);
-	IsObjectInRangeOfPoint3D(0, 0.0, 0.0, 0.0, 0.0);
-	GetObjectDistanceToPoint2D(0, 0.0, 0.0);
-	IsObjectInRangeOfPoint2D(0, 0.0, 0.0, 0.0);
+	GetObjectDistanceToPoint(0, 0.0, 0.0, 0.0);
+	IsObjectInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
+	GetObjectDistanceToPoint(0, 0.0, 0.0);
+	IsObjectInRangeOfPoint(0, 0.0, 0.0, 0.0);
 }
 
 
@@ -111,21 +111,21 @@ Test:DoesItEvenCompile4() {
 
 
 Test:PointPoint() {
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints3D(0.0, 0.0, 0.0, 3.0, 4.0, 5.0) - 7.071 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints3D(0.0, 0.0, 0.0, 5.0, 12.0, 13.0) - 18.385 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints3D(3.0, 4.0, 5.0, 5.0, 12.0, 13.0) - 11.489 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 0.0, 3.0, 4.0, 5.0) - 7.071 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 0.0, 5.0, 12.0, 13.0) - 18.385 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(3.0, 4.0, 5.0, 5.0, 12.0, 13.0) - 11.489 <= EPSILON);
 
-	ASSERT(IsPointInRangeOfPoint3D(0.0, 0.0, 0.0, 3.0, 4.0, 5.0, 10.0));
-	ASSERT(!IsPointInRangeOfPoint3D(0.0, 0.0, 0.0, 5.0, 12.0, 13.0, 10.0));
-	ASSERT(!IsPointInRangeOfPoint3D(3.0, 4.0, 5.0, 5.0, 12.0, 13.0, 10.0));
+	ASSERT(IsPointInRangeOfPoint(10.0, 0.0, 0.0, 0.0, 3.0, 4.0, 5.0));
+	ASSERT(!IsPointInRangeOfPoint(10.0, 0.0, 0.0, 0.0, 5.0, 12.0, 13.0));
+	ASSERT(!IsPointInRangeOfPoint(10.0, 3.0, 4.0, 5.0, 5.0, 12.0, 13.0));
 
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints2D(0.0, 0.0, 3.0, 4.0) - 5.0 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints2D(0.0, 0.0, 5.0, 12.0) - 13.0 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints2D(2.0, 4.0, 5.0, 12.0) - 8.544 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 3.0, 4.0) - 5.0 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 5.0, 12.0) - 13.0 <= EPSILON);
+	ASSERT(-EPSILON <= GetDistanceBetweenPoints(2.0, 4.0, 5.0, 12.0) - 8.544 <= EPSILON);
 
-	ASSERT(IsPointInRangeOfPoint2D(0.0, 0.0, 3.0, 4.0, 10.0));
-	ASSERT(!IsPointInRangeOfPoint2D(0.0, 0.0, 5.0, 12.0, 10.0));
-	ASSERT(IsPointInRangeOfPoint2D(3.0, 4.0, 5.0, 12.0, 10.0));
+	ASSERT(IsPointInRangeOfPoint(10.0, 0.0, 0.0, 3.0, 4.0));
+	ASSERT(!IsPointInRangeOfPoint(10.0, 0.0, 0.0, 5.0, 12.0));
+	ASSERT(IsPointInRangeOfPoint(10.0, 3.0, 4.0, 5.0, 12.0));
 }
 
 
