@@ -88,7 +88,7 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 	#if defined DISTANCE_VW
 				if (ignoreVW) {
 	#endif
-					DISTANCE_LOOP (i) {
+					_DISTANCE_A(...Loop)(i) {
 						if (i == ignoredid) {
 							continue;
 						}
@@ -102,7 +102,7 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 				} else {
 					new vw = _DISTANCE_B(...VW)(b);
 
-					DISTANCE_LOOP (i) {
+					_DISTANCE_A(...Loop)(i) {
 						if (i == ignoredid || vw != _DISTANCE_A(...VW)(i)) {
 							continue;
 						}
@@ -121,7 +121,7 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 	#endif
 					new interior = _DISTANCE_B(...Interior)(b);
 
-					DISTANCE_LOOP (i) {
+					_DISTANCE_A(...Loop)(i) {
 						if (i == ignoredid || interior != _DISTANCE_A(...Interior)(i)) {
 							continue;
 						}
@@ -135,7 +135,7 @@ stock Float:DISTANCE_AB(Get...DistanceFrom...)(a, b) {
 				} else {
 					new vw = _DISTANCE_B(...VW)(b), interior = _DISTANCE_B(...Interior)(b);
 
-					DISTANCE_LOOP (i) {
+					_DISTANCE_A(...Loop)(i) {
 						if (i == ignoredid || vw != _DISTANCE_A(...VW)(i) || interior != _DISTANCE_A(...Interior)(i)) {
 							continue;
 						}

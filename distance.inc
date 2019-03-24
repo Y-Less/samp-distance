@@ -1,65 +1,27 @@
-#if defined _inc_distance
-    #undef _inc_distance
-#endif
-
-#if defined _distance_included
-    #endinput
-#endif
-#define _distance_included
-
-#include <a_samp>
-#include <YSI_Data\y_iterate>
+// Convenience macros to prepend `DISTANCE_` to everything.
+#define _DISTANCE_A(%0...%1) DISTANCE_A(DISTANCE_%0..._%1)
+#define _DISTANCE_B(%0...%1) DISTANCE_B(DISTANCE_%0..._%1)
 
 
 /*
-ooooooooo.              o8o                  .           ooooooooo.              o8o                  .   
-`888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8   
- 888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo          888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo 
- 888ooo88P'  d88' `88b `888  `888P"Y88b    888            888ooo88P'  d88' `88b `888  `888P"Y88b    888   
- 888         888   888  888   888   888    888   8888888  888         888   888  888   888   888    888   
- 888         888   888  888   888   888    888 .          888         888   888  888   888   888    888 . 
-o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' o888o o888o o888o   "888"
-*/
-
-stock Float:GetDistanceBetweenPoints(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2) {
-    return VectorSize(x1 - x2, y1 - y2, z1 - z2);
-}
-
-
-stock bool:IsPointInRangeOfPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:range) {
-    return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
-}
-
-
-stock Float:GetDistanceBetweenPoints2D(Float:x1, Float:y1, Float:x2, Float:y2) {
-    return VectorSize(x1 - x2, y1 - y2, 0.0);
-}
-
-
-stock bool:IsPointInRangeOfPoint2D(Float:x1, Float:y1, Float:x2, Float:y2, Float:range) {
-    return VectorSize(x1 - x2, y1 - y2, 0.0) <= range;
-}
-
-
-/*
-ooooooooo.   oooo                                                   ooooooooo.              o8o                  .   
-`888   `Y88. `888                                                   `888   `Y88.            `"'                .o8   
- 888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b          888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo 
- 888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P          888ooo88P'  d88' `88b `888  `888P"Y88b    888   
- 888          888   .oP"888    `88..8'   888ooo888  888     8888888  888         888   888  888   888   888    888   
- 888          888  d8(  888     `888'    888    .o  888              888         888   888  888   888   888    888 . 
-o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o        `Y8bod8P' o888o o888o o888o   "888" 
+ooooooooo.   oooo                                           
+`888   `Y88. `888                                           
+ 888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b 
+ 888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P 
+ 888          888   .oP"888    `88..8'   888ooo888  888     
+ 888          888  d8(  888     `888'    888    .o  888     
+o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b    
                              .o..P'                                                                                  
                              `Y8P'                                                                                   
 */
 
-stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) {
-    if (IsPlayerConnected(playerid)) {
-        return GetPlayerDistanceFromPoint(playerid, x, y, z);
-    }
 
-    return FLOAT_NAN;
-}
+#define DISTANCE_Player_Distance BAD_GetPlayerDistanceFromPoint
+#define DISTANCE_Player_Interior GetPlayerInterior
+#define DISTANCE_Player_VW GetPlayerVirtualWorld
+#define DISTANCE_Player_Pos GetPlayerPos
+#define DISTANCE_Player_Invalid() INVALID_PLAYER_ID
+#define DISTANCE_Player_Loop(%0) foreach (new %0 : Player)
 
 #if defined _ALS_GetPlayerDistanceFromPoint
     #undef GetPlayerDistanceFromPoint
@@ -67,42 +29,29 @@ stock Float:dist_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
     #define _ALS_GetPlayerDistanceFromPoint
     native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 #endif
-#define GetPlayerDistanceFromPoint( dist_GetPlayerDistanceFromPoint(
+#define GetPlayerDistanceFromPoint( GetPlayerDistanceFromPoint3D(
 
-
-stock Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y) {
-    new Float:x2, Float:y2, Float:z2;
-
-    if (GetPlayerPos(playerid, x2, y2, z2)) {
-        return GetDistanceBetweenPoints2D(x, y, x2, y2);
-    }
-
-    return FLOAT_NAN;
-}
-
-
-stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y) {
-    return GetPlayerDistanceFromPoint2D(playerid, x, y) <= range;
-}
+#define DISTANCE_A(%0...%1) %0Player%1
+#include "distance_point.inc"
 
 
 /*
-oooooo     oooo           oooo         o8o            oooo                    ooooooooo.              o8o                  .   
- `888.     .8'            `888         `"'            `888                    `888   `Y88.            `"'                .o8   
-  `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.           888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo 
-   `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b          888ooo88P'  d88' `88b `888  `888P"Y88b    888   
-    `888.8'     888ooo888  888   888   888  888        888  888ooo888 8888888  888         888   888  888   888   888    888   
-     `888'      888    .o  888   888   888  888   .o8  888  888    .o          888         888   888  888   888   888    888 . 
-      `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P'         o888o        `Y8bod8P' o888o o888o o888o   "888" 
+oooooo     oooo           oooo         o8o            oooo            
+ `888.     .8'            `888         `"'            `888            
+  `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.  
+   `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b 
+    `888.8'     888ooo888  888   888   888  888        888  888ooo888 
+     `888'      888    .o  888   888   888  888   .o8  888  888    .o 
+      `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P' 
 */
 
-stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
-    if (Iter_Contains(Vehicle, vehicleid)) {
-        return GetVehicleDistanceFromPoint(vehicleid, x, y, z);
-    }
 
-    return FLOAT_NAN;
-}
+#define DISTANCE_Vehicle_Distance BAD_GetVehicleDistanceFromPoint
+#define DISTANCE_Vehicle_Interior GetVehicleInterior
+#define DISTANCE_Vehicle_VW GetVehicleVirtualWorld
+#define DISTANCE_Vehicle_Pos GetVehiclePos
+#define DISTANCE_Vehicle_Invalid() INVALID_VEHICLE_ID
+#define DISTANCE_Vehicle_Loop(%0) foreach (new %0 : Vehicle)
 
 #if defined _ALS_GetVehicleDistFromPoint
     #undef GetVehicleDistanceFromPoint
@@ -110,469 +59,210 @@ stock Float:dist_GetVehicleDistFromPoint(vehicleid, Float:x, Float:y, Float:z) {
     #define _ALS_GetVehicleDistFromPoint
     native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
-#define GetVehicleDistanceFromPoint( dist_GetVehicleDistFromPoint(
+#define GetVehicleDistanceFromPoint( GetVehicleDistanceFromPoint3D(
 
-
-stock bool:IsVehicleInRangeOfPoint(vehicleid, Float:range, Float:x, Float:y, Float:z) {
-    return GetVehicleDistanceFromPoint(vehicleid, x, y, z) <= range;
-}
-
-
-stock Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y) {
-    new Float:x2, Float:y2, Float:z2;
-
-    if (GetVehiclePos(vehicleid, x2, y2, z2)) {
-        return GetDistanceBetweenPoints2D(x, y, x2, y2);
-    }
-
-    return FLOAT_NAN;
-}
-
-
-stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y) {
-    return GetVehicleDistanceFromPoint2D(vehicleid, x, y) <= range;
-}
+#define DISTANCE_A(%0...%1) %0Vehicle%1
+#include "distance_point.inc"
 
 
 /*
-ooooooooo.   oooo                                                   ooooooooo.   oooo                                           
-`888   `Y88. `888                                                   `888   `Y88. `888                                           
- 888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b          888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b 
- 888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P          888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P 
- 888          888   .oP"888    `88..8'   888ooo888  888     8888888  888          888   .oP"888    `88..8'   888ooo888  888     
- 888          888  d8(  888     `888'    888    .o  888              888          888  d8(  888     `888'    888    .o  888     
-o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b            o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b    
-                             .o..P'                                                              .o..P'                         
-                             `Y8P'                                                               `Y8P'                          
+  .oooooo.    .o8           o8o                         .   
+ d8P'  `Y8b  "888           `"'                       .o8   
+888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo 
+888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888   
+888      888  888   888     888 888ooo888 888         888   
+`88b    d88'  888   888     888 888    .o 888   .o8   888 . 
+ `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888" 
+                            888                             
+                        .o. 88P                             
+                        `Y888P                              
 */
 
-stock Float:GetDistanceBetweenPlayers(playerid1, playerid2) {
-    new Float:x, Float:y, Float:z;
 
-    if (GetPlayerPos(playerid2, x, y, z)) {
-        return GetPlayerDistanceFromPoint(playerid1, x, y, z);
-    }
+#define DISTANCE_Object_Distance GetObjectDistanceFromPoint3D
+#define DISTANCE_Object_Pos GetObjectPos
+#define DISTANCE_Object_Invalid() INVALID_OBJECT_ID
+#define DISTANCE_Object_Loop(%0) for (new %0 = 0; %0 != INVALID_OBJECT_ID; ++%0) if (IsValidObject(%0))
 
-    return FLOAT_NAN;
-}
-
-
-stock bool:IsPlayerInRangeOfPlayer(playerid1, playerid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
-    new Float:x, Float:y, Float:z;
-
-    return IsPlayerConnected(playerid1)
-        && GetPlayerPos(playerid2, x, y, z)
-        && BAD_GetPlayerDistanceFromPoint(playerid1, x, y, z) <= range
-        && (ignoreVW || GetPlayerVirtualWorld(playerid1) == GetPlayerVirtualWorld(playerid2))
-        && (ignoreInterior || GetPlayerInterior(playerid1) == GetPlayerInterior(playerid2))
-    ;
-}
-
-
-stock GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false) {
-    new Float:x, Float:y, Float:z;
-
-    if (!GetPlayerPos(playerid, x, y, z)) {
-        return INVALID_PLAYER_ID;
-    }
-
-    new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
-    if (ignoreInterior) {
-        if (ignoreVW) {
-            foreach (new i : Player) {
-                if (i == ignoredid) {
-                    continue;
-                }
-
-                if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                    distance = distance2;
-                    closestid = i;
-                }
-            }
-        } else {
-            new vw = GetPlayerVirtualWorld(playerid);
-
-            foreach (new i : Player) {
-                if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
-                    continue;
-                }
-
-                if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                    distance = distance2;
-                    closestid = i;
-                }
-            }
-        }
-    } else {
-        if (ignoreVW) {
-            new interior = GetPlayerInterior(playerid);
-
-            foreach (new i : Player) {
-                if (i == ignoredid || interior != GetPlayerInterior(i)) {
-                    continue;
-                }
-
-                if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                    distance = distance2;
-                    closestid = i;
-                }
-            }
-        }
-        else {
-            new vw = GetPlayerVirtualWorld(playerid), interior = GetPlayerInterior(playerid);
-
-            foreach (new i : Player) {
-                if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
-                    continue;
-                }
-
-                if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                    distance = distance2;
-                    closestid = i;
-                }
-            }
-        }
-    }
-
-    return closestid;
-}
+#define DISTANCE_A(%0...%1) %0Object%1
+#include "distance_point.inc"
 
 
 /*
-ooooooooo.   oooo                                                   oooooo     oooo           oooo         o8o            oooo            
-`888   `Y88. `888                                                    `888.     .8'            `888         `"'            `888            
- 888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b           `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.  
- 888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P            `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b 
- 888          888   .oP"888    `88..8'   888ooo888  888     8888888     `888.8'     888ooo888  888   888   888  888        888  888ooo888 
- 888          888  d8(  888     `888'    888    .o  888                  `888'      888    .o  888   888   888  888   .o8  888  888    .o 
-o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b                  `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P' 
-                             .o..P'                                                                                                       
-                             `Y8P'                                                                                                        
+oooooooooo.                                                        o8o                    .oooooo.    .o8           o8o                         .   
+`888'   `Y8b                                                       `"'                   d8P'  `Y8b  "888           `"'                       .o8   
+ 888      888 oooo    ooo ooo. .oo.    .oooo.   ooo. .oo.  .oo.   oooo   .ooooo.        888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo 
+ 888      888  `88.  .8'  `888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888  d88' `"Y8       888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888   
+ 888      888   `88..8'    888   888   .oP"888   888   888   888   888  888             888      888  888   888     888 888ooo888 888         888   
+ 888     d88'    `888'     888   888  d8(  888   888   888   888   888  888   .o8       `88b    d88'  888   888     888 888    .o 888   .o8   888 . 
+o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P'        `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888" 
+              .o..P'                                                                                                888                             
+              `Y8P'                                                                                             .o. 88P                             
+                                                                                                                `Y888P                              
 */
 
-stock Float:GetPlayerDistanceFromVehicle(playerid, vehicleid) {
-    new Float:x, Float:y, Float:z;
 
-    if (GetVehiclePos(vehicleid, x, y, z)) {
-        return GetPlayerDistanceFromPoint(playerid, x, y, z);
-    }
+#define DISTANCE_DynObject_Distance(%0,%1,%2,%3) (Streamer_GetDistanceToItem(%1, %2, %3, STREAMER_TYPE_OBJECT, %0, Float:I@), Float:I@)
+#define DISTANCE_DynObject_Pos GetDynamicObjectPos
+#define DISTANCE_DynObject_Invalid() INVALID_STREAMER_ID
+#define DISTANCE_DynObject_Loop(%0) for (new %0 = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); %0; --%0) if (IsValidDynamicObject(%0))
 
-    return FLOAT_NAN;
-}
-
-
-#if defined GetVehicleInterior
-    stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
-        new Float:x, Float:y, Float:z;
-
-        return IsPlayerConnected(playerid)
-            && GetVehiclePos(vehicleid, x, y, z)
-            && BAD_GetPlayerDistanceFromPoint(playerid, x, y, z) <= range
-            && (ignoreVW || GetPlayerVirtualWorld(playerid) == GetVehicleVirtualWorld(vehicleid))
-            && (ignoreInterior || GetPlayerInterior(playerid) == GetVehicleInterior(vehicleid))
-        ;
-    }
-#else
-    stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false) {
-        new Float:x, Float:y, Float:z;
-
-        return IsPlayerConnected(playerid)
-            && GetVehiclePos(vehicleid, x, y, z)
-            && BAD_GetPlayerDistanceFromPoint(playerid, x, y, z) <= range
-            && (ignoreVW || GetPlayerVirtualWorld(playerid) == GetVehicleVirtualWorld(vehicleid))
-        ;
-    }
-#endif
-
-
-#if defined GetVehicleInterior
-    stock GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false) {
-#else
-    stock GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false) {
-#endif
-        new Float:x, Float:y, Float:z;
-
-        if (!GetPlayerPos(playerid, x, y, z)) {
-            return INVALID_PLAYER_ID;
-        }
-
-        new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
-#if defined GetVehicleInterior
-        if (ignoreInterior) {
-#endif
-            if (ignoreVW) {
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                new vw = GetPlayerVirtualWorld(playerid);
-
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-#if defined GetVehicleInterior
-        } else {
-            if (ignoreVW) {
-                new interior = GetPlayerInterior(playerid);
-
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || interior != GetVehicleInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                new vw = GetPlayerVirtualWorld(playerid), interior = GetPlayerInterior(playerid);
-
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-        }
-#endif
-
-        return closestid;
-    }
+#define DISTANCE_A(%0...%1) %0DynObject%1
+#include "distance_point.inc"
 
 
 /*
-oooooo     oooo           oooo         o8o            oooo                    oooooo     oooo           oooo         o8o            oooo            
- `888.     .8'            `888         `"'            `888                     `888.     .8'            `888         `"'            `888            
-  `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.            `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.  
-   `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b            `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b 
-    `888.8'     888ooo888  888   888   888  888        888  888ooo888 8888888     `888.8'     888ooo888  888   888   888  888        888  888ooo888 
-     `888'      888    .o  888   888   888  888   .o8  888  888    .o              `888'      888    .o  888   888   888  888   .o8  888  888    .o 
-      `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P'               `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P' 
+
+native GetPlayerDistanceFromVehicle(playerid, vehicleid);
+native IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+
 */
 
-stock Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2) {
-    new Float:x, Float:y, Float:z;
 
-    if (GetVehiclePos(vehicleid2, x, y, z)) {
-        return GetVehicleDistanceFromPoint(vehicleid1, x, y, z);
-    }
-
-    return FLOAT_NAN;
-}
-
-
+#define DISTANCE_A(%0...%1) %0Player%1
+#define DISTANCE_B(%0...%1) %0Vehicle%1
+#define DISTANCE_AB(%0...%1...%2) %0Player%1Vehicle%2
 #if defined GetVehicleInterior
-    stock bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
-        new Float:x, Float:y, Float:z;
-
-        return Iter_Contains(Vehicle, vehicleid1)
-            && GetVehiclePos(vehicleid2, x, y, z)
-            && BAD_GetVehicleDistanceFromPoint(vehicleid1, x, y, z) <= range
-            && (ignoreVW || GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2))
-            && (ignoreInterior || GetVehicleInterior(vehicleid1) == GetVehicleInterior(vehicleid2))
-        ;
-    }
-#else
-    stock bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range, bool:ignoreVW = false) {
-        new Float:x, Float:y, Float:z;
-
-        return Iter_Contains(Vehicle, vehicleid1)
-            && GetVehiclePos(vehicleid2, x, y, z)
-            && BAD_GetVehicleDistanceFromPoint(vehicleid1, x, y, z) <= range
-            && (ignoreVW || GetVehicleVirtualWorld(vehicleid1) == GetVehicleVirtualWorld(vehicleid2))
-        ;
-    }
+	#define DISTANCE_INT
 #endif
+#define DISTANCE_VW
 
-
-#if defined GetVehicleInterior
-    stock GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false) {
-#else
-    stock GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false) {
-#endif
-        new Float:x, Float:y, Float:z;
-
-        if (!GetVehiclePos(vehicleid, x, y, z)) {
-            return INVALID_PLAYER_ID;
-        }
-
-        new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
-#if defined GetVehicleInterior
-        if (ignoreInterior) {
-#endif
-            if (ignoreVW) {
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                new vw = GetVehicleVirtualWorld(vehicleid);
-                
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || vw != GetVehicleVirtualWorld(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-#if defined GetVehicleInterior
-        } else {
-            if (ignoreVW) {
-                new interior = GetVehicleInterior(vehicleid);
-                
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || interior != GetVehicleInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                new vw = GetVehicleVirtualWorld(vehicleid), interior = GetVehicleInterior(vehicleid);
-
-                foreach (new i : Vehicle) {
-                    if (i == ignoredid || vw != GetVehicleVirtualWorld(i) || interior != GetVehicleInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-        }
-#endif
-
-        return closestid;
-    }
+#include "distance_diff.inc"
 
 
 /*
-oooooo     oooo           oooo         o8o            oooo                    ooooooooo.   oooo                                           
- `888.     .8'            `888         `"'            `888                    `888   `Y88. `888                                           
-  `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.           888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b 
-   `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b          888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P 
-    `888.8'     888ooo888  888   888   888  888        888  888ooo888 8888888  888          888   .oP"888    `88..8'   888ooo888  888     
-     `888'      888    .o  888   888   888  888   .o8  888  888    .o          888          888  d8(  888     `888'    888    .o  888     
-      `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P'         o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b    
-                                                                                                           .o..P'                         
-                                                                                                           `Y8P'                          
+
+native GetVehicleDistanceFromPlayer(vehicleid, playerid);
+native IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+
 */
 
-#define GetVehicleDistanceFromPlayer(%0,%1) \
-    GetPlayerDistanceFromVehicle(%1,%0)
+
+#define DISTANCE_A(%0...%1) %0Vehicle%1
+#define DISTANCE_B(%0...%1) %0Player%1
+#define DISTANCE_AB(%0...%1...%2) %0Vehicle%1Player%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
 
 
-#define IsVehicleInRangeOfPlayer(%0,%1,%2) \
-    IsPlayerInRangeOfVehicle(%1,%0,%2)
+// Input:
 
-
-#if defined GetVehicleInterior
-    stock GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreVW = false, bool:ignoreInterior = false) {
-#else
-    stock GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreVW = false) {
-#endif
-        new Float:x, Float:y, Float:z;
-
-        if (!GetVehiclePos(vehicleid, x, y, z)) {
-            return INVALID_PLAYER_ID;
-        }
-
-        new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
-#if defined GetVehicleInterior
-        if (ignoreInterior) {
-#endif
-            if (ignoreVW) {
-                new vw = GetVehicleVirtualWorld(vehicleid);
-
-                foreach (new i : Player) {
-                    if (i == ignoredid || vw != GetPlayerVirtualWorld(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                foreach (new i : Player) {
-                    if (i == ignoredid) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-#if defined GetVehicleInterior
-        } else {
-            if (ignoreVW) {
-                new interior = GetVehicleInterior(vehicleid);
-
-                foreach (new i : Player) {
-                    if (i == ignoredid || interior != GetPlayerInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            } else {
-                new vw = GetVehicleVirtualWorld(vehicleid), interior = GetVehicleInterior(vehicleid);
-
-                foreach (new i : Player) {
-                    if (i == ignoredid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i)) {
-                        continue;
-                    }
-
-                    if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance) {
-                        distance = distance2;
-                        closestid = i;
-                    }
-                }
-            }
-        }
+#if 0
+	Vehicle,Player,vehicleid,playerid
+	Player,Object,playerid,objectid
+	Object,Vehicle,objectid,vehicleid
+	DynObject,Player,dynobj,playerid
+	DynObject,Object,dynobj,objectid
+	DynObject,Vehicle,dynobj,vehicleid
 #endif
 
-        return closestid;
-    }
+// Search:
+//
+//     (.*),(.*),(.*),(.*)
+//
+// Replace:
+
+#if 0
+
+/*
+native Get\1DistanceFrom\2\(\3, \4\);
+native Is\1InRangeOf\2\(\3, \4, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false\);
+native GetClosest\1To\2\(\4, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false\);
+*/
+
+#define DISTANCE_A\(%0...%1\) %0\1%1
+#define DISTANCE_B\(%0...%1\) %0\2%1
+#define DISTANCE_AB\(%0...%1...%2\) %0\1%1\2%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+#endif
+
+
+/*
+native GetVehicleDistanceFromPlayer(vehicleid, playerid);
+native IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0Vehicle%1
+#define DISTANCE_B(%0...%1) %0Player%1
+#define DISTANCE_AB(%0...%1...%2) %0Vehicle%1Player%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+
+/*
+native GetPlayerDistanceFromObject(playerid, objectid);
+native IsPlayerInRangeOfObject(playerid, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestPlayerToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0Player%1
+#define DISTANCE_B(%0...%1) %0Object%1
+#define DISTANCE_AB(%0...%1...%2) %0Player%1Object%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+
+/*
+native GetObjectDistanceFromVehicle(objectid, vehicleid);
+native IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0Object%1
+#define DISTANCE_B(%0...%1) %0Vehicle%1
+#define DISTANCE_AB(%0...%1...%2) %0Object%1Vehicle%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+
+/*
+native GetDynObjectDistanceFromPlayer(dynobj, playerid);
+native IsDynObjectInRangeOfPlayer(dynobj, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0DynObject%1
+#define DISTANCE_B(%0...%1) %0Player%1
+#define DISTANCE_AB(%0...%1...%2) %0DynObject%1Player%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+
+/*
+native GetDynObjectDistanceFromObject(dynobj, objectid);
+native IsDynObjectInRangeOfObject(dynobj, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestDynObjectToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0DynObject%1
+#define DISTANCE_B(%0...%1) %0Object%1
+#define DISTANCE_AB(%0...%1...%2) %0DynObject%1Object%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
+
+/*
+native GetDynObjectDistanceFromVehicle(dynobj, vehicleid);
+native IsDynObjectInRangeOfVehicle(dynobj, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+native GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+*/
+
+#define DISTANCE_A(%0...%1) %0DynObject%1
+#define DISTANCE_B(%0...%1) %0Vehicle%1
+#define DISTANCE_AB(%0...%1...%2) %0DynObject%1Vehicle%2
+#define DISTANCE_INT
+
+#include "distance_diff.inc"
+
