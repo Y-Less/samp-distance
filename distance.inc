@@ -72,6 +72,14 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 #endif
 #define GetPlayerDistanceFromPoint( GetPlayerDistanceFromPoint3D(
 
+#if defined _ALS_IsPlayerInRangeOfPoint
+    #undef IsPlayerInRangeOfPoint
+#else
+    #define _ALS_IsPlayerInRangeOfPoint
+    native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+#endif
+#define IsPlayerInRangeOfPoint( IsPlayerInRangeOfPoint3D(
+
 #define DISTANCE_A(%0...%1) %0Player%1
 #include "distance_point"
 
