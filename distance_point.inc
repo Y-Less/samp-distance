@@ -7,7 +7,7 @@ stock Float:DISTANCE_A(Get...DistanceToPoint)(a, Float:x, Float:y, Float:z = FLO
 	new Float:x2, Float:y2, Float:z2;
 
 	if (_DISTANCE_A(...Pos)(a, x2, y2, z2)) {
-		if (_:z == _:FLOAT_NAN) {
+		if (IsNaN(z)) {
 			return VectorSize(x - x2, y - y2, 0);
 		}
 
@@ -21,7 +21,7 @@ stock Float:DISTANCE_A(Get...DistanceToPoint)(a, Float:x, Float:y, Float:z = FLO
 stock bool:DISTANCE_A(Is...InRangeOfPoint)(a, Float:range, Float:x, Float:y, Float:z = FLOAT_NAN) {
 	new Float:x2, Float:y2, Float:z2;
 
-    if (_:z == _:FLOAT_NAN) {
+    if (IsNaN(z)) {
 		return _DISTANCE_A(...Pos)(a, x2, y2, z2) && VectorSize(x - x2, y - y2, 0) <= range;
 	}
 
