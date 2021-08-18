@@ -64,6 +64,14 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 #define DISTANCE_Player_Invalid() INVALID_PLAYER_ID
 #define DISTANCE_Player_Loop(%0) foreach (new %0 : Player)
 
+#if defined _ALS_GetPlayerDistanceFromPoint
+    #undef GetPlayerDistanceFromPoint
+#else
+    #define _ALS_GetPlayerDistanceFromPoint
+    native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
+#endif
+#define GetPlayerDistanceFromPoint( GetPlayerDistanceToPoint(
+
 #if defined _ALS_IsPlayerInRangeOfPoint
     #undef IsPlayerInRangeOfPoint
 #else
@@ -115,7 +123,7 @@ oooooo     oooo           oooo         o8o            oooo
     #define _ALS_GetVehicleDistFromPoint
     native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
-#define GetVehicleDistanceFromPoint( GetVehicleDistanceFromPoint3D(
+#define GetVehicleDistanceFromPoint( GetVehicleDistanceToPoint(
 
 #define DISTANCE_A(%0...%1) %0Vehicle%1
 #include "distance_point"
@@ -152,7 +160,7 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 */
 
 
-#define DISTANCE_Object_Distance GetObjectDistanceToPoint3D
+#define DISTANCE_Object_Distance GetObjectDistanceToPoint
 #define DISTANCE_Object_Pos GetObjectPos
 #define DISTANCE_Object_Invalid() INVALID_OBJECT_ID
 #define DISTANCE_Object_Loop(%0) for (new %0 = 0; %0 != INVALID_OBJECT_ID; ++%0) if (IsValidObject(%0))
