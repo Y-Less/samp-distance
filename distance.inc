@@ -64,14 +64,6 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 #define DISTANCE_Player_Invalid() INVALID_PLAYER_ID
 #define DISTANCE_Player_Loop(%0) foreach (new %0 : Player)
 
-#if defined _ALS_GetPlayerDistanceFromPoint
-    #undef GetPlayerDistanceFromPoint
-#else
-    #define _ALS_GetPlayerDistanceFromPoint
-    native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
-#endif
-#define GetPlayerDistanceFromPoint( GetPlayerDistanceFromPoint3D(
-
 #if defined _ALS_IsPlayerInRangeOfPoint
     #undef IsPlayerInRangeOfPoint
 #else
