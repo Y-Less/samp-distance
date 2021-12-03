@@ -506,7 +506,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i) if (IsValidDynamicObject(i)) {
-		if (i == objectid) {
+		if (STREAMER_TAG_OBJECT:i == objectid) {
 			continue;
 		}
 
@@ -516,7 +516,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 		}
 	}
 
-	return closestid;
+	return STREAMER_TAG_OBJECT:closestid;
 }
 
 // Define two versions of the functions for different parameter counts.
