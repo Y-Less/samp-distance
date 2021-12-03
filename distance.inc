@@ -70,7 +70,6 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
     #define _ALS_GetPlayerDistanceFromPoint
     native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 #endif
-#define GetPlayerDistanceFromPoint( GetPlayerDistanceToPoint(
 
 #if defined _ALS_IsPlayerInRangeOfPoint
     #undef IsPlayerInRangeOfPoint
@@ -78,7 +77,6 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
     #define _ALS_IsPlayerInRangeOfPoint
     native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 #endif
-#define IsPlayerInRangeOfPoint( IsPlayerInRangeOfPoint3D(
 
 #define DISTANCE_A(%0...%1) %0Player%1
 #include "distance_point"
@@ -97,6 +95,19 @@ native GetClosestPlayerToPlayer(playerid1, ignoredid = INVALID_VEHICLE_ID, bool:
 #define DISTANCE_VW
 
 #include "distance_diff"
+
+
+// Define two versions of the functions for different parameter counts.
+#define GetPlayerDistanceToPoint( GetPlayerDistanceToPoint2D(
+#define GetPlayerDistanceToPoint2D(%0,%1,%2,%3) GetPlayerDistanceToPoint3D(%0,%1,%2,%3)
+#define GetPlayerDistanceFromPoint( GetPlayerDistanceToPoint(
+#define _ALS_GetPlayerDistanceToPoint
+#define _ALS_GetPlayerDistanceToPoint2D
+
+#define IsPlayerInRangeOfPoint( IsPlayerInRangeOfPoint2D(
+#define IsPlayerInRangeOfPoint2D(%0,%1,%2,%3,%4) IsPlayerInRangeOfPoint3D(%0,%1,%2,%3,%4)
+#define _ALS_IsPlayerInRangeOfPoint
+#define _ALS_IsPlayerInRangeOfPoint2D
 
 
 /*
@@ -123,7 +134,6 @@ oooooo     oooo           oooo         o8o            oooo
     #define _ALS_GetVehicleDistFromPoint
     native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
-#define GetVehicleDistanceFromPoint( GetVehicleDistanceToPoint(
 
 #define DISTANCE_A(%0...%1) %0Vehicle%1
 #include "distance_point"
@@ -146,6 +156,19 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 #include "distance_diff"
 
 
+// Define two versions of the functions for different parameter counts.
+#define GetVehicleDistanceToPoint( GetVehicleDistanceToPoint2D(
+#define GetVehicleDistanceToPoint2D(%0,%1,%2,%3) GetVehicleDistanceToPoint3D(%0,%1,%2,%3)
+#define GetVehicleDistanceFromPoint( GetVehicleDistanceToPoint(
+#define _ALS_GetVehicleDistanceToPoint
+#define _ALS_GetVehicleDistanceToPoint2D
+
+#define IsVehicleInRangeOfPoint( IsVehicleInRangeOfPoint2D(
+#define IsVehicleInRangeOfPoint2D(%0,%1,%2,%3,%4) IsVehicleInRangeOfPoint3D(%0,%1,%2,%3,%4)
+#define _ALS_IsVehicleInRangeOfPoint
+#define _ALS_IsVehicleInRangeOfPoint2D
+
+
 /*
   .oooooo.    .o8           o8o                         .   
  d8P'  `Y8b  "888           `"'                       .o8   
@@ -160,7 +183,7 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 */
 
 
-#define DISTANCE_Object_Distance GetObjectDistanceToPoint
+#define DISTANCE_Object_Distance GetObjectDistanceToPoint3D
 #define DISTANCE_Object_Pos GetObjectPos
 #define DISTANCE_Object_Invalid() INVALID_OBJECT_ID
 #define DISTANCE_Object_Loop(%0) for (new %0 = 0; %0 != INVALID_OBJECT_ID; ++%0) if (IsValidObject(%0))
@@ -180,6 +203,18 @@ native GetClosestObjectToObject(objectid1, ignoredid = INVALID_VEHICLE_ID, bool:
 #define DISTANCE_AB(%0...%1...%2) %0Object%1Object%2
 
 #include "distance_diff"
+
+
+// Define two versions of the functions for different parameter counts.
+#define GetObjectDistanceToPoint( GetObjectDistanceToPoint2D(
+#define GetObjectDistanceToPoint2D(%0,%1,%2,%3) GetObjectDistanceToPoint3D(%0,%1,%2,%3)
+#define _ALS_GetObjectDistanceToPoint
+#define _ALS_GetObjectDistanceToPoint2D
+
+#define IsObjectInRangeOfPoint( IsObjectInRangeOfPoint2D(
+#define IsObjectInRangeOfPoint2D(%0,%1,%2,%3,%4) IsObjectInRangeOfPoint3D(%0,%1,%2,%3,%4)
+#define _ALS_IsObjectInRangeOfPoint
+#define _ALS_IsObjectInRangeOfPoint2D
 
 
 /*
@@ -216,6 +251,18 @@ native GetClosestDynObjectToDynObject(objectid1, ignoredid = INVALID_VEHICLE_ID,
 #define DISTANCE_AB(%0...%1...%2) %0DynObject%1DynObject%2
 
 #include "distance_diff"
+
+
+// Define two versions of the functions for different parameter counts.
+#define GetDynObjectDistanceToPoint( GetDynObjectDistanceToPoint2D(
+#define GetDynObjectDistanceToPoint2D(%0,%1,%2,%3) GetDynObjectDistanceToPoint3D(%0,%1,%2,%3)
+#define _ALS_GetDynObjectDistanceToPoint
+#define _ALS_GetDynObjectDistanceToPoint2D
+
+#define IsDynObjectInRangeOfPoint( IsDynObjectInRangeOfPoint2D(
+#define IsDynObjectInRangeOfPoint2D(%0,%1,%2,%3,%4) IsDynObjectInRangeOfPoint3D(%0,%1,%2,%3,%4)
+#define _ALS_IsDynObjectInRangeOfPoint
+#define _ALS_IsDynObjectInRangeOfPoint2D
 
 
 // Input:

@@ -3,14 +3,27 @@
 #endif
 
 
-stock Float:DISTANCE_A(Get...DistanceToPoint)(a, Float:x, Float:y, Float:z = FLOAT_NAN) {
+stock Float:DISTANCE_A(Get...DistanceToPoint2D)(a, Float:x, Float:y) {
+	new Float:x2, Float:y2;
+
+	if (_DISTANCE_A(...Pos)(a, x2, y2, Float:a)) {
+		return VectorSize(x - x2, y - y2, 0);
+	}
+
+	return FLOAT_NAN;
+}
+
+
+stock bool:DISTANCE_A(Is...InRangeOfPoint2D)(a, Float:range, Float:x, Float:y) {
+	new Float:x2, Float:y2;
+	return _DISTANCE_A(...Pos)(a, x2, y2, Float:a) && VectorSize(x - x2, y - y2, 0) <= range;
+}
+
+
+stock Float:DISTANCE_A(Get...DistanceToPoint3D)(a, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
 	if (_DISTANCE_A(...Pos)(a, x2, y2, z2)) {
-		if (IsNaN(z)) {
-			return VectorSize(x - x2, y - y2, 0);
-		}
-
 		return VectorSize(x - x2, y - y2, z - z2);
 	}
 
@@ -18,13 +31,8 @@ stock Float:DISTANCE_A(Get...DistanceToPoint)(a, Float:x, Float:y, Float:z = FLO
 }
 
 
-stock bool:DISTANCE_A(Is...InRangeOfPoint)(a, Float:range, Float:x, Float:y, Float:z = FLOAT_NAN) {
+stock bool:DISTANCE_A(Is...InRangeOfPoint3D)(a, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
-
-    if (IsNaN(z)) {
-		return _DISTANCE_A(...Pos)(a, x2, y2, z2) && VectorSize(x - x2, y - y2, 0) <= range;
-	}
-
 	return _DISTANCE_A(...Pos)(a, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
