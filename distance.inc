@@ -446,7 +446,7 @@ o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P
                                                                                                                 `Y888P                              
 */
 
-stock Float:GetDynObjectDistanceToPoint2D(objectid, Float:x, Float:y) {
+stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 
 	if (GetDynamicObjectPos(objectid, x2, y2, Float:objectid)) {
@@ -456,12 +456,12 @@ stock Float:GetDynObjectDistanceToPoint2D(objectid, Float:x, Float:y) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y) {
+stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 	return GetDynamicObjectPos(objectid, x2, y2, Float:objectid) && VectorSize(x - x2, y - y2, 0) <= range;
 }
 
-stock Float:GetDynObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z) {
+stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
 	if (GetDynamicObjectPos(objectid, x2, y2, z2)) {
@@ -471,12 +471,12 @@ stock Float:GetDynObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Float:z) {
+stock bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 	return GetDynamicObjectPos(objectid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
-stock Float:GetDynObjectDistanceToDynObject(objectid, targetid) {
+stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (GetDynamicObjectPos(objectid, x1, y1, z1) && GetDynamicObjectPos(targetid, x2, y2, z2)) {
@@ -486,7 +486,7 @@ stock Float:GetDynObjectDistanceToDynObject(objectid, targetid) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfDynObject(objectid, targetid, Float:range) {
+stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	return GetDynamicObjectPos(objectid, x1, y1, z1)
@@ -495,7 +495,7 @@ stock bool:IsDynObjectInRangeOfDynObject(objectid, targetid, Float:range) {
 	;
 }
 
-stock GetClosestDynObjectToDynObject(objectid, ignoredid = 0) {
+stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:objectid, ignoredid = 0) {
 
 	new Float:x, Float:y, Float:z;
 
@@ -834,7 +834,7 @@ stock GetClosestVehicleToObject(objectid, ignoredid = INVALID_OBJECT_ID) {
 	return closestid;
 }
 
-stock Float:GetDynObjectDistanceToPlayer(objectid, playerid) {
+stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (GetDynamicObjectPos(objectid, x1, y1, z1) && GetPlayerPos(playerid, x2, y2, z2)) {
@@ -844,7 +844,7 @@ stock Float:GetDynObjectDistanceToPlayer(objectid, playerid) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfPlayer(objectid, playerid, Float:range) {
+stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	return GetDynamicObjectPos(objectid, x1, y1, z1)
@@ -853,7 +853,7 @@ stock bool:IsDynObjectInRangeOfPlayer(objectid, playerid, Float:range) {
 	;
 }
 
-stock GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_PLAYER_ID) {
+stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_PLAYER_ID) {
 
 	new Float:x, Float:y, Float:z;
 
@@ -877,7 +877,7 @@ stock GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_PLAYER_ID) {
 	return closestid;
 }
 
-stock Float:GetPlayerDistanceToDynObject(playerid, objectid) {
+stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (GetPlayerPos(playerid, x1, y1, z1) && GetDynamicObjectPos(objectid, x2, y2, z2)) {
@@ -887,7 +887,7 @@ stock Float:GetPlayerDistanceToDynObject(playerid, objectid) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsPlayerInRangeOfDynObject(playerid, objectid, Float:range) {
+stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	return GetPlayerPos(playerid, x1, y1, z1)
@@ -896,7 +896,7 @@ stock bool:IsPlayerInRangeOfDynObject(playerid, objectid, Float:range) {
 	;
 }
 
-stock GetClosestPlayerToDynObject(objectid, ignoredid = 0) {
+stock GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid, ignoredid = 0) {
 
 	new Float:x, Float:y, Float:z;
 
@@ -920,30 +920,30 @@ stock GetClosestPlayerToDynObject(objectid, ignoredid = 0) {
 	return closestid;
 }
 
-stock Float:GetDynObjectDistanceToObject(a, b) {
+stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	if (GetDynamicObjectPos(a, x1, y1, z1) && GetObjectPos(b, x2, y2, z2)) {
+	if (GetDynamicObjectPos(objectid, x1, y1, z1) && GetObjectPos(targetid, x2, y2, z2)) {
 		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 	}
 
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfObject(a, b, Float:range) {
+stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	return GetDynamicObjectPos(a, x1, y1, z1)
-		&& GetObjectPos(b, x2, y2, z2)
+	return GetDynamicObjectPos(objectid, x1, y1, z1)
+		&& GetObjectPos(targetid, x2, y2, z2)
 		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
 	;
 }
 
-stock GetClosestDynObjectToObject(b, ignoredid = INVALID_OBJECT_ID) {
+stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid, ignoredid = INVALID_OBJECT_ID) {
 
 	new Float:x, Float:y, Float:z;
 
-	if (!GetObjectPos(b, x, y, z)) {
+	if (!GetObjectPos(objectid, x, y, z)) {
 		return 0;
 	}
 
@@ -963,30 +963,30 @@ stock GetClosestDynObjectToObject(b, ignoredid = INVALID_OBJECT_ID) {
 	return closestid;
 }
 
-stock Float:GetObjectDistanceToDynObject(a, b) {
+stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	if (GetObjectPos(a, x1, y1, z1) && GetDynamicObjectPos(b, x2, y2, z2)) {
+	if (GetObjectPos(objectid, x1, y1, z1) && GetDynamicObjectPos(targetid, x2, y2, z2)) {
 		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 	}
 
 	return FLOAT_NAN;
 }
 
-stock bool:IsObjectInRangeOfDynObject(a, b, Float:range) {
+stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
-	return GetObjectPos(a, x1, y1, z1)
-		&& GetDynamicObjectPos(b, x2, y2, z2)
+	return GetObjectPos(objectid, x1, y1, z1)
+		&& GetDynamicObjectPos(targetid, x2, y2, z2)
 		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
 	;
 }
 
-stock GetClosestObjectToDynObject(b, ignoredid = 0) {
+stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid, ignoredid = 0) {
 
 	new Float:x, Float:y, Float:z;
 
-	if (!GetDynamicObjectPos(b, x, y, z)) {
+	if (!GetDynamicObjectPos(objectid, x, y, z)) {
 		return INVALID_OBJECT_ID;
 	}
 
@@ -1006,7 +1006,7 @@ stock GetClosestObjectToDynObject(b, ignoredid = 0) {
 	return closestid;
 }
 
-stock Float:GetDynObjectDistanceToVehicle(objectid, vehicleid) {
+stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (GetDynamicObjectPos(objectid, x1, y1, z1) && GetVehiclePos(vehicleid, x2, y2, z2)) {
@@ -1016,7 +1016,7 @@ stock Float:GetDynObjectDistanceToVehicle(objectid, vehicleid) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsDynObjectInRangeOfVehicle(objectid, vehicleid, Float:range) {
+stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	return GetDynamicObjectPos(objectid, x1, y1, z1)
@@ -1025,7 +1025,7 @@ stock bool:IsDynObjectInRangeOfVehicle(objectid, vehicleid, Float:range) {
 	;
 }
 
-stock GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID) {
+stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID) {
 
 	new Float:x, Float:y, Float:z;
 
@@ -1049,7 +1049,7 @@ stock GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID) {
 	return closestid;
 }
 
-stock Float:GetVehicleDistanceToDynObject(vehicleid, objectid) {
+stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	if (GetVehiclePos(vehicleid, x1, y1, z1) && GetDynamicObjectPos(objectid, x2, y2, z2)) {
@@ -1059,7 +1059,7 @@ stock Float:GetVehicleDistanceToDynObject(vehicleid, objectid) {
 	return FLOAT_NAN;
 }
 
-stock bool:IsVehicleInRangeOfDynObject(vehicleid, objectid, Float:range) {
+stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
 	return GetVehiclePos(vehicleid, x1, y1, z1)
@@ -1068,7 +1068,7 @@ stock bool:IsVehicleInRangeOfDynObject(vehicleid, objectid, Float:range) {
 	;
 }
 
-stock GetClosestVehicleToDynObject(objectid, ignoredid = 0) {
+stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid, ignoredid = 0) {
 
 	new Float:x, Float:y, Float:z;
 
