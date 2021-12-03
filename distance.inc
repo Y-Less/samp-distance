@@ -10,12 +10,12 @@
 #include <a_samp>
 #include <YSI_Data\y_iterate>
 
+// Use `$` to denote a hard macro end.  So that matches don't escape their brackets.
 #define _DISTANCE_E$
 
 // Convenience macros to prepend `DISTANCE_` to everything.
 #define _DISTANCE_A(%0...%1) DISTANCE_A(DISTANCE_%0..._%1)
 #define _DISTANCE_B(%0...%1) DISTANCE_B(DISTANCE_%0..._%1)
-
 
 /*
 ooooooooo.              o8o                  .           ooooooooo.              o8o                  .   
@@ -35,7 +35,6 @@ stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Floa
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 }
 
-
 stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
     if (_:y2 == _:FLOAT_NAN) {
 		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
@@ -43,7 +42,6 @@ stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Floa
 
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
 }
-
 
 /*
 ooooooooo.   oooo                                           
@@ -56,7 +54,6 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
                              .o..P'                                                                                  
                              `Y8P'                                                                                   
 */
-
 
 #define DISTANCE_Player_Distance BAD_GetPlayerDistanceFromPoint
 #define DISTANCE_Player_Interior GetPlayerInterior
@@ -82,7 +79,6 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 #define DISTANCE_A(%0...%1) %0Player%1
 #include "distance_point"
 
-
 /*
 native GetPlayerDistanceToPlayer(playerid2, playerid1);
 native IsPlayerInRangeOfPlayer(playerid2, playerid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -97,7 +93,6 @@ native GetClosestPlayerToPlayer(playerid1, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 // Define two versions of the functions for different parameter counts.
 #define GetPlayerDistanceToPoint(%0) GetPlayerDistanceToPoint2D(%0)_DISTANCE_E$
 #define GetPlayerDistanceToPoint2D(%0,%1,%2,%3)_DISTANCE_E$ GetPlayerDistanceToPoint3D(%0,%1,%2,%3)
@@ -110,7 +105,6 @@ native GetClosestPlayerToPlayer(playerid1, ignoredid = INVALID_VEHICLE_ID, bool:
 #define _ALS_IsPlayerInRangeOfPoint
 #define _ALS_IsPlayerInRangeOfPoint2D
 
-
 /*
 oooooo     oooo           oooo         o8o            oooo            
  `888.     .8'            `888         `"'            `888            
@@ -120,7 +114,6 @@ oooooo     oooo           oooo         o8o            oooo
      `888'      888    .o  888   888   888  888   .o8  888  888    .o 
       `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P' 
 */
-
 
 #define DISTANCE_Vehicle_Distance BAD_GetVehicleDistanceFromPoint
 #define DISTANCE_Vehicle_Interior GetVehicleInterior
@@ -139,7 +132,6 @@ oooooo     oooo           oooo         o8o            oooo
 #define DISTANCE_A(%0...%1) %0Vehicle%1
 #include "distance_point"
 
-
 /*
 native GetVehicleDistanceToVehicle(vehicleid2, vehicleid1);
 native IsVehicleInRangeOfVehicle(vehicleid2, vehicleid1, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -156,7 +148,6 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 
 #include "distance_diff"
 
-
 // Define two versions of the functions for different parameter counts.
 #define GetVehicleDistanceToPoint(%0) GetVehicleDistanceToPoint2D(%0)_DISTANCE_E$
 #define GetVehicleDistanceToPoint2D(%0,%1,%2,%3)_DISTANCE_E$ GetVehicleDistanceToPoint3D(%0,%1,%2,%3)
@@ -168,7 +159,6 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 #define IsVehicleInRangeOfPoint2D(%0,%1,%2,%3,%4)_DISTANCE_E$ IsVehicleInRangeOfPoint3D(%0,%1,%2,%3,%4)
 #define _ALS_IsVehicleInRangeOfPoint
 #define _ALS_IsVehicleInRangeOfPoint2D
-
 
 /*
   .oooooo.    .o8           o8o                         .   
@@ -183,7 +173,6 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
                         `Y888P                              
 */
 
-
 #define DISTANCE_Object_Distance GetObjectDistanceToPoint3D
 #define DISTANCE_Object_Pos GetObjectPos
 #define DISTANCE_Object_Invalid() INVALID_OBJECT_ID
@@ -191,7 +180,6 @@ native GetClosestVehicleToVehicle(vehicleid1, ignoredid = INVALID_VEHICLE_ID, bo
 
 #define DISTANCE_A(%0...%1) %0Object%1
 #include "distance_point"
-
 
 /*
 native GetObjectDistanceToObject(objectid2, objectid1);
@@ -205,7 +193,6 @@ native GetClosestObjectToObject(objectid1, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 // Define two versions of the functions for different parameter counts.
 #define GetObjectDistanceToPoint(%0) GetObjectDistanceToPoint2D(%0)_DISTANCE_E$
 #define GetObjectDistanceToPoint2D(%0,%1,%2,%3)_DISTANCE_E$ GetObjectDistanceToPoint3D(%0,%1,%2,%3)
@@ -216,7 +203,6 @@ native GetClosestObjectToObject(objectid1, ignoredid = INVALID_VEHICLE_ID, bool:
 #define IsObjectInRangeOfPoint2D(%0,%1,%2,%3,%4)_DISTANCE_E$ IsObjectInRangeOfPoint3D(%0,%1,%2,%3,%4)
 #define _ALS_IsObjectInRangeOfPoint
 #define _ALS_IsObjectInRangeOfPoint2D
-
 
 /*
 oooooooooo.                                                        o8o                    .oooooo.    .o8           o8o                         .   
@@ -231,7 +217,6 @@ o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P
                                                                                                                 `Y888P                              
 */
 
-
 #define DISTANCE_DynObject_Distance(%0,%1,%2,%3) (Streamer_GetDistanceToItem(%1, %2, %3, STREAMER_TYPE_OBJECT, %0, Float:I@), Float:I@)
 #define DISTANCE_DynObject_Pos GetDynamicObjectPos
 #define DISTANCE_DynObject_Invalid() 0
@@ -239,7 +224,6 @@ o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P
 
 #define DISTANCE_A(%0...%1) %0DynObject%1
 #include "distance_point"
-
 
 /*
 native GetDynObjectDistanceToDynObject(objectid2, objectid1);
@@ -253,7 +237,6 @@ native GetClosestDynObjectToDynObject(objectid1, ignoredid = INVALID_VEHICLE_ID,
 
 #include "distance_diff"
 
-
 // Define two versions of the functions for different parameter counts.
 #define GetDynObjectDistanceToPoint(%0) GetDynObjectDistanceToPoint2D(%0)_DISTANCE_E$
 #define GetDynObjectDistanceToPoint2D(%0,%1,%2,%3)_DISTANCE_E$ GetDynObjectDistanceToPoint3D(%0,%1,%2,%3)
@@ -264,7 +247,6 @@ native GetClosestDynObjectToDynObject(objectid1, ignoredid = INVALID_VEHICLE_ID,
 #define IsDynObjectInRangeOfPoint2D(%0,%1,%2,%3,%4)_DISTANCE_E$ IsDynObjectInRangeOfPoint3D(%0,%1,%2,%3,%4)
 #define _ALS_IsDynObjectInRangeOfPoint
 #define _ALS_IsDynObjectInRangeOfPoint2D
-
 
 // Input:
 
@@ -305,7 +287,6 @@ native GetClosest\1To\2\(\4, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = fal
 
 #include "distance_diff"
 
-
 /*
 native Get\2DistanceTo\1\(\4, \3\);
 native Is\2InRangeOf\1\(\4, \3, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false\);
@@ -321,7 +302,6 @@ native GetClosest\2To\1\(\3, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = fal
 #include "distance_diff"
 
 #endif
-
 
 /*
 native GetVehicleDistanceToPlayer(vehicleid, playerid);
@@ -339,7 +319,6 @@ native GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 /*
 native GetPlayerDistanceToVehicle(playerid, vehicleid);
 native IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -356,7 +335,6 @@ native GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool
 
 #include "distance_diff"
 
-
 /*
 native GetPlayerDistanceToObject(playerid, objectid);
 native IsPlayerInRangeOfObject(playerid, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -368,7 +346,6 @@ native GetClosestPlayerToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:i
 #define DISTANCE_AB(%0...%1...%2) %0Player%1Object%2
 
 #include "distance_diff"
-
 
 /*
 native GetObjectDistanceToPlayer(objectid, playerid);
@@ -382,7 +359,6 @@ native GetClosestObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:i
 
 #include "distance_diff"
 
-
 /*
 native GetObjectDistanceToVehicle(objectid, vehicleid);
 native IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -394,7 +370,6 @@ native GetClosestObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool
 #define DISTANCE_AB(%0...%1...%2) %0Object%1Vehicle%2
 
 #include "distance_diff"
-
 
 /*
 native GetVehicleDistanceToObject(vehicleid, objectid);
@@ -408,7 +383,6 @@ native GetClosestVehicleToObject(objectid, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 /*
 native GetDynObjectDistanceToPlayer(dynobj, playerid);
 native IsDynObjectInRangeOfPlayer(dynobj, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -420,7 +394,6 @@ native GetClosestDynObjectToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, boo
 #define DISTANCE_AB(%0...%1...%2) %0DynObject%1Player%2
 
 #include "distance_diff"
-
 
 /*
 native GetPlayerDistanceToDynObject(playerid, dynobj);
@@ -434,7 +407,6 @@ native GetClosestPlayerToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 /*
 native GetDynObjectDistanceToObject(dynobj, objectid);
 native IsDynObjectInRangeOfObject(dynobj, objectid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -446,7 +418,6 @@ native GetClosestDynObjectToObject(objectid, ignoredid = INVALID_VEHICLE_ID, boo
 #define DISTANCE_AB(%0...%1...%2) %0DynObject%1Object%2
 
 #include "distance_diff"
-
 
 /*
 native GetObjectDistanceToDynObject(objectid, dynobj);
@@ -460,7 +431,6 @@ native GetClosestObjectToDynObject(dynobj, ignoredid = INVALID_VEHICLE_ID, bool:
 
 #include "distance_diff"
 
-
 /*
 native GetDynObjectDistanceToVehicle(dynobj, vehicleid);
 native IsDynObjectInRangeOfVehicle(dynobj, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
@@ -472,7 +442,6 @@ native GetClosestDynObjectToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, b
 #define DISTANCE_AB(%0...%1...%2) %0DynObject%1Vehicle%2
 
 #include "distance_diff"
-
 
 /*
 native GetVehicleDistanceToDynObject(vehicleid, dynobj);
