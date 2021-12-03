@@ -29,7 +29,7 @@ o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' 
 */
 
 stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
-    if (_:y2 == _:FLOAT_NAN) {
+	if (_:y2 == _:FLOAT_NAN) {
 		return VectorSize(x1 - z1, y1 - x2, 0.0);
 	}
 
@@ -37,7 +37,7 @@ stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Floa
 }
 
 stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
-    if (_:y2 == _:FLOAT_NAN) {
+	if (_:y2 == _:FLOAT_NAN) {
 		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
 	}
 
@@ -63,17 +63,17 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 */
 
 #if defined _ALS_GetPlayerDistanceFromPoint
-    #undef GetPlayerDistanceFromPoint
+	#undef GetPlayerDistanceFromPoint
 #else
-    #define _ALS_GetPlayerDistanceFromPoint
-    native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
+	#define _ALS_GetPlayerDistanceFromPoint
+	native BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 #endif
 
 #if defined _ALS_IsPlayerInRangeOfPoint
-    #undef IsPlayerInRangeOfPoint
+	#undef IsPlayerInRangeOfPoint
 #else
-    #define _ALS_IsPlayerInRangeOfPoint
-    native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	#define _ALS_IsPlayerInRangeOfPoint
+	native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 #endif
 
 stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y) {
@@ -227,10 +227,10 @@ oooooo     oooo           oooo         o8o            oooo
 */
 
 #if defined _ALS_GetVehicleDistFromPoint
-    #undef GetVehicleDistanceFromPoint
+	#undef GetVehicleDistanceFromPoint
 #else
-    #define _ALS_GetVehicleDistFromPoint
-    native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
+	#define _ALS_GetVehicleDistFromPoint
+	native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
 
 stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y) {
