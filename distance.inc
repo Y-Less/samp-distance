@@ -11,13 +11,6 @@
 #include <a_samp>
 #include <YSI_Data\y_iterate>
 
-// Use `$` to denote a hard macro end.  So that matches don't escape their brackets.
-#define _DISTANCE_E$
-
-// Convenience macros to prepend `DISTANCE_` to everything.
-#define _DISTANCE_A(%0...%1) DISTANCE_A(DISTANCE_%0..._%1)
-#define _DISTANCE_B(%0...%1) DISTANCE_B(DISTANCE_%0..._%1)
-
 /*
 ooooooooo.              o8o                  .           ooooooooo.              o8o                  .   
 `888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8   
