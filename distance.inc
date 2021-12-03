@@ -43,6 +43,12 @@ stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Floa
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
 }
 
+#define GetPointDistanceToPoint2D( GetPointDistanceToPoint(
+#define GetPointDistanceToPoint3D( GetPointDistanceToPoint(
+
+#define IsPointInRangeOfPoint2D( IsPointInRangeOfPoint(
+#define IsPointInRangeOfPoint3D( IsPointInRangeOfPoint(
+
 /*
 ooooooooo.   oooo                                           
 `888   `Y88. `888                                           
