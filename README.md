@@ -29,69 +29,242 @@ Include in your code and begin using the library:
 This library hooks the `GetPlayerDistanceFromPoint` and `GetVehicleDistanceFromPoint` functions to return `NaN` instead of `0.0` when the functions fail (the player/vehicle does not exist). These changes should not affect any existing code since it should be checking for invalid players/vehicles before using these functions anyway.
 
 
-## New functions
+## Function Naming
 
-### Point-Point
+The functions in this library have several basic forms:
+
+* `Get<A>DistanceTo<B>` - Get the distance between `A` and `B`.
+* `Is<A>InRangeOf<B>` - Is the distance between `A` and `B` lower than some threshold?
+* `GetClosest<A>To<B>` - Get the closest `B` to `A`.
+
+Plus a few "Point" functions which take an `x/y` pair or `x/y/z` triple instead of another entity:
+
+* `Get<A>DistanceToPoint2D` - Get the distance between `A` and an `x/y` point.
+* `Is<A>InRangeOfPoint2D` - Is the distance between `A` and an `x/y` point lower than some threshold?
+* `Get<A>DistanceToPoint3D` - Get the distance between `A` and an `x/y/z` point.
+* `Is<A>InRangeOfPoint3D` - Is the distance between `A` and an `x/y/z` point lower than some threshold?
+
+For each of these functions `A` and `B` can be any of the following entity types:
+
+* `Player`
+* `Vehicle`
+* `Object`
+* `DynObject` (with the streamer plugin).
+
+So for example, to check if a vehicle (`A`) is near a given streamer object (`B`) use:
 
 ```pawn
-Float:GetDistanceBetweenPoints(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2);
-bool:IsPointInRangeOfPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:range);
-Float:GetDistanceBetweenPoints2D(Float:x1, Float:y1, Float:x2, Float:y2);
-bool:IsPointInRangeOfPoint2D(Float:x1, Float:y1, Float:x2, Float:y2, Float:range);
+if (IsVehicleInRangeOfDynObject(vehicleid, objectid, 50.0))
+{
+	// Yes.
+}
 ```
 
-
-### Player-Point
+There are also two generic point functions:
 
 ```pawn
-Float:GetPlayerDistanceFromPoint2D(playerid, Float:x, Float:y);
+stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN);
+stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN);
+```
+
+These can be invoked as 2D (with four/five parameters) or 3D (with six/seven parameters).
+
+## All Functions
+
+Functions that return `Float:` will return `FLOAT_NAN` if they fail.  If, for example, one of the input entities doesn't exist.
+
+### Point - Point
+
+```pawn
+Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN);
+
+bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN);
+```
+
+### Player - Point
+
+```pawn
+Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y);
+
 bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y);
+
+Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z);
+
+bool:IsPlayerInRangeOfPoint3D(playerid, Float:range, Float:x, Float:y, Float:z);
 ```
 
-
-### Vehicle-Point
+### Player - Player
 
 ```pawn
-bool:IsVehicleInRangeOfPoint(vehicleid, Float:range, Float:x, Float:y, Float:z);
-Float:GetVehicleDistanceFromPoint2D(vehicleid, Float:x, Float:y);
+Float:GetPlayerDistanceToPlayer(playerid, targetid);
+
+bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
+
+GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInterior = false);
+```
+
+### Vehicle - Point
+
+```pawn
+Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y);
+
 bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y);
+
+Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z);
+
+bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, Float:z);
 ```
 
-
-### Player-Player
+### Vehicle - Vehicle
 
 ```pawn
-Float:GetDistanceBetweenPlayers(playerid1, playerid2);
-bool:IsPlayerInRangeOfPlayer(playerid1, playerid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false);
-GetClosestPlayerToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false);
+Float:GetVehicleDistanceToVehicle(vehicleid, targetid);
+
+bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:ignoreVW = false);
+
+GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false);
 ```
 
-
-### Player-Vehicle
+### Object - Point
 
 ```pawn
-Float:GetPlayerDistanceFromVehicle(playerid, vehicleid);
-bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
-GetClosestVehicleToPlayer(playerid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y);
+
+bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y);
+
+Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z);
+
+bool:IsObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Float:z);
 ```
 
-
-### Vehicle-Vehicle
+### Object - Object
 
 ```pawn
-Float:GetDistanceBetweenVehicles(vehicleid1, vehicleid2);
-bool:IsVehicleInRangeOfVehicle(vehicleid1, vehicleid2, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
-GetClosestVehicleToVehicle(vehicleid, ignoredid = INVALID_VEHICLE_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+Float:GetObjectDistanceToObject(objectid, targetid);
+
+bool:IsObjectInRangeOfObject(objectid, targetid, Float:range);
+
+GetClosestObjectToObject(objectid);
 ```
 
-
-### Vehicle-Player
+### DynObject - Point
 
 ```pawn
-Float:GetVehicleDistanceFromPlayer(vehicleid, playerid);
-bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false); // *
-GetClosestPlayerToVehicle(vehicleid, ignoredid = INVALID_PLAYER_ID, bool:ignoreVW = false, bool:ignoreInterior = false); // *
+Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y);
+
+bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y);
+
+Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y, Float:z);
+
+bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y, Float:z);
 ```
+
+### DynObject - DynObject
+
+```pawn
+Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid);
+
+bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid, Float:range);
+
+STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:objectid);
+```
+
+### Player - Vehicle
+
+```pawn
+Float:GetVehicleDistanceToPlayer(vehicleid, playerid);
+
+bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false);
+
+GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false);
+
+Float:GetPlayerDistanceToVehicle(playerid, vehicleid);
+
+bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false);
+
+GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false);
+```
+
+### Player - Object
+
+```pawn
+Float:GetPlayerDistanceToObject(playerid, objectid);
+
+bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range);
+
+GetClosestPlayerToObject(objectid);
+
+Float:GetObjectDistanceToPlayer(objectid, playerid);
+
+bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range);
+
+GetClosestObjectToPlayer(playerid);
+```
+
+### Object - Vehicle
+
+```pawn
+Float:GetObjectDistanceToVehicle(objectid, vehicleid);
+
+bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range);
+
+GetClosestObjectToVehicle(vehicleid);
+
+Float:GetVehicleDistanceToObject(vehicleid, objectid);
+
+bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range);
+
+GetClosestVehicleToObject(objectid);
+```
+
+### DynObject - Player
+
+```pawn
+Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid);
+
+bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Float:range);
+
+STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid);
+
+Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid);
+
+bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Float:range);
+
+GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid);
+```
+
+### DynObject - Object
+
+```pawn
+Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid);
+
+bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Float:range);
+
+STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid);
+
+Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid);
+
+bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Float:range);
+
+GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid);
+```
+
+### DynObject - Vehicle
+
+```pawn
+Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid);
+
+bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, Float:range);
+
+STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid);
+
+Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid);
+
+bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range);
+
+GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid);
+```
+
 
 
 **Note:** The functions with an asterisk (*) next to them only support the `ignoreInterior` argument if the `GetVehicleInterior` function is available (added by YSF, some other library or by a new SA-MP version (yeah, right)). 
@@ -142,3 +315,4 @@ The library is not fully tested as of now because there is no fully working vers
 ```bash
 sampctl package run
 ```
+
