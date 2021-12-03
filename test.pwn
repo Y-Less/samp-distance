@@ -1,6 +1,8 @@
 #define RUN_TESTS
 //#include <ut_mock_players>
 
+#include <a_samp>
+#include <streamer>
 #include <YSI_Core\y_testing>
 
 #include "distance.inc"
@@ -111,17 +113,17 @@ Test:DoesItEvenCompile4() {
 
 
 Test:PointPoint() {
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 0.0, 3.0, 4.0, 5.0) - 7.071 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 0.0, 5.0, 12.0, 13.0) - 18.385 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(3.0, 4.0, 5.0, 5.0, 12.0, 13.0) - 11.489 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 0.0, 3.0, 4.0, 5.0) - 7.071 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 0.0, 5.0, 12.0, 13.0) - 18.385 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(3.0, 4.0, 5.0, 5.0, 12.0, 13.0) - 11.489 <= EPSILON);
 
 	ASSERT(IsPointInRangeOfPoint(10.0, 0.0, 0.0, 0.0, 3.0, 4.0, 5.0));
 	ASSERT(!IsPointInRangeOfPoint(10.0, 0.0, 0.0, 0.0, 5.0, 12.0, 13.0));
 	ASSERT(!IsPointInRangeOfPoint(10.0, 3.0, 4.0, 5.0, 5.0, 12.0, 13.0));
 
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 3.0, 4.0) - 5.0 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(0.0, 0.0, 5.0, 12.0) - 13.0 <= EPSILON);
-	ASSERT(-EPSILON <= GetDistanceBetweenPoints(2.0, 4.0, 5.0, 12.0) - 8.544 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 3.0, 4.0) - 5.0 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 5.0, 12.0) - 13.0 <= EPSILON);
+	ASSERT(-EPSILON <= GetPointDistanceToPoint(2.0, 4.0, 5.0, 12.0) - 8.544 <= EPSILON);
 
 	ASSERT(IsPointInRangeOfPoint(10.0, 0.0, 0.0, 3.0, 4.0));
 	ASSERT(!IsPointInRangeOfPoint(10.0, 0.0, 0.0, 5.0, 12.0));
