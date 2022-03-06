@@ -8,19 +8,18 @@
 
 #include "distance.inc"
 
-
 #define EPSILON 0.001
 
-
-Test:DoesItEvenCompile1() {
+Test:DoesItEvenCompile1()
+{
 	GetPointDistanceToPoint(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	IsPointInRangeOfPoint(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	GetPointDistanceToPoint(0.0, 0.0, 0.0, 0.0);
 	IsPointInRangeOfPoint(0.0, 0.0, 0.0, 0.0, 0.0);
 }
 
-
-Test:DoesItEvenCompile2() {
+Test:DoesItEvenCompile2()
+{
 	GetPlayerDistanceToPoint(0, 0.0, 0.0, 0.0);
 	IsPlayerInRangeOfPoint(0, 0.0, 0.0, 0.0, 0.0);
 	GetPlayerDistanceToPoint(0, 0.0, 0.0);
@@ -42,8 +41,8 @@ Test:DoesItEvenCompile2() {
 	IsObjectInRangeOfPoint(0, 0.0, 0.0, 0.0);
 }
 
-
-Test:DoesItEvenCompile3() {
+Test:DoesItEvenCompile3()
+{
 	GetPlayerDistanceToPlayer(0, 0);
 	IsPlayerInRangeOfPlayer(0, 0, 0.0);
 	GetClosestPlayerToPlayer(0);
@@ -61,8 +60,8 @@ Test:DoesItEvenCompile3() {
 	GetClosestDynObjectToDynObject(0);
 }
 
-
-Test:DoesItEvenCompile4() {
+Test:DoesItEvenCompile4()
+{
 	GetPlayerDistanceToVehicle(0, 0);
 	IsPlayerInRangeOfVehicle(0, 0, 0.0);
 	GetClosestVehicleToPlayer(0);
@@ -112,8 +111,8 @@ Test:DoesItEvenCompile4() {
 	GetClosestDynObjectToObject(0);
 }
 
-
-Test:PointPoint() {
+Test:PointPoint()
+{
 	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 0.0, 3.0, 4.0, 5.0) - 7.071 <= EPSILON);
 	ASSERT(-EPSILON <= GetPointDistanceToPoint(0.0, 0.0, 0.0, 5.0, 12.0, 13.0) - 18.385 <= EPSILON);
 	ASSERT(-EPSILON <= GetPointDistanceToPoint(3.0, 4.0, 5.0, 5.0, 12.0, 13.0) - 11.489 <= EPSILON);
@@ -131,8 +130,8 @@ Test:PointPoint() {
 	ASSERT(IsPointInRangeOfPoint(10.0, 3.0, 4.0, 5.0, 12.0));
 }
 
-
-/*Test:PlayerPlayer() {
+/*Test:PlayerPlayer()
+{
 	SetPlayerConnected(3, false);
 
 	SetPlayerPos(0, 0.0, 0.0, 0.0);
@@ -147,4 +146,5 @@ Test:PointPoint() {
 	ASSERT(!IsPlayerInRangeOfPlayer(0, 2, 10.0));
 	ASSERT(!IsPlayerInRangeOfPlayer(0, 3, 10.0));
 }*/
+
 
