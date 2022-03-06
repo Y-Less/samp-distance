@@ -38,7 +38,7 @@ o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' 
  */
 stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN)
 {
-	if (_:y2 == _:FLOAT_NAN)
+	if (IS_NAN(y2))
 	{
 		return VectorSize(x1 - z1, y1 - x2, 0.0);
 	}
@@ -51,7 +51,7 @@ stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Floa
  */
 stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN)
 {
-	if (_:y2 == _:FLOAT_NAN)
+	if (IS_NAN(y2))
 	{
 		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
 	}
