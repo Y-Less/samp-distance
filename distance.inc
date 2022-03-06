@@ -250,7 +250,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 // Define two versions of the functions for different parameter counts.
 #define GetPlayerDistanceToPoint(%0) GetPlayerDistanceToPoint2D(%0)PP_DISCARD$
 #define GetPlayerDistanceToPoint2D(%0,%1,%2,%3)PP_DISCARD$ GetPlayerDistanceToPoint3D(%0,%1,%2,%3)
-#define GetPlayerDistanceFromPoint(%0) GetPlayerDistanceToPoint(%0)
+#define GetPlayerDistanceFromPoint( GetPlayerDistanceToPoint(
 #define _ALS_GetPlayerDistanceToPoint
 #define _ALS_GetPlayerDistanceToPoint2D
 
@@ -400,7 +400,7 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 // Define two versions of the functions for different parameter counts.
 #define GetVehicleDistanceToPoint(%0) GetVehicleDistanceToPoint2D(%0)PP_DISCARD$
 #define GetVehicleDistanceToPoint2D(%0,%1,%2,%3)PP_DISCARD$ GetVehicleDistanceToPoint3D(%0,%1,%2,%3)
-#define GetVehicleDistanceFromPoint(%0) GetVehicleDistanceToPoint(%0)
+#define GetVehicleDistanceFromPoint( GetVehicleDistanceToPoint(
 #define _ALS_GetVehicleDistanceToPoint
 #define _ALS_GetVehicleDistanceToPoint2D
 
@@ -644,7 +644,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1080,7 +1080,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1188,7 +1188,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1296,7 +1296,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
