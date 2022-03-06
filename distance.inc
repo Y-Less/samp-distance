@@ -516,7 +516,7 @@ stock GetClosestObjectToObject(objectid)
 
 	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
 	{
-		if (IsValidObject(i) && i != objectid && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		if (i != objectid && IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -644,7 +644,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (STREAMER_TAG_OBJECT:i != objectid && IsValidDynamicObject(STREAMER_TAG_OBJECT:i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, STREAMER_TAG_OBJECT:i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1080,14 +1080,14 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(STREAMER_TAG_OBJECT:i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, STREAMER_TAG_OBJECT:i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
 		}
 	}
 
-	return closestid;
+	return STREAMER_TAG_OBJECT:closestid;
 }
 
 /**
@@ -1188,14 +1188,14 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(STREAMER_TAG_OBJECT:i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, STREAMER_TAG_OBJECT:i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
 		}
 	}
 
-	return closestid;
+	return STREAMER_TAG_OBJECT:closestid;
 }
 
 /**
@@ -1296,14 +1296,14 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(STREAMER_TAG_OBJECT:i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, STREAMER_TAG_OBJECT:i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
 		}
 	}
 
-	return closestid;
+	return STREAMER_TAG_OBJECT:closestid;
 }
 
 /**
