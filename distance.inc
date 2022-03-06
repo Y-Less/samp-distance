@@ -189,12 +189,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 		{
 			foreach (new i : Player)
 			{
-				if (i == playerid)
-				{
-					continue;
-				}
-
-				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+				if (i != playerid && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
 				{
 					distance = distance2;
 					closestid = i;
@@ -207,12 +202,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 
 			foreach (new i : Player)
 			{
-				if (i == playerid || vw != GetPlayerVirtualWorld(i))
-				{
-					continue;
-				}
-
-				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+				if (i != playerid && vw == GetPlayerVirtualWorld(i) && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
 				{
 					distance = distance2;
 					closestid = i;
@@ -228,12 +218,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 
 			foreach (new i : Player)
 			{
-				if (i == playerid || interior != GetPlayerInterior(i))
-				{
-					continue;
-				}
-
-				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+				if (i != playerid && interior == GetPlayerInterior(i) && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
 				{
 					distance = distance2;
 					closestid = i;
@@ -246,12 +231,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 
 			foreach (new i : Player)
 			{
-				if (i == playerid || vw != GetPlayerVirtualWorld(i) || interior != GetPlayerInterior(i))
-				{
-					continue;
-				}
-
-				if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+				if (i != playerid && vw == GetPlayerVirtualWorld(i) && interior == GetPlayerInterior(i) && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
 				{
 					distance = distance2;
 					closestid = i;
@@ -387,12 +367,7 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 	{
 		foreach (new i : Vehicle)
 		{
-			if (i == vehicleid)
-			{
-				continue;
-			}
-
-			if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
+			if (i != vehicleid && (distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
 			{
 				distance = distance2;
 				closestid = i;
@@ -405,12 +380,7 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 
 		foreach (new i : Vehicle)
 		{
-			if (i == vehicleid || vw != GetVehicleVirtualWorld(i))
-			{
-				continue;
-			}
-
-			if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
+			if (i != vehicleid && vw == GetVehicleVirtualWorld(i) && (distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
 			{
 				distance = distance2;
 				closestid = i;
@@ -536,14 +506,9 @@ stock GetClosestObjectToObject(objectid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i) if (IsValidObject(i))
+	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
 	{
-		if (i == objectid)
-		{
-			continue;
-		}
-
-		if ((distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		if (IsValidObject(i) && i != objectid && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -667,14 +632,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
 
-	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i) if (IsValidDynamicObject(i))
+	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (STREAMER_TAG_OBJECT:i == objectid)
-		{
-			continue;
-		}
-
-		if ((distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -766,12 +726,7 @@ stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false)
 
 		foreach (new i : Vehicle)
 		{
-			if (vw != GetVehicleVirtualWorld(i))
-			{
-				continue;
-			}
-
-			if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
+			if (vw == GetVehicleVirtualWorld(i) && (distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
 			{
 				distance = distance2;
 				closestid = i;
@@ -842,12 +797,7 @@ stock GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false)
 
 		foreach (new i : Player)
 		{
-			if (vw != GetPlayerVirtualWorld(i))
-			{
-				continue;
-			}
-
-			if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+			if (vw == GetPlayerVirtualWorld(i) && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
 			{
 				distance = distance2;
 				closestid = i;
@@ -954,9 +904,9 @@ stock GetClosestObjectToPlayer(playerid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i) if (IsValidObject(i))
+	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
 	{
-		if ((distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1008,9 +958,9 @@ stock GetClosestObjectToVehicle(vehicleid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i) if (IsValidObject(i))
+	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
 	{
-		if ((distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1116,9 +1066,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
 
-	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i) if (IsValidDynamicObject(i))
+	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if ((distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1224,9 +1174,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
 
-	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i) if (IsValidDynamicObject(i))
+	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if ((distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1278,9 +1228,9 @@ stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i) if (IsValidObject(i))
+	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
 	{
-		if ((distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1332,9 +1282,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
 
-	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i) if (IsValidDynamicObject(i))
+	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if ((distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
