@@ -1,10 +1,10 @@
 // Font: Roman
 #if defined _inc_distance
-    #undef _inc_distance
+	#undef _inc_distance
 #endif
 
 #if defined _distance_included
-    #endinput
+	#endinput
 #endif
 #define _distance_included
 
@@ -24,13 +24,15 @@
 #define PP_DISCARD%0$
 
 /*
-ooooooooo.              o8o                  .           ooooooooo.              o8o                  .
-`888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8
- 888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo          888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo
- 888ooo88P'  d88' `88b `888  `888P"Y88b    888            888ooo88P'  d88' `88b `888  `888P"Y88b    888
- 888         888   888  888   888   888    888   8888888  888         888   888  888   888   888    888
- 888         888   888  888   888   888    888 .          888         888   888  888   888   888    888 .
-o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' o888o o888o o888o   "888"
+
+    ooooooooo.              o8o                  .           ooooooooo.              o8o                  .
+    `888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8
+     888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo          888   .d88'  .ooooo.  oooo  ooo. .oo.   .o888oo
+     888ooo88P'  d88' `88b `888  `888P"Y88b    888            888ooo88P'  d88' `88b `888  `888P"Y88b    888
+     888         888   888  888   888   888    888   8888888  888         888   888  888   888   888    888
+     888         888   888  888   888   888    888 .          888         888   888  888   888   888    888 .
+    o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' o888o o888o o888o   "888"
+
 */
 
 /**
@@ -66,15 +68,17 @@ stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Floa
 #define IsPointInRangeOfPoint3D( IsPointInRangeOfPoint(
 
 /*
-ooooooooo.   oooo
-`888   `Y88. `888
- 888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b
- 888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P
- 888          888   .oP"888    `88..8'   888ooo888  888
- 888          888  d8(  888     `888'    888    .o  888
-o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
-                             .o..P'
-                             `Y8P'
+
+    ooooooooo.   oooo
+    `888   `Y88. `888
+     888   .d88'  888   .oooo.   oooo    ooo  .ooooo.  oooo d8b
+     888ooo88P'   888  `P  )88b   `88.  .8'  d88' `88b `888""8P
+     888          888   .oP"888    `88..8'   888ooo888  888
+     888          888  d8(  888     `888'    888    .o  888
+    o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
+                                 .o..P'
+                                 `Y8P'
+
 */
 
 #if defined _ALS_GetPlayerDistanceFromPoint
@@ -256,13 +260,15 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 #define _ALS_IsPlayerInRangeOfPoint2D
 
 /*
-oooooo     oooo           oooo         o8o            oooo
- `888.     .8'            `888         `"'            `888
-  `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.
-   `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b
-    `888.8'     888ooo888  888   888   888  888        888  888ooo888
-     `888'      888    .o  888   888   888  888   .o8  888  888    .o
-      `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P'
+
+    oooooo     oooo           oooo         o8o            oooo
+     `888.     .8'            `888         `"'            `888
+      `888.   .8'    .ooooo.   888 .oo.   oooo   .ooooo.   888   .ooooo.
+       `888. .8'    d88' `88b  888P"Y88b  `888  d88' `"Y8  888  d88' `88b
+        `888.8'     888ooo888  888   888   888  888        888  888ooo888
+         `888'      888    .o  888   888   888  888   .o8  888  888    .o
+          `8'       `Y8bod8P' o888o o888o o888o `Y8bod8P' o888o `Y8bod8P'
+
 */
 
 #if defined _ALS_GetVehicleDistFromPoint
@@ -404,16 +410,18 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 #define _ALS_IsVehicleInRangeOfPoint2D
 
 /*
-  .oooooo.    .o8           o8o                         .
- d8P'  `Y8b  "888           `"'                       .o8
-888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo
-888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888
-888      888  888   888     888 888ooo888 888         888
-`88b    d88'  888   888     888 888    .o 888   .o8   888 .
- `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888"
-                            888
-                        .o. 88P
-                        `Y888P
+
+      .oooooo.    .o8           o8o                         .
+     d8P'  `Y8b  "888           `"'                       .o8
+    888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo
+    888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888
+    888      888  888   888     888 888ooo888 888         888
+    `88b    d88'  888   888     888 888    .o 888   .o8   888 .
+     `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888"
+                                888
+                            .o. 88P
+                            `Y888P
+
 */
 
 /**
@@ -530,16 +538,18 @@ stock GetClosestObjectToObject(objectid)
 #define _ALS_IsObjectInRangeOfPoint2D
 
 /*
-oooooooooo.                                                        o8o                    .oooooo.    .o8           o8o                         .
-`888'   `Y8b                                                       `"'                   d8P'  `Y8b  "888           `"'                       .o8
- 888      888 oooo    ooo ooo. .oo.    .oooo.   ooo. .oo.  .oo.   oooo   .ooooo.        888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo
- 888      888  `88.  .8'  `888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888  d88' `"Y8       888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888
- 888      888   `88..8'    888   888   .oP"888   888   888   888   888  888             888      888  888   888     888 888ooo888 888         888
- 888     d88'    `888'     888   888  d8(  888   888   888   888   888  888   .o8       `88b    d88'  888   888     888 888    .o 888   .o8   888 .
-o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P'        `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888"
-              .o..P'                                                                                                888
-              `Y8P'                                                                                             .o. 88P
-                                                                                                                `Y888P
+
+    oooooooooo.                                                        o8o                    .oooooo.    .o8           o8o                         .
+    `888'   `Y8b                                                       `"'                   d8P'  `Y8b  "888           `"'                       .o8
+     888      888 oooo    ooo ooo. .oo.    .oooo.   ooo. .oo.  .oo.   oooo   .ooooo.        888      888  888oooo.     oooo  .ooooo.   .ooooo.  .o888oo
+     888      888  `88.  .8'  `888P"Y88b  `P  )88b  `888P"Y88bP"Y88b  `888  d88' `"Y8       888      888  d88' `88b    `888 d88' `88b d88' `"Y8   888
+     888      888   `88..8'    888   888   .oP"888   888   888   888   888  888             888      888  888   888     888 888ooo888 888         888
+     888     d88'    `888'     888   888  d8(  888   888   888   888   888  888   .o8       `88b    d88'  888   888     888 888    .o 888   .o8   888 .
+    o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P'        `Y8bood8P'   `Y8bod8P'     888 `Y8bod8P' `Y8bod8P'   "888"
+                  .o..P'                                                                                                888
+                  `Y8P'                                                                                             .o. 88P
+                                                                                                                    `Y888P
+
 */
 
 /**
@@ -634,7 +644,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && STREAMER_TAG_OBJECT:i != objectid && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -656,13 +666,15 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 #define _ALS_IsDynObjectInRangeOfPoint2D
 
 /*
-oooooooooo.   ooooo oooooooooooo oooooooooooo
-`888'   `Y8b  `888' `888'     `8 `888'     `8
- 888      888  888   888          888
- 888      888  888   888oooo8     888oooo8
- 888      888  888   888    "     888    "
- 888     d88'  888   888          888
-o888bood8P'   o888o o888o        o888o
+
+    oooooooooo.   ooooo oooooooooooo oooooooooooo
+    `888'   `Y8b  `888' `888'     `8 `888'     `8
+     888      888  888   888          888
+     888      888  888   888oooo8     888oooo8
+     888      888  888   888    "     888    "
+     888     d88'  888   888          888
+    o888bood8P'   o888o o888o        o888o
+
 */
 
 /**
@@ -1068,7 +1080,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1176,7 +1188,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -1284,7 +1296,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
-		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x,  y,  z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
+		if (IsValidDynamicObject(i) && (distance2 = (Streamer_GetDistanceToItem( x, y, z, STREAMER_TYPE_OBJECT, i, Float:I@), Float:I@)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
