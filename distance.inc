@@ -11,6 +11,16 @@
 #include <a_samp>
 #include <YSI_Data\y_iterate>
 
+/**
+ * <library name="samp-distance" summary="Distance calculations for players, objects, vehicles, and more.">
+ * <license>
+ *   (c) Copyright 2019, Kristoberg
+ * </license>
+ * </library>
+ */
+
+///
+
 /*
 ooooooooo.              o8o                  .           ooooooooo.              o8o                  .   
 `888   `Y88.            `"'                .o8           `888   `Y88.            `"'                .o8   
@@ -21,6 +31,9 @@ ooooooooo.              o8o                  .           ooooooooo.             
 o888o        `Y8bod8P' o888o o888o o888o   "888"         o888o        `Y8bod8P' o888o o888o o888o   "888"
 */
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
 	if (_:y2 == _:FLOAT_NAN) {
 		return VectorSize(x1 - z1, y1 - x2, 0.0);
@@ -29,6 +42,9 @@ stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Floa
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN) {
 	if (_:y2 == _:FLOAT_NAN) {
 		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
@@ -69,6 +85,9 @@ o888o        o888o `Y888""8o     .8'     `Y8bod8P' d888b
 	native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 #endif
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 
@@ -79,11 +98,17 @@ stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 	return GetPlayerPos(playerid, x2, y2, Float:playerid) && VectorSize(x - x2, y - y2, 0) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
@@ -94,11 +119,17 @@ stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfPoint3D(playerid, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 	return GetPlayerPos(playerid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToPlayer(playerid, targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -109,6 +140,9 @@ stock Float:GetPlayerDistanceToPlayer(playerid, targetid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -120,6 +154,9 @@ stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreV
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInterior = false) {
 
 	new Float:x, Float:y, Float:z;
@@ -226,6 +263,9 @@ oooooo     oooo           oooo         o8o            oooo
 	native BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #endif
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 
@@ -236,11 +276,17 @@ stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 	return GetVehiclePos(vehicleid, x2, y2, Float:vehicleid) && VectorSize(x - x2, y - y2, 0) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
@@ -251,11 +297,17 @@ stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 	return GetVehiclePos(vehicleid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -266,6 +318,9 @@ stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:ignoreVW = false) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -276,6 +331,9 @@ stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:igno
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false) {
 
 	new Float:x, Float:y, Float:z;
@@ -342,6 +400,9 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false) {
                         `Y888P                              
 */
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 
@@ -352,11 +413,17 @@ stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 	return GetObjectPos(objectid, x2, y2, Float:objectid) && VectorSize(x - x2, y - y2, 0) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
@@ -367,11 +434,17 @@ stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 	return GetObjectPos(objectid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToObject(objectid, targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -382,6 +455,9 @@ stock Float:GetObjectDistanceToObject(objectid, targetid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -391,6 +467,9 @@ stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range) {
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestObjectToObject(objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -439,6 +518,9 @@ o888bood8P'       .8'     o888o o888o `Y888""8o o888o o888o o888o o888o `Y8bod8P
                                                                                                                 `Y888P                              
 */
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 
@@ -449,11 +531,17 @@ stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x,
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y) {
 	new Float:x2, Float:y2;
 	return GetDynamicObjectPos(objectid, x2, y2, Float:objectid) && VectorSize(x - x2, y - y2, 0) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 
@@ -464,11 +552,17 @@ stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x,
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y, Float:z) {
 	new Float:x2, Float:y2, Float:z2;
 	return GetDynamicObjectPos(objectid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -479,6 +573,9 @@ stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAM
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -488,6 +585,9 @@ stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -533,6 +633,9 @@ oooooooooo.   ooooo oooooooooooo oooooooooooo
 o888bood8P'   o888o o888o        o888o        
 */
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -543,6 +646,9 @@ stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -553,6 +659,9 @@ stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignor
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false) {
 
 	new Float:x, Float:y, Float:z;
@@ -590,6 +699,9 @@ stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -600,6 +712,9 @@ stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -610,6 +725,9 @@ stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignor
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false) {
 
 	new Float:x, Float:y, Float:z;
@@ -647,6 +765,9 @@ stock GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToObject(playerid, objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -657,6 +778,9 @@ stock Float:GetPlayerDistanceToObject(playerid, objectid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -666,6 +790,9 @@ stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range) {
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestPlayerToObject(objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -686,6 +813,9 @@ stock GetClosestPlayerToObject(objectid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToPlayer(objectid, playerid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -696,6 +826,9 @@ stock Float:GetObjectDistanceToPlayer(objectid, playerid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -705,6 +838,9 @@ stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range) {
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestObjectToPlayer(playerid) {
 
 	new Float:x, Float:y, Float:z;
@@ -725,6 +861,9 @@ stock GetClosestObjectToPlayer(playerid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToVehicle(objectid, vehicleid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -735,6 +874,9 @@ stock Float:GetObjectDistanceToVehicle(objectid, vehicleid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -744,6 +886,9 @@ stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range) {
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestObjectToVehicle(vehicleid) {
 
 	new Float:x, Float:y, Float:z;
@@ -764,6 +909,9 @@ stock GetClosestObjectToVehicle(vehicleid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToObject(vehicleid, objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -774,6 +922,9 @@ stock Float:GetVehicleDistanceToObject(vehicleid, objectid) {
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -783,6 +934,9 @@ stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range) {
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestVehicleToObject(objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -803,6 +957,9 @@ stock GetClosestVehicleToObject(objectid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -813,6 +970,9 @@ stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid)
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -822,6 +982,9 @@ stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Fl
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid) {
 
 	new Float:x, Float:y, Float:z;
@@ -842,6 +1005,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -852,6 +1018,9 @@ stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid)
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -861,6 +1030,9 @@ stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Fl
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -881,6 +1053,9 @@ stock GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -891,6 +1066,9 @@ stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid)
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -900,6 +1078,9 @@ stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Fl
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -920,6 +1101,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -930,6 +1114,9 @@ stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid)
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -939,6 +1126,9 @@ stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Fl
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid) {
 
 	new Float:x, Float:y, Float:z;
@@ -959,6 +1149,9 @@ stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -969,6 +1162,9 @@ stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehiclei
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -978,6 +1174,9 @@ stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, 
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid) {
 
 	new Float:x, Float:y, Float:z;
@@ -998,6 +1197,9 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid) {
 	return closestid;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -1008,6 +1210,9 @@ stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objecti
 	return FLOAT_NAN;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range) {
 	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
 
@@ -1017,8 +1222,10 @@ stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, 
 	;
 }
 
+/**
+ * <library>samp-distance</library>
+ */
 stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid) {
-
 	new Float:x, Float:y, Float:z;
 
 	if (!GetDynamicObjectPos(objectid, x, y, z)) {
