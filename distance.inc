@@ -640,7 +640,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 		return 0;
 	}
 
-	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
@@ -1076,7 +1076,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 		return 0;
 	}
 
-	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
@@ -1184,7 +1184,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 		return 0;
 	}
 
-	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
@@ -1292,7 +1292,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 		return 0;
 	}
 
-	new Float:distance = FLOAT_INFINITY, closestid = 0, Float:distance2;
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
 
 	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
 	{
