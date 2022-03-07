@@ -25,7 +25,7 @@
  * </library>
  */
 
-///
+/// <p/>
 
 #define PP_DISCARD%0$
 
