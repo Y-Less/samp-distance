@@ -6,7 +6,7 @@
 #include <streamer>
 #include <YSI_Core\y_testing>
 
-#include "distance.inc"
+#include "distance"
 
 #define EPSILON 0.001
 
