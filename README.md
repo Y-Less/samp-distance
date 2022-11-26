@@ -265,6 +265,91 @@ bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:
 GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid);
 ```
 
+### Actor - Point
+
+```pawn
+Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y);
+
+bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y);
+
+Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z);
+
+bool:IsActorInRangeOfPoint3D(actorid, Float:range, Float:x, Float:y, Float:z);
+```
+
+### Actor - Actor
+
+```pawn
+Float:GetActorDistanceToActor(actorid, targetid);
+
+bool:IsActorInRangeOfActor(actorid, targetid, Float:range, bool:ignoreVW = false);
+
+GetClosestActorToActor(actorid, bool:ignoreVW = false);
+```
+
+### Player - Actor
+
+```pawn
+Float:GetActorDistanceToPlayer(actorid, playerid);
+
+bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW = false);
+
+GetClosestActorToPlayer(playerid, bool:ignoreVW = false);
+
+Float:GetPlayerDistanceToActor(playerid, actorid);
+
+bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW = false);
+
+GetClosestPlayerToActor(actorid, bool:ignoreVW = false);
+```
+
+### Object - Actor
+
+```pawn
+Float:GetObjectDistanceToActor(objectid, actorid);
+
+bool:IsObjectInRangeOfActor(objectid, actorid, Float:range);
+
+GetClosestObjectToActor(actorid);
+
+Float:GetActorDistanceToObject(actorid, objectid);
+
+bool:IsActorInRangeOfObject(actorid, objectid, Float:range);
+
+GetClosestActorToObject(objectid);
+```
+
+### Actor - Vehicle
+
+```pawn
+Float:GetActorDistanceToVehicle(vehicleid, targetid);
+
+bool:IsActorInRangeOfVehicle(vehicleid, targetid, Float:range);
+
+GetClosestActorToVehicle(vehicleid);
+
+Float:GetVehicleDistanceToActor(vehicleid, targetid);
+
+bool:IsVehicleInRangeOfActor(vehicleid, targetid, Float:range);
+
+GetClosestVehicleToActor(vehicleid);
+```
+
+### DynObject - Actor
+
+```pawn
+Float:GetDynObjectDistanceToActor(STREAMER_TAG_OBJECT:objectid, actorid);
+
+bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Float:range);
+
+STREAMER_TAG_OBJECT:GetClosestDynObjectToActor(actorid);
+
+Float:GetActorDistanceToDynObject(actorid, STREAMER_TAG_OBJECT:objectid);
+
+bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Float:range);
+
+GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid);
+```
 
 
 **Note:** The functions with an asterisk (*) next to them only support the `ignoreInterior` argument if the `GetVehicleInterior` function is available (added by YSF, some other library or by a new SA-MP version (yeah, right)). 

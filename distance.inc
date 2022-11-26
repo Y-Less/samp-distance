@@ -672,6 +672,133 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 #define _ALS_IsDynObjectInRangeOfPoint2D
 
 /*
+                                                              
+           db                                                     
+          d88b                     ,d                             
+         d8'`8b                    88                             
+        d8'  `8b      ,adPPYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  
+       d8YaaaaY8b    a8"     ""    88    a8"     "8a  88P'   "Y8  
+      d8""""""""8b   8b            88    8b       d8  88          
+     d8'        `8b  "8a,   ,aa    88,   "8a,   ,a8"  88          
+    d8'          `8b  `"Ybbd8"'    "Y888  `"YbbdP"'   88          
+
+
+*/
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y)
+{
+	new Float:x2, Float:y2;
+
+	if (GetActorPos(actorid, x2, y2, Float:actorid))
+	{
+		return VectorSize(x - x2, y - y2, 0);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y)
+{
+	new Float:x2, Float:y2;
+	return GetActorPos(actorid, x2, y2, Float:actorid) && VectorSize(x - x2, y - y2, 0) <= range;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z)
+{
+	new Float:x2, Float:y2, Float:z2;
+
+	if (GetActorPos(actorid, x2, y2, z2))
+	{
+		return VectorSize(x - x2, y - y2, z - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfPoint3D(actorid, Float:range, Float:x, Float:y, Float:z)
+{
+	new Float:x2, Float:y2, Float:z2;
+	return GetActorPos(actorid, x2, y2, z2) && VectorSize(x - x2, y - y2, z - z2) <= range;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToActor(actorid, targetid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetActorPos(actorid, x1, y1, z1) && GetActorPos(targetid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetActorPos(actorid, x1, y1, z1)
+		&& GetActorPos(targetid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestActorToActor(actorid)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetActorPos(actorid, x, y, z))
+	{
+		return INVALID_ACTOR_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_ACTOR_ID, Float:distance2;
+
+	for (new i = 0; i != MAX_OBJECTS; ++i)
+	{
+		if (i != actorid && IsValidActor(i) && (distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+		{
+			distance = distance2;
+			closestid = i;
+		}
+	}
+
+	return closestid;
+}
+
+// Define two versions of the functions for different parameter counts.
+#define GetActorDistanceToPoint(%0) GetActorDistanceToPoint2D(%0)PP_DISCARD$
+#define GetActorDistanceToPoint2D(%0,%1,%2,%3)PP_DISCARD$ GetActorDistanceToPoint3D(%0,%1,%2,%3)
+#define _ALS_GetActorDistanceToPoint
+#define _ALS_GetActorDistanceToPoint2D
+
+#define IsActorInRangeOfPoint(%0) IsActorInRangeOfPoint2D(%0)PP_DISCARD$
+#define IsActorInRangeOfPoint2D(%0,%1,%2,%3,%4)PP_DISCARD$ IsActorInRangeOfPoint3D(%0,%1,%2,%3,%4)
+#define _ALS_IsActorInRangeOfPoint
+#define _ALS_IsActorInRangeOfPoint2D
+
+/*
 
     oooooooooo.   ooooo oooooooooooo oooooooooooo
     `888'   `Y8b  `888' `888'     `8 `888'     `8
@@ -1365,4 +1492,517 @@ stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 	return closestid;
 }
+
+/*
+
+    oooooooooo.   ooooo oooooooooooo oooooooooooo
+    `888'   `Y8b  `888' `888'     `8 `888'     `8
+     888      888  888   888          888
+     888      888  888   888oooo8     888oooo8
+     888      888  888   888    "     888    "
+     888     d88'  888   888          888
+    o888bood8P'   o888o o888o        o888o
+
+*/
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetVehiclePos(vehicleid, x1, y1, z1) && GetActorPos(actorid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreVW = false)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetVehiclePos(vehicleid, x1, y1, z1)
+		&& GetActorPos(actorid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+		&& (ignoreVW || GetVehicleVirtualWorld(vehicleid) == GetActorVirtualWorld(actorid))
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestVehicleToActor(actorid, bool:ignoreVW = false)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetActorPos(actorid, x, y, z))
+	{
+		return INVALID_VEHICLE_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2;
+
+	if (ignoreVW)
+	{
+		foreach (new i : Vehicle)
+		{
+			if ((distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+
+	}
+	else
+	{
+		new vw = GetActorVirtualWorld(actorid);
+
+		foreach (new i : Vehicle)
+		{
+			if (vw == GetVehicleVirtualWorld(i) && (distance2 = BAD_GetVehicleDistanceFromPoint(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToVehicle(actorid, vehicleid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;if (GetActorPos(actorid, x1, y1, z1) && GetVehiclePos(vehicleid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfVehicle(actorid, vehicleid, Float:range, bool:ignoreVW = false)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetActorPos(actorid, x1, y1, z1)
+		&& GetVehiclePos(vehicleid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+		&& (ignoreVW || GetActorVirtualWorld(actorid) == GetVehicleVirtualWorld(vehicleid))
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestActorToVehicle(vehicleid, bool:ignoreVW = false)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetVehiclePos(vehicleid, x, y, z))
+	{
+		return INVALID_ACTOR_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_ACTOR_ID, Float:distance2;
+
+	if (ignoreVW)
+	{
+		foreach (new i : Actor)
+		{
+			if ((distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+	else
+	{
+		new vw = GetVehicleVirtualWorld(vehicleid);
+
+		foreach (new i : Actor)
+		{
+			if (vw == GetActorVirtualWorld(i) && (distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToObject(actorid, objectid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetActorPos(actorid, x1, y1, z1) && GetObjectPos(objectid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetActorPos(actorid, x1, y1, z1)
+		&& GetObjectPos(objectid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestActorToObject(objectid)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetObjectPos(objectid, x, y, z))
+	{
+		return INVALID_ACTOR_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_ACTOR_ID, Float:distance2;
+
+	foreach (new i : Actor)
+	{
+		if ((distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+		{
+			distance = distance2;
+			closestid = i;
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetObjectDistanceToActor(objectid, actorid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetObjectPos(objectid, x1, y1, z1) && GetActorPos(actorid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetObjectPos(objectid, x1, y1, z1)
+		&& GetActorPos(actorid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestObjectToActor(actorid)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetActorPos(actorid, x, y, z))
+	{
+		return INVALID_OBJECT_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
+
+	for (new i = 0; i != MAX_OBJECTS; ++i)
+	{
+		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
+		{
+			distance = distance2;
+			closestid = i;
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetDynObjectDistanceToActor(STREAMER_TAG_OBJECT:objectid, actorid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetDynamicObjectPos(objectid, x1, y1, z1) && GetActorPos(actorid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Float:range)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetDynamicObjectPos(objectid, x1, y1, z1)
+		&& GetActorPos(actorid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock STREAMER_TAG_OBJECT:GetClosestDynObjectToActor(actorid)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetActorPos(actorid, x, y, z))
+	{
+		return INVALID_STREAMER_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
+
+	for (new i = Streamer_GetUpperBound(STREAMER_TYPE_OBJECT); i; --i)
+	{
+		if (IsValidDynamicObject(STREAMER_TAG_OBJECT:i) && (distance2 = (Streamer_GetDistanceToItem(x, y, z, STREAMER_TYPE_OBJECT, STREAMER_TAG_OBJECT:i, Float:I@), Float:I@)) < distance)
+		{
+			distance = distance2;
+			closestid = i;
+		}
+	}
+
+	return STREAMER_TAG_OBJECT:closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToDynObject(actorid, STREAMER_TAG_OBJECT:objectid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetActorPos(actorid, x1, y1, z1) && GetDynamicObjectPos(objectid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Float:range)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetActorPos(actorid, x1, y1, z1)
+		&& GetDynamicObjectPos(objectid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetDynamicObjectPos(objectid, x, y, z))
+	{
+		return INVALID_ACTOR_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_ACTOR_ID, Float:distance2;
+
+	foreach (new i : Actor)
+	{
+		if ((distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+		{
+			distance = distance2;
+			closestid = i;
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetActorDistanceToPlayer(actorid, playerid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetActorPos(actorid, x1, y1, z1) && GetPlayerPos(playerid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW = false)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetActorPos(actorid, x1, y1, z1)
+		&& GetPlayerPos(playerid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+		&& (ignoreVW || GetActorVirtualWorld(actorid) == GetPlayerVirtualWorld(playerid))
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestActorToPlayer(playerid, bool:ignoreVW = false)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetPlayerPos(playerid, x, y, z))
+	{
+		return INVALID_VEHICLE_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_VEHICLE_ID, Float:distance2;
+
+	if (ignoreVW)
+	{
+		foreach (new i : Actor)
+		{
+			if ((distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+
+	}
+	else
+	{
+		new vw = GetPlayerVirtualWorld(playerid);
+
+		foreach (new i : Actor)
+		{
+			if (vw == GetActorVirtualWorld(i) && (distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+
+	return closestid;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetPlayerDistanceToActor(playerid, actorid)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	if (GetPlayerPos(playerid, x1, y1, z1) && GetActorPos(actorid, x2, y2, z2))
+	{
+		return VectorSize(x1 - x2, y1 - y2, z1 - z2);
+	}
+
+	return FLOAT_NAN;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW = false)
+{
+	new Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2;
+
+	return GetPlayerPos(playerid, x1, y1, z1)
+		&& GetActorPos(actorid, x2, y2, z2)
+		&& VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range
+		&& (ignoreVW || GetPlayerVirtualWorld(playerid) == GetActorVirtualWorld(actorid))
+	;
+}
+
+/**
+ * <library>samp-distance</library>
+ */
+stock GetClosestPlayerToActor(actorid, bool:ignoreVW = false)
+{
+	new Float:x, Float:y, Float:z;
+
+	if (!GetActorPos(actorid, x, y, z))
+	{
+		return INVALID_PLAYER_ID;
+	}
+
+	new Float:distance = FLOAT_INFINITY, closestid = INVALID_PLAYER_ID, Float:distance2;
+
+	if (ignoreVW)
+	{
+		foreach (new i : Player)
+		{
+			if ((distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+	else
+	{
+		new vw = GetActorVirtualWorld(actorid);
+
+		foreach (new i : Player)
+		{
+			if (vw == GetPlayerVirtualWorld(i) && (distance2 = BAD_GetPlayerDistanceFromPoint(i, x, y, z)) < distance)
+			{
+				distance = distance2;
+				closestid = i;
+			}
+		}
+	}
+
+	return closestid;
+}
+
 
