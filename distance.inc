@@ -520,7 +520,7 @@ stock GetClosestObjectToObject(objectid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
+	for (new i = 0; i != MAX_OBJECTS; ++i)
 	{
 		if (i != objectid && IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
@@ -643,7 +643,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 	if (!GetDynamicObjectPos(objectid, x, y, z))
 	{
-		return 0;
+		return INVALID_STREAMER_ID;
 	}
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
@@ -922,7 +922,7 @@ stock GetClosestObjectToPlayer(playerid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
+	for (new i = 0; i != MAX_OBJECTS; ++i)
 	{
 		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
@@ -976,7 +976,7 @@ stock GetClosestObjectToVehicle(vehicleid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
+	for (new i = 0; i != MAX_OBJECTS; ++i)
 	{
 		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
@@ -1079,7 +1079,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 	if (!GetPlayerPos(playerid, x, y, z))
 	{
-		return 0;
+		return INVALID_STREAMER_ID;
 	}
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
@@ -1187,7 +1187,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 	if (!GetObjectPos(objectid, x, y, z))
 	{
-		return 0;
+		return INVALID_STREAMER_ID;
 	}
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
@@ -1246,7 +1246,7 @@ stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_OBJECT_ID, Float:distance2;
 
-	for (new i = 0; i != INVALID_OBJECT_ID; ++i)
+	for (new i = 0; i != MAX_OBJECTS; ++i)
 	{
 		if (IsValidObject(i) && (distance2 = GetObjectDistanceToPoint3D(i, x, y, z)) < distance)
 		{
@@ -1295,7 +1295,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 	if (!GetVehiclePos(vehicleid, x, y, z))
 	{
-		return 0;
+		return INVALID_STREAMER_ID;
 	}
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_STREAMER_ID, Float:distance2;
