@@ -44,6 +44,11 @@ Plus a few "Point" functions which take an `x/y` pair or `x/y/z` triple instead 
 * `Get<A>DistanceToPoint3D` - Get the distance between `A` and an `x/y/z` point.
 * `Is<A>InRangeOfPoint3D` - Is the distance between `A` and an `x/y/z` point lower than some threshold?
 
+And the overloaded versions that are determined by parameter count:
+
+* `Get<A>DistanceToPoint` - Get the distance between `A` and an `x/y(/z)` point.
+* `Is<A>InRangeOfPoint` - Is the distance between `A` and an `x/y(/z)` point lower than some threshold?
+
 For each of these functions `A` and `B` can be any of the following entity types:
 
 * `Player`
@@ -374,37 +379,42 @@ GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid);
 ## Examples
 
 ```pawn
-CMD:pay(playerid, params[]) {
-    new playerid2, amount;
+CMD:pay(playerid, params[])
+{
+	new playerid2, amount;
 
-    if (sscanf(params, "ui", playerid2, amount)) {
-        return SendClientMessage(playerid, COLOR_WHITE, "USAGE: /pay <Player name/ID> <Amount>");
-    }
+	if (sscanf(params, "ui", playerid2, amount))
+	{
+		return SendClientMessage(playerid, COLOR_WHITE, "USAGE: /pay <Player name/ID> <Amount>");
+	}
 
-    if (!IsPlayerInRangeOfPlayer(playerid, playerid2, 5.0)) {
-        // fails if the other player is not connected or not near enough to the player
-        return SendClientMessage(playerid, COLOR_RED, "The specified player is not near you!");
-    }
+	if (!IsPlayerInRangeOfPlayer(playerid, playerid2, 5.0))
+	{
+		// fails if the other player is not connected or not near enough to the player
+		return SendClientMessage(playerid, COLOR_RED, "The specified player is not near you!");
+	}
 
-    GivePlayerMoney(playerid, -amount);
-    GivePlayerMoney(playerid2, amount);
-    return 1;
+	GivePlayerMoney(playerid, -amount);
+	GivePlayerMoney(playerid2, amount);
+	return 1;
 }
 ```
 
 ```pawn
-CMD:fixtires(playerid) {
-    new vehicleid = GetClosestVehicleToPlayer(playerid);
+CMD:fixtires(playerid)
+{
+	new vehicleid = GetClosestVehicleToPlayer(playerid);
 
-    if (!IsPlayerInRangeOfVehicle(playerid, vehicleid, 10.0)) {
-        // fails if no vehicle was found in the same interior and virtual world as the player or the closest one is not near enough to the player
-        return SendClientMessage(playerid, COLOR_RED, "You are not near any vehicle!");
-    }
+	if (!IsPlayerInRangeOfVehicle(playerid, vehicleid, 10.0))
+	{
+		// fails if no vehicle was found in the same interior and virtual world as the player or the closest one is not near enough to the player
+		return SendClientMessage(playerid, COLOR_RED, "You are not near any vehicle!");
+	}
 
-    new panels, doors, lights, tires;
-    GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
-    SetVehicleDamageStatus(vehicleid, panels, doors, lights, 0);
-    return 1;
+	new panels, doors, lights, tires;
+	GetVehicleDamageStatus(vehicleid, panels, doors, lights, tires);
+	SetVehicleDamageStatus(vehicleid, panels, doors, lights, 0);
+	return 1;
 }
 ```
 
