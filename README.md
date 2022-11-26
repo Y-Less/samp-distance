@@ -35,7 +35,7 @@ The functions in this library have several basic forms:
 
 * `Get<A>DistanceTo<B>` - Get the distance between `A` and `B`.
 * `Is<A>InRangeOf<B>` - Is the distance between `A` and `B` lower than some threshold?
-* `GetClosest<A>To<B>` - Get the closest `B` to `A`.
+* `GetClosest<A>To<B>` - Get the closest `A` to `B`.
 
 Plus a few "Point" functions which take an `x/y` pair or `x/y/z` triple instead of another entity:
 
@@ -50,6 +50,7 @@ For each of these functions `A` and `B` can be any of the following entity types
 * `Vehicle`
 * `Object`
 * `DynObject` (with the streamer plugin).
+* `Actor`
 
 So for example, to check if a vehicle (`A`) is near a given streamer object (`B`) use:
 
@@ -68,6 +69,21 @@ stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Floa
 ```
 
 These can be invoked as 2D (with four/five parameters) or 3D (with six/seven parameters).
+
+In many cases a function is overloaded on the number of parameters:
+
+```pawn
+if (IsVehicleInRangeOfPoint(vehicleid, 4.0, 5.0, 10.0)) // 2D check.
+{
+}
+
+if (IsVehicleInRangeOfPoint(vehicleid, 4.0, 5.0, 6.0, 10.0)) // 3D check.
+{
+}
+```
+
+You can specify which with `IsVehicleInRangeOfPoint2D` and `IsVehicleInRangeOfPoint3D`, the underlying implementations, as listed below.
+
 
 ## All Functions
 
