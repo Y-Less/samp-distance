@@ -44,34 +44,45 @@
 /**
  * <library>samp-distance</library>
  */
-stock Float:GetPointDistanceToPoint(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN)
+stock Float:GetPointDistanceToPoint2D(Float:x1, Float:y1, Float:x2, Float:y2)
 {
-	if (IS_NAN(y2))
-	{
-		return VectorSize(x1 - z1, y1 - x2, 0.0);
-	}
+	return VectorSize(x1 - x2, y1 - y2, 0.0);
+}
 
+/**
+ * <library>samp-distance</library>
+ */
+stock Float:GetPointDistanceToPoint3D(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
+{
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2);
 }
 
 /**
  * <library>samp-distance</library>
  */
-stock bool:IsPointInRangeOfPoint(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2 = FLOAT_NAN, Float:z2 = FLOAT_NAN)
+stock bool:IsPointInRangeOfPoint2D(Float:range, Float:x1, Float:y1, Float:x2, Float:y2)
 {
-	if (IS_NAN(y2))
-	{
-		return VectorSize(x1 - z1, y1 - x2, 0.0) <= range;
-	}
+	return VectorSize(x1 - x2, y1 - y2, 0.0) <= range;
+}
 
+/**
+ * <library>samp-distance</library>
+ */
+stock bool:IsPointInRangeOfPoint3D(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
+{
 	return VectorSize(x1 - x2, y1 - y2, z1 - z2) <= range;
 }
 
-#define GetPointDistanceToPoint2D( GetPointDistanceToPoint(
-#define GetPointDistanceToPoint3D( GetPointDistanceToPoint(
+// Define two versions of the functions for different parameter counts.
+#define GetPointDistanceToPoint(%0) GetPointDistanceToPoint2D(%0)PP_DISCARD$
+#define GetPointDistanceToPoint2D(%0,%1,%2,%3,%4,%5)PP_DISCARD$ GetPointDistanceToPoint3D(%0,%1,%2,%3,%4,%5)
+#define _ALS_GetPointDistanceToPoint
+#define _ALS_GetPointDistanceToPoint2D
 
-#define IsPointInRangeOfPoint2D( IsPointInRangeOfPoint(
-#define IsPointInRangeOfPoint3D( IsPointInRangeOfPoint(
+#define IsPointInRangeOfPoint(%0) IsPointInRangeOfPoint2D(%0)PP_DISCARD$
+#define IsPointInRangeOfPoint2D(%0,%1,%2,%3,%4,%5,%6)PP_DISCARD$ IsPointInRangeOfPoint3D(%0,%1,%2,%3,%4,%5,%6)
+#define _ALS_IsPointInRangeOfPoint
+#define _ALS_IsPointInRangeOfPoint2D
 
 /*
 
