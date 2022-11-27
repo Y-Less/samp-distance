@@ -572,6 +572,7 @@ stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to search from.</param>
  * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
@@ -718,6 +719,7 @@ stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to search from.</param>
  * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
@@ -864,6 +866,7 @@ stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to search from.</param>
  * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
@@ -1126,6 +1129,7 @@ stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to search from.</param>
  * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
@@ -1327,6 +1331,7 @@ stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to search from.</param>
  * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
@@ -1461,6 +1466,7 @@ stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to search from.</param>
  * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
@@ -1527,6 +1533,7 @@ stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to search from.</param>
  * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
@@ -1594,6 +1601,7 @@ stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to search from.</param>
  * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
@@ -1728,6 +1736,7 @@ stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, 
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to search from.</param>
  * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
@@ -1796,6 +1805,7 @@ stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to search from.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
@@ -1964,6 +1974,7 @@ stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to search from.</param>
  * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
@@ -2030,6 +2041,7 @@ stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to search from.</param>
  * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
@@ -2096,6 +2108,7 @@ stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to search from.</param>
  * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
@@ -2163,6 +2176,7 @@ stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to search from.</param>
  * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
@@ -2318,6 +2332,7 @@ stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to search from.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  * <returns>The ID of the closest player.</returns>
  * <remarks>
