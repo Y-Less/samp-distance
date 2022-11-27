@@ -55,6 +55,7 @@ stock Float:GetPointDistanceToPoint3D(Float:x1, Float:y1, Float:z1, Float:x2, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsPointInRangeOfPoint2D(Float:range, Float:x1, Float:y1, Float:x2, Float:y2)
 {
@@ -63,6 +64,7 @@ stock bool:IsPointInRangeOfPoint2D(Float:range, Float:x1, Float:y1, Float:x2, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsPointInRangeOfPoint3D(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
@@ -110,6 +112,7 @@ stock bool:IsPointInRangeOfPoint3D(Float:range, Float:x1, Float:y1, Float:z1, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure from.</param>
  */
 stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y)
 {
@@ -125,6 +128,8 @@ stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y)
 {
@@ -134,6 +139,7 @@ stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure from.</param>
  */
 stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z)
 {
@@ -149,6 +155,8 @@ stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsPlayerInRangeOfPoint3D(playerid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -175,6 +183,11 @@ stock Float:GetPlayerDistanceToPlayer(playerid, targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="targetid">The ID of the player to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <param name="ignoreInterior">Should entities in different interiors be considered?</param>
  */
 stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false)
 {
@@ -322,6 +335,7 @@ stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y)
 {
@@ -348,6 +362,7 @@ stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -376,6 +391,8 @@ stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid)
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
  * <param name="targetid">The ID of the vehicle to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:ignoreVW = false)
 {
@@ -468,6 +485,7 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
  */
 stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y)
 {
@@ -483,6 +501,8 @@ stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y)
 {
@@ -492,6 +512,7 @@ stock bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
  */
 stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z)
 {
@@ -507,6 +528,8 @@ stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -516,6 +539,8 @@ stock bool:IsObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Flo
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
+ * <param name="targetid">The ID of the object to measure to.</param>
  */
 stock Float:GetObjectDistanceToObject(objectid, targetid)
 {
@@ -531,6 +556,9 @@ stock Float:GetObjectDistanceToObject(objectid, targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="targetid">The ID of the object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range)
 {
@@ -603,6 +631,7 @@ stock GetClosestObjectToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
  */
 stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y)
 {
@@ -618,6 +647,8 @@ stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x,
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y)
 {
@@ -627,6 +658,7 @@ stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
  */
 stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y, Float:z)
 {
@@ -642,6 +674,8 @@ stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x,
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -651,6 +685,8 @@ stock bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
+ * <param name="targetid">The ID of the dynamic (streamer) object to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid)
 {
@@ -666,6 +702,9 @@ stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAM
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="targetid">The ID of the dynamic (streamer) object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid, Float:range)
 {
@@ -738,6 +777,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
  */
 stock Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y)
 {
@@ -753,6 +793,8 @@ stock Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="range">The radius of the circle around the origin.</param>
  */
 stock bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y)
 {
@@ -762,6 +804,7 @@ stock bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
  */
 stock Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z)
 {
@@ -777,6 +820,8 @@ stock Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsActorInRangeOfPoint3D(actorid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -786,6 +831,8 @@ stock bool:IsActorInRangeOfPoint3D(actorid, Float:range, Float:x, Float:y, Float
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
+ * <param name="targetid">The ID of the actor to measure to.</param>
  */
 stock Float:GetActorDistanceToActor(actorid, targetid)
 {
@@ -801,6 +848,9 @@ stock Float:GetActorDistanceToActor(actorid, targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="targetid">The ID of the actor to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
 {
@@ -888,6 +938,9 @@ stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="playerid">The ID of the player to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false)
 {
@@ -954,7 +1007,7 @@ stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
- * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="playerid">The ID of the player to measure from.</param>
  * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid)
@@ -971,6 +1024,10 @@ stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false)
 {
@@ -1036,6 +1093,8 @@ stock GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure from.</param>
+ * <param name="objectid">The ID of the object to measure to.</param>
  */
 stock Float:GetPlayerDistanceToObject(playerid, objectid)
 {
@@ -1051,6 +1110,9 @@ stock Float:GetPlayerDistanceToObject(playerid, objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="objectid">The ID of the object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range)
 {
@@ -1097,6 +1159,7 @@ stock GetClosestPlayerToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
  * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetObjectDistanceToPlayer(objectid, playerid)
@@ -1113,6 +1176,9 @@ stock Float:GetObjectDistanceToPlayer(objectid, playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="playerid">The ID of the player to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range)
 {
@@ -1160,6 +1226,7 @@ stock GetClosestObjectToPlayer(playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
  * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetObjectDistanceToVehicle(objectid, vehicleid)
@@ -1176,6 +1243,9 @@ stock Float:GetObjectDistanceToVehicle(objectid, vehicleid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range)
 {
@@ -1225,6 +1295,7 @@ stock GetClosestObjectToVehicle(vehicleid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="objectid">The ID of the object to measure to.</param>
  */
 stock Float:GetVehicleDistanceToObject(vehicleid, objectid)
 {
@@ -1241,6 +1312,8 @@ stock Float:GetVehicleDistanceToObject(vehicleid, objectid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="objectid">The ID of the object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 {
@@ -1287,6 +1360,7 @@ stock GetClosestVehicleToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
  * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid)
@@ -1303,6 +1377,9 @@ stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="playerid">The ID of the player to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Float:range)
 {
@@ -1351,6 +1428,8 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure from.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure to.</param>
  */
 stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid)
 {
@@ -1366,6 +1445,9 @@ stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -1412,6 +1494,8 @@ stock GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
+ * <param name="targetid">The ID of the object to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid)
 {
@@ -1427,6 +1511,9 @@ stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="targetid">The ID of the object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Float:range)
 {
@@ -1474,6 +1561,8 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
+ * <param name="targetid">The ID of the dynamic (streamer) object to measure to.</param>
  */
 stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid)
 {
@@ -1489,6 +1578,9 @@ stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="targetid">The ID of the dynamic (streamer) object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Float:range)
 {
@@ -1535,6 +1627,7 @@ stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
  * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid)
@@ -1551,6 +1644,9 @@ stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehiclei
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, Float:range)
 {
@@ -1600,6 +1696,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure to.</param>
  */
 stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid)
 {
@@ -1616,6 +1713,8 @@ stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objecti
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -1663,6 +1762,7 @@ stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="actorid">The ID of the actor to measure to.</param>
  */
 stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
 {
@@ -1679,6 +1779,9 @@ stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="actorid">The ID of the actor to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreVW = false)
 {
@@ -1693,6 +1796,7 @@ stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
@@ -1743,6 +1847,7 @@ stock GetClosestVehicleToActor(actorid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
  * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetActorDistanceToVehicle(actorid, vehicleid)
@@ -1757,6 +1862,10 @@ stock Float:GetActorDistanceToVehicle(actorid, vehicleid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsActorInRangeOfVehicle(actorid, vehicleid, Float:range, bool:ignoreVW = false)
 {
@@ -1822,6 +1931,8 @@ stock GetClosestActorToVehicle(vehicleid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
+ * <param name="objectid">The ID of the object to measure to.</param>
  */
 stock Float:GetActorDistanceToObject(actorid, objectid)
 {
@@ -1837,6 +1948,9 @@ stock Float:GetActorDistanceToObject(actorid, objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="objectid">The ID of the object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
 {
@@ -1883,6 +1997,8 @@ stock GetClosestActorToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to measure from.</param>
+ * <param name="actorid">The ID of the actor to measure to.</param>
  */
 stock Float:GetObjectDistanceToActor(objectid, actorid)
 {
@@ -1898,6 +2014,9 @@ stock Float:GetObjectDistanceToActor(objectid, actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the object to test.</param>
+ * <param name="actorid">The ID of the actor to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
 {
@@ -1944,6 +2063,8 @@ stock GetClosestObjectToActor(actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
+ * <param name="actorid">The ID of the actor to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToActor(STREAMER_TAG_OBJECT:objectid, actorid)
 {
@@ -1959,6 +2080,9 @@ stock Float:GetDynObjectDistanceToActor(STREAMER_TAG_OBJECT:objectid, actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
+ * <param name="actorid">The ID of the actor to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Float:range)
 {
@@ -2006,6 +2130,8 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToActor(actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to measure to.</param>
  */
 stock Float:GetActorDistanceToDynObject(actorid, STREAMER_TAG_OBJECT:objectid)
 {
@@ -2021,6 +2147,9 @@ stock Float:GetActorDistanceToDynObject(actorid, STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
  */
 stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -2067,6 +2196,7 @@ stock GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to measure from.</param>
  * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetActorDistanceToPlayer(actorid, playerid)
@@ -2083,6 +2213,10 @@ stock Float:GetActorDistanceToPlayer(actorid, playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="actorid">The ID of the actor to test.</param>
+ * <param name="playerid">The ID of the player to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW = false)
 {
@@ -2149,6 +2283,8 @@ stock GetClosestActorToPlayer(playerid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure from.</param>
+ * <param name="actorid">The ID of the actor to measure to.</param>
  */
 stock Float:GetPlayerDistanceToActor(playerid, actorid)
 {
@@ -2164,6 +2300,10 @@ stock Float:GetPlayerDistanceToActor(playerid, actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to test.</param>
+ * <param name="actorid">The ID of the actor to use as the origin.</param>
+ * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  */
 stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW = false)
 {
@@ -2178,6 +2318,7 @@ stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
