@@ -1,8 +1,4 @@
 // Font: Roman
-#if defined _inc_distance
-	#undef _inc_distance
-#endif
-
 #if defined _distance_included
 	#endinput
 #endif
