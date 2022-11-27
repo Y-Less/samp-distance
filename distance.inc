@@ -158,6 +158,8 @@ stock bool:IsPlayerInRangeOfPoint3D(playerid, Float:range, Float:x, Float:y, Flo
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="targetid">The ID of the player to measure to.</param>
  */
 stock Float:GetPlayerDistanceToPlayer(playerid, targetid)
 {
@@ -188,6 +190,10 @@ stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <param name="ignoreInterior">Should entities in different interiors be considered?</param>
+ * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given player.
@@ -299,6 +305,7 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
  */
 stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y)
 {
@@ -314,6 +321,7 @@ stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y)
 {
@@ -323,6 +331,7 @@ stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
  */
 stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z)
 {
@@ -338,6 +347,7 @@ stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -347,6 +357,8 @@ stock bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, F
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="targetid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid)
 {
@@ -362,6 +374,8 @@ stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
+ * <param name="targetid">The ID of the vehicle to use as the origin.</param>
  */
 stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:ignoreVW = false)
 {
@@ -376,6 +390,9 @@ stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:igno
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given vehicle.
@@ -527,6 +544,7 @@ stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
  *   closest to the given object.
@@ -661,6 +679,7 @@ stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
  *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
@@ -795,6 +814,7 @@ stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given actor.
@@ -850,6 +870,8 @@ stock GetClosestActorToActor(actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid)
 {
@@ -865,6 +887,7 @@ stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false)
 {
@@ -879,6 +902,9 @@ stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignor
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given player.
@@ -928,6 +954,8 @@ stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid)
 {
@@ -957,6 +985,9 @@ stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignor
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given vehicl.
@@ -1033,6 +1064,7 @@ stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given object.
@@ -1065,6 +1097,7 @@ stock GetClosestPlayerToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetObjectDistanceToPlayer(objectid, playerid)
 {
@@ -1093,6 +1126,8 @@ stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
  *   closest to the given player.
@@ -1125,6 +1160,7 @@ stock GetClosestObjectToPlayer(playerid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetObjectDistanceToVehicle(objectid, vehicleid)
 {
@@ -1153,6 +1189,9 @@ stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
  *   closest to the given vehicle.
@@ -1185,6 +1224,7 @@ stock GetClosestObjectToVehicle(vehicleid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
  */
 stock Float:GetVehicleDistanceToObject(vehicleid, objectid)
 {
@@ -1200,6 +1240,7 @@ stock Float:GetVehicleDistanceToObject(vehicleid, objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 {
@@ -1213,6 +1254,7 @@ stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given object.
@@ -1245,6 +1287,7 @@ stock GetClosestVehicleToObject(objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid)
 {
@@ -1273,6 +1316,8 @@ stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
  *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
@@ -1334,6 +1379,7 @@ stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given dynamic object.
@@ -1394,6 +1440,7 @@ stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
  *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
@@ -1455,6 +1502,7 @@ stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
  *   closest to the given dynamic object.
@@ -1487,6 +1535,7 @@ stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid)
 {
@@ -1515,6 +1564,8 @@ stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, 
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to search from.</param>
+ * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
  *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
@@ -1548,6 +1599,7 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
  */
 stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid)
 {
@@ -1563,6 +1615,7 @@ stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objecti
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -1576,6 +1629,7 @@ stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, 
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given dynamic object.
@@ -1608,6 +1662,7 @@ stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure from.</param>
  */
 stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
 {
@@ -1623,6 +1678,7 @@ stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to test.</param>
  */
 stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreVW = false)
 {
@@ -1637,6 +1693,7 @@ stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest vehicle.</returns>
  * <remarks>
  *   Loops through all the vehicles on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given actor.
@@ -1686,6 +1743,7 @@ stock GetClosestVehicleToActor(actorid, bool:ignoreVW = false)
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to measure to.</param>
  */
 stock Float:GetActorDistanceToVehicle(actorid, vehicleid)
 {
@@ -1713,6 +1771,9 @@ stock bool:IsActorInRangeOfVehicle(actorid, vehicleid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <param name="vehicleid">The ID of the vehicle to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given vehicle.
@@ -1789,6 +1850,7 @@ stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given object.
@@ -1849,6 +1911,7 @@ stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest object.</returns>
  * <remarks>
  *   Loops through all the objects on the server and returns the ID of the one
  *   closest to the given actor.
@@ -1909,6 +1972,7 @@ stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest dynamic object.</returns>
  * <remarks>
  *   Loops through all the dyanamic objects on the server (using
  *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
@@ -1970,6 +2034,7 @@ stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given dynamic object.
@@ -2002,6 +2067,7 @@ stock GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid)
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to measure to.</param>
  */
 stock Float:GetActorDistanceToPlayer(actorid, playerid)
 {
@@ -2031,6 +2097,9 @@ stock bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <param name="playerid">The ID of the player to search from.</param>
+ * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>The ID of the closest actor.</returns>
  * <remarks>
  *   Loops through all the actor on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given player.
@@ -2109,6 +2178,7 @@ stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <returns>The ID of the closest player.</returns>
  * <remarks>
  *   Loops through all the players on the server (using <c>foreach</c>) and
  *   returns the ID of the one closest to the given actor.
