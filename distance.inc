@@ -188,6 +188,12 @@ stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the players on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given player.
+ *   Returns <c>INVALID_PLAYER_ID</c>If the input player is invalid,
+ *   or there are no <em>other</em> players connected.
+ * </remarks>
  */
 stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInterior = false)
 {
@@ -370,6 +376,12 @@ stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:igno
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the vehicles on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given vehicle.
+ *   Returns <c>INVALID_VEHICLE_ID</c>If the input vehicle is invalid,
+ *   or there are no <em>other</em> vehicles created.
+ * </remarks>
  */
 stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 {
@@ -515,6 +527,12 @@ stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the objects on the server and returns the ID of the one
+ *   closest to the given object.
+ *   Returns <c>INVALID_OBJECT_ID</c>If the input object is invalid,
+ *   or there are no <em>other</em> objects created.
+ * </remarks>
  */
 stock GetClosestObjectToObject(objectid)
 {
@@ -643,6 +661,13 @@ stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the dyanamic objects on the server (using
+ *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
+ *   closest to the given dynamic object.
+ *   Returns <c>INVALID_STREAMER_ID</c>If the input dynamic object is invalid,
+ *   or there are no <em>other</em> dynamic objects created.
+ * </remarks>
  */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 {
@@ -770,6 +795,12 @@ stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the actor on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given actor.
+ *   Returns <c>INVALID_ACTOR_ID</c>If the input actor is invalid,
+ *   or there are no <em>other</em> actors created.
+ * </remarks>
  */
 stock GetClosestActorToActor(actorid)
 {
@@ -782,9 +813,9 @@ stock GetClosestActorToActor(actorid)
 
 	new Float:distance = FLOAT_INFINITY, closestid = INVALID_ACTOR_ID, Float:distance2;
 
-	for (new i = 0; i != MAX_OBJECTS; ++i)
+	foreach (new i : Actor)
 	{
-		if (i != actorid && IsValidActor(i) && (distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
+		if (i != actorid && (distance2 = GetActorDistanceToPoint3D(i, x, y, z)) < distance)
 		{
 			distance = distance2;
 			closestid = i;
@@ -848,6 +879,12 @@ stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignor
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the vehicles on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given player.
+ *   Returns <c>INVALID_VEHICLE_ID</c>If the input player is invalid,
+ *   or there are no vehicles created.
+ * </remarks>
  */
 stock GetClosestVehicleToPlayer(playerid, bool:ignoreVW = false)
 {
@@ -920,6 +957,12 @@ stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignor
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the players on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given vehicl.
+ *   Returns <c>INVALID_PLAYER_ID</c>If the input vehicle is invalid,
+ *   or there are no players connected.
+ * </remarks>
  */
 stock GetClosestPlayerToVehicle(vehicleid, bool:ignoreVW = false)
 {
@@ -990,6 +1033,12 @@ stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the players on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given object.
+ *   Returns <c>INVALID_PLAYER_ID</c>If the input object is invalid,
+ *   or there are no players connected.
+ * </remarks>
  */
 stock GetClosestPlayerToObject(objectid)
 {
@@ -1044,6 +1093,12 @@ stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the objects on the server and returns the ID of the one
+ *   closest to the given player.
+ *   Returns <c>INVALID_OBJECT_ID</c>If the input player is invalid,
+ *   or there are no objects created.
+ * </remarks>
  */
 stock GetClosestObjectToPlayer(playerid)
 {
@@ -1098,6 +1153,12 @@ stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the objects on the server and returns the ID of the one
+ *   closest to the given vehicle.
+ *   Returns <c>INVALID_OBJECT_ID</c>If the input vehicle is invalid,
+ *   or there are no objects created.
+ * </remarks>
  */
 stock GetClosestObjectToVehicle(vehicleid)
 {
@@ -1152,6 +1213,12 @@ stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the vehicles on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given object.
+ *   Returns <c>INVALID_VEHICLE_ID</c>If the input object is invalid,
+ *   or there are no vehicles created.
+ * </remarks>
  */
 stock GetClosestVehicleToObject(objectid)
 {
@@ -1206,6 +1273,13 @@ stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the dyanamic objects on the server (using
+ *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
+ *   closest to the given player.
+ *   Returns <c>INVALID_STREAMER_ID</c>If the input player is invalid,
+ *   or there are no dynamic objects created.
+ * </remarks>
  */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToPlayer(playerid)
 {
@@ -1260,6 +1334,12 @@ stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the players on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given dynamic object.
+ *   Returns <c>INVALID_PLAYER_ID</c>If the input dynamic object is invalid,
+ *   or there are no players connected.
+ * </remarks>
  */
 stock GetClosestPlayerToDynObject(STREAMER_TAG_OBJECT:objectid)
 {
@@ -1314,6 +1394,13 @@ stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the dyanamic objects on the server (using
+ *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
+ *   closest to the given object.
+ *   Returns <c>INVALID_STREAMER_ID</c>If the input object is invalid,
+ *   or there are no dynamic objects created.
+ * </remarks>
  */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToObject(objectid)
 {
@@ -1368,6 +1455,12 @@ stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Fl
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the objects on the server and returns the ID of the one
+ *   closest to the given dynamic object.
+ *   Returns <c>INVALID_OBJECT_ID</c>If the input dynamic object is invalid,
+ *   or there are no objects created.
+ * </remarks>
  */
 stock GetClosestObjectToDynObject(STREAMER_TAG_OBJECT:objectid)
 {
@@ -1422,6 +1515,13 @@ stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, 
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the dyanamic objects on the server (using
+ *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
+ *   closest to the given vehicle.
+ *   Returns <c>INVALID_STREAMER_ID</c>If the input vehicle is invalid,
+ *   or there are no dynamic objects created.
+ * </remarks>
  */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToVehicle(vehicleid)
 {
@@ -1476,6 +1576,12 @@ stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, 
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the vehicles on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given dynamic object.
+ *   Returns <c>INVALID_VEHICLE_ID</c>If the input dynamic object is invalid,
+ *   or there are no vehicles created.
+ * </remarks>
  */
 stock GetClosestVehicleToDynObject(STREAMER_TAG_OBJECT:objectid)
 {
@@ -1531,6 +1637,12 @@ stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the vehicles on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given actor.
+ *   Returns <c>INVALID_VEHICLE_ID</c>If the input actor is invalid,
+ *   or there are no vehicles created.
+ * </remarks>
  */
 stock GetClosestVehicleToActor(actorid, bool:ignoreVW = false)
 {
@@ -1601,6 +1713,12 @@ stock bool:IsActorInRangeOfVehicle(actorid, vehicleid, Float:range, bool:ignoreV
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the actor on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given vehicle.
+ *   Returns <c>INVALID_ACTOR_ID</c>If the input vehicle is invalid,
+ *   or there are no actors created.
+ * </remarks>
  */
 stock GetClosestActorToVehicle(vehicleid, bool:ignoreVW = false)
 {
@@ -1671,6 +1789,12 @@ stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the actor on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given object.
+ *   Returns <c>INVALID_ACTOR_ID</c>If the input object is invalid,
+ *   or there are no actors created.
+ * </remarks>
  */
 stock GetClosestActorToObject(objectid)
 {
@@ -1725,6 +1849,12 @@ stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the objects on the server and returns the ID of the one
+ *   closest to the given actor.
+ *   Returns <c>INVALID_OBJECT_ID</c>If the input actor is invalid,
+ *   or there are no objects created.
+ * </remarks>
  */
 stock GetClosestObjectToActor(actorid)
 {
@@ -1779,6 +1909,13 @@ stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the dyanamic objects on the server (using
+ *   <c>Streamer_GetUpperBound</c>) and returns the ID of the one
+ *   closest to the given actor.
+ *   Returns <c>INVALID_STREAMER_ID</c>If the input actor is invalid,
+ *   or there are no dynamic objects created.
+ * </remarks>
  */
 stock STREAMER_TAG_OBJECT:GetClosestDynObjectToActor(actorid)
 {
@@ -1833,6 +1970,12 @@ stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Floa
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the actor on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given dynamic object.
+ *   Returns <c>INVALID_ACTOR_ID</c>If the input dynamic object is invalid,
+ *   or there are no actors created.
+ * </remarks>
  */
 stock GetClosestActorToDynObject(STREAMER_TAG_OBJECT:objectid)
 {
@@ -1888,6 +2031,12 @@ stock bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the actor on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given player.
+ *   Returns <c>INVALID_ACTOR_ID</c>If the input player is invalid,
+ *   or there are no actors created.
+ * </remarks>
  */
 stock GetClosestActorToPlayer(playerid, bool:ignoreVW = false)
 {
@@ -1960,6 +2109,12 @@ stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW 
 
 /**
  * <library>samp-distance</library>
+ * <remarks>
+ *   Loops through all the players on the server (using <c>foreach</c>) and
+ *   returns the ID of the one closest to the given actor.
+ *   Returns <c>INVALID_PLAYER_ID</c>If the input actor is invalid,
+ *   or there are no players connected.
+ * </remarks>
  */
 stock GetClosestPlayerToActor(actorid, bool:ignoreVW = false)
 {
