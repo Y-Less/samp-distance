@@ -39,6 +39,10 @@
 
 /**
  * <library>samp-distance</library>
+ * <param name="x1">The x co-ordinate of the first 2D point.</param>
+ * <param name="y1">The y co-ordinate of the first 2D point.</param>
+ * <param name="x2">The x co-ordinate of the second 2D point.</param>
+ * <param name="y2">The y co-ordinate of the second 2D point.</param>
  */
 stock Float:GetPointDistanceToPoint2D(Float:x1, Float:y1, Float:x2, Float:y2)
 {
@@ -47,6 +51,12 @@ stock Float:GetPointDistanceToPoint2D(Float:x1, Float:y1, Float:x2, Float:y2)
 
 /**
  * <library>samp-distance</library>
+ * <param name="x1">The x co-ordinate of the first 3D point.</param>
+ * <param name="y1">The y co-ordinate of the first 3D point.</param>
+ * <param name="z1">The z co-ordinate of the first 3D point.</param>
+ * <param name="x2">The x co-ordinate of the second 3D point.</param>
+ * <param name="y2">The y co-ordinate of the second 3D point.</param>
+ * <param name="z2">The z co-ordinate of the second 3D point.</param>
  */
 stock Float:GetPointDistanceToPoint3D(Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
@@ -56,6 +66,10 @@ stock Float:GetPointDistanceToPoint3D(Float:x1, Float:y1, Float:z1, Float:x2, Fl
 /**
  * <library>samp-distance</library>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x1">The x co-ordinate of the test 2D point.</param>
+ * <param name="y1">The y co-ordinate of the test 2D point.</param>
+ * <param name="x2">The x co-ordinate of the origin 2D point.</param>
+ * <param name="y2">The y co-ordinate of the origin 2D point.</param>
  */
 stock bool:IsPointInRangeOfPoint2D(Float:range, Float:x1, Float:y1, Float:x2, Float:y2)
 {
@@ -65,6 +79,12 @@ stock bool:IsPointInRangeOfPoint2D(Float:range, Float:x1, Float:y1, Float:x2, Fl
 /**
  * <library>samp-distance</library>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x1">The x co-ordinate of the test 3D point.</param>
+ * <param name="y1">The y co-ordinate of the test 3D point.</param>
+ * <param name="z1">The z co-ordinate of the test 3D point.</param>
+ * <param name="x2">The x co-ordinate of the origin 3D point.</param>
+ * <param name="y2">The y co-ordinate of the origin 3D point.</param>
+ * <param name="z2">The z co-ordinate of the origin 3D point.</param>
  */
 stock bool:IsPointInRangeOfPoint3D(Float:range, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2)
 {
@@ -113,6 +133,8 @@ stock bool:IsPointInRangeOfPoint3D(Float:range, Float:x1, Float:y1, Float:z1, Fl
 /**
  * <library>samp-distance</library>
  * <param name="playerid">The ID of the player to measure from.</param>
+ * <param name="x">The x co-ordinate of the 2D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 2D point to measure to.</param>
  */
 stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y)
 {
@@ -130,6 +152,8 @@ stock Float:GetPlayerDistanceToPoint2D(playerid, Float:x, Float:y)
  * <library>samp-distance</library>
  * <param name="playerid">The ID of the player to test.</param>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x">The x co-ordinate of the 2D origin.</param>
+ * <param name="y">The y co-ordinate of the 2D origin.</param>
  */
 stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y)
 {
@@ -140,6 +164,9 @@ stock bool:IsPlayerInRangeOfPoint2D(playerid, Float:range, Float:x, Float:y)
 /**
  * <library>samp-distance</library>
  * <param name="playerid">The ID of the player to measure from.</param>
+ * <param name="x">The x co-ordinate of the 3D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 3D point to measure to.</param>
+ * <param name="z">The z co-ordinate of the 3D point to measure to.</param>
  */
 stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z)
 {
@@ -157,6 +184,9 @@ stock Float:GetPlayerDistanceToPoint3D(playerid, Float:x, Float:y, Float:z)
  * <library>samp-distance</library>
  * <param name="playerid">The ID of the player to test.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x">The x co-ordinate of the 3D origin.</param>
+ * <param name="y">The y co-ordinate of the 3D origin.</param>
+ * <param name="z">The z co-ordinate of the 3D origin.</param>
  */
 stock bool:IsPlayerInRangeOfPoint3D(playerid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -319,6 +349,8 @@ stock GetClosestPlayerToPlayer(playerid, bool:ignoreVW = false, bool:ignoreInter
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="x">The x co-ordinate of the 2D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 2D point to measure to.</param>
  */
 stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y)
 {
@@ -336,6 +368,8 @@ stock Float:GetVehicleDistanceToPoint2D(vehicleid, Float:x, Float:y)
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x">The x co-ordinate of the 2D origin.</param>
+ * <param name="y">The y co-ordinate of the 2D origin.</param>
  */
 stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y)
 {
@@ -346,6 +380,9 @@ stock bool:IsVehicleInRangeOfPoint2D(vehicleid, Float:range, Float:x, Float:y)
 /**
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to measure from.</param>
+ * <param name="x">The x co-ordinate of the 3D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 3D point to measure to.</param>
+ * <param name="z">The z co-ordinate of the 3D point to measure to.</param>
  */
 stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z)
 {
@@ -363,6 +400,9 @@ stock Float:GetVehicleDistanceToPoint3D(vehicleid, Float:x, Float:y, Float:z)
  * <library>samp-distance</library>
  * <param name="vehicleid">The ID of the vehicle to test.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x">The x co-ordinate of the 3D origin.</param>
+ * <param name="y">The y co-ordinate of the 3D origin.</param>
+ * <param name="z">The z co-ordinate of the 3D origin.</param>
  */
 stock bool:IsVehicleInRangeOfPoint3D(vehicleid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -486,6 +526,8 @@ stock GetClosestVehicleToVehicle(vehicleid, bool:ignoreVW = false)
 /**
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the object to measure from.</param>
+ * <param name="x">The x co-ordinate of the 2D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 2D point to measure to.</param>
  */
 stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y)
 {
@@ -503,6 +545,8 @@ stock Float:GetObjectDistanceToPoint2D(objectid, Float:x, Float:y)
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x">The x co-ordinate of the 2D origin.</param>
+ * <param name="y">The y co-ordinate of the 2D origin.</param>
  */
 stock bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y)
 {
@@ -513,6 +557,9 @@ stock bool:IsObjectInRangeOfPoint2D(objectid, Float:range, Float:x, Float:y)
 /**
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the object to measure from.</param>
+ * <param name="x">The x co-ordinate of the 3D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 3D point to measure to.</param>
+ * <param name="z">The z co-ordinate of the 3D point to measure to.</param>
  */
 stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z)
 {
@@ -530,6 +577,9 @@ stock Float:GetObjectDistanceToPoint3D(objectid, Float:x, Float:y, Float:z)
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x">The x co-ordinate of the 3D origin.</param>
+ * <param name="y">The y co-ordinate of the 3D origin.</param>
+ * <param name="z">The z co-ordinate of the 3D origin.</param>
  */
 stock bool:IsObjectInRangeOfPoint3D(objectid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -633,6 +683,8 @@ stock GetClosestObjectToObject(objectid)
 /**
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
+ * <param name="x">The x co-ordinate of the 2D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 2D point to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y)
 {
@@ -650,6 +702,8 @@ stock Float:GetDynObjectDistanceToPoint2D(STREAMER_TAG_OBJECT:objectid, Float:x,
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x">The x co-ordinate of the 2D origin.</param>
+ * <param name="y">The y co-ordinate of the 2D origin.</param>
  */
 stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y)
 {
@@ -660,6 +714,9 @@ stock bool:IsDynObjectInRangeOfPoint2D(STREAMER_TAG_OBJECT:objectid, Float:range
 /**
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the dynamic (streamer) object to measure from.</param>
+ * <param name="x">The x co-ordinate of the 3D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 3D point to measure to.</param>
+ * <param name="z">The z co-ordinate of the 3D point to measure to.</param>
  */
 stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x, Float:y, Float:z)
 {
@@ -677,6 +734,9 @@ stock Float:GetDynObjectDistanceToPoint3D(STREAMER_TAG_OBJECT:objectid, Float:x,
  * <library>samp-distance</library>
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x">The x co-ordinate of the 3D origin.</param>
+ * <param name="y">The y co-ordinate of the 3D origin.</param>
+ * <param name="z">The z co-ordinate of the 3D origin.</param>
  */
 stock bool:IsDynObjectInRangeOfPoint3D(STREAMER_TAG_OBJECT:objectid, Float:range, Float:x, Float:y, Float:z)
 {
@@ -780,6 +840,8 @@ stock STREAMER_TAG_OBJECT:GetClosestDynObjectToDynObject(STREAMER_TAG_OBJECT:obj
 /**
  * <library>samp-distance</library>
  * <param name="actorid">The ID of the actor to measure from.</param>
+ * <param name="x">The x co-ordinate of the 2D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 2D point to measure to.</param>
  */
 stock Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y)
 {
@@ -797,6 +859,8 @@ stock Float:GetActorDistanceToPoint2D(actorid, Float:x, Float:y)
  * <library>samp-distance</library>
  * <param name="actorid">The ID of the actor to test.</param>
  * <param name="range">The radius of the circle around the origin.</param>
+ * <param name="x">The x co-ordinate of the 2D origin.</param>
+ * <param name="y">The y co-ordinate of the 2D origin.</param>
  */
 stock bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y)
 {
@@ -807,6 +871,9 @@ stock bool:IsActorInRangeOfPoint2D(actorid, Float:range, Float:x, Float:y)
 /**
  * <library>samp-distance</library>
  * <param name="actorid">The ID of the actor to measure from.</param>
+ * <param name="x">The x co-ordinate of the 3D point to measure to.</param>
+ * <param name="y">The y co-ordinate of the 3D point to measure to.</param>
+ * <param name="z">The z co-ordinate of the 3D point to measure to.</param>
  */
 stock Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z)
 {
@@ -824,6 +891,9 @@ stock Float:GetActorDistanceToPoint3D(actorid, Float:x, Float:y, Float:z)
  * <library>samp-distance</library>
  * <param name="actorid">The ID of the actor to test.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <param name="x">The x co-ordinate of the 3D origin.</param>
+ * <param name="y">The y co-ordinate of the 3D origin.</param>
+ * <param name="z">The z co-ordinate of the 3D origin.</param>
  */
 stock bool:IsActorInRangeOfPoint3D(actorid, Float:range, Float:x, Float:y, Float:z)
 {
