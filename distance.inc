@@ -218,6 +218,12 @@ stock Float:GetPlayerDistanceToPlayer(playerid, targetid)
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
  * <param name="ignoreInterior">Should entities in different interiors be considered?</param>
+ * <returns>Is the first given player within range of the second given player?</returns>
+ * <remarks>
+ *   Checks if the distance between two players
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either player is invalid.
+ * </remarks>
  */
 stock bool:IsPlayerInRangeOfPlayer(playerid, targetid, Float:range, bool:ignoreVW = false, bool:ignoreInterior = false)
 {
@@ -433,6 +439,12 @@ stock Float:GetVehicleDistanceToVehicle(vehicleid, targetid)
  * <param name="targetid">The ID of the vehicle to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the first given vehicle within range of the second given vehicle?</returns>
+ * <remarks>
+ *   Checks if the distance between two vehicles
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either vehicle is invalid.
+ * </remarks>
  */
 stock bool:IsVehicleInRangeOfVehicle(vehicleid, targetid, Float:range, bool:ignoreVW = false)
 {
@@ -609,6 +621,12 @@ stock Float:GetObjectDistanceToObject(objectid, targetid)
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="targetid">The ID of the object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the first given object within range of the second given object?</returns>
+ * <remarks>
+ *   Checks if the distance between two objects
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either object is invalid.
+ * </remarks>
  */
 stock bool:IsObjectInRangeOfObject(objectid, targetid, Float:range)
 {
@@ -766,6 +784,12 @@ stock Float:GetDynObjectDistanceToDynObject(STREAMER_TAG_OBJECT:objectid, STREAM
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="targetid">The ID of the dynamic (streamer) object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the first given dynamic object within range of the second given dynamic object?</returns>
+ * <remarks>
+ *   Checks if the distance between two dynamic objects
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either dynamic object is invalid.
+ * </remarks>
  */
 stock bool:IsDynObjectInRangeOfDynObject(STREAMER_TAG_OBJECT:objectid, STREAMER_TAG_OBJECT:targetid, Float:range)
 {
@@ -923,6 +947,12 @@ stock Float:GetActorDistanceToActor(actorid, targetid)
  * <param name="actorid">The ID of the actor to test.</param>
  * <param name="targetid">The ID of the actor to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the first given actor within range of the second given actor?</returns>
+ * <remarks>
+ *   Checks if the distance between two actors
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either actor is invalid.
+ * </remarks>
  */
 stock bool:IsActorInRangeOfActor(actorid, targetid, Float:range)
 {
@@ -1014,6 +1044,12 @@ stock Float:GetVehicleDistanceToPlayer(vehicleid, playerid)
  * <param name="playerid">The ID of the player to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given vehicle within range of the given player?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a vehicle and a player)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsVehicleInRangeOfPlayer(vehicleid, playerid, Float:range, bool:ignoreVW = false)
 {
@@ -1101,6 +1137,12 @@ stock Float:GetPlayerDistanceToVehicle(playerid, vehicleid)
  * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given player within range of the given vehicle?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a player and a vehicle)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsPlayerInRangeOfVehicle(playerid, vehicleid, Float:range, bool:ignoreVW = false)
 {
@@ -1186,6 +1228,12 @@ stock Float:GetPlayerDistanceToObject(playerid, objectid)
  * <param name="playerid">The ID of the player to test.</param>
  * <param name="objectid">The ID of the object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given player within range of the given object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a player and an object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsPlayerInRangeOfObject(playerid, objectid, Float:range)
 {
@@ -1253,6 +1301,12 @@ stock Float:GetObjectDistanceToPlayer(objectid, playerid)
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="playerid">The ID of the player to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given object within range of the given player?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an object and a player)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsObjectInRangeOfPlayer(objectid, playerid, Float:range)
 {
@@ -1320,6 +1374,12 @@ stock Float:GetObjectDistanceToVehicle(objectid, vehicleid)
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given object within range of the given vehicle?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an object and a vehicle)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsObjectInRangeOfVehicle(objectid, vehicleid, Float:range)
 {
@@ -1388,6 +1448,12 @@ stock Float:GetVehicleDistanceToObject(vehicleid, objectid)
  * <param name="vehicleid">The ID of the vehicle to test.</param>
  * <param name="objectid">The ID of the object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given vehicle within range of the given object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a vehicle and an object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsVehicleInRangeOfObject(vehicleid, objectid, Float:range)
 {
@@ -1455,6 +1521,12 @@ stock Float:GetDynObjectDistanceToPlayer(STREAMER_TAG_OBJECT:objectid, playerid)
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="playerid">The ID of the player to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given dynamic object within range of the given player?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a dynamic (streamer) object and a player)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsDynObjectInRangeOfPlayer(STREAMER_TAG_OBJECT:objectid, playerid, Float:range)
 {
@@ -1523,6 +1595,12 @@ stock Float:GetPlayerDistanceToDynObject(playerid, STREAMER_TAG_OBJECT:objectid)
  * <param name="playerid">The ID of the player to test.</param>
  * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given player within range of the given dynamic object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a player and a dynamic (streamer) object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsPlayerInRangeOfDynObject(playerid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -1590,6 +1668,12 @@ stock Float:GetDynObjectDistanceToObject(STREAMER_TAG_OBJECT:objectid, targetid)
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="targetid">The ID of the object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given dynamic object within range of the given object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a dynamic (streamer) object and an object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsDynObjectInRangeOfObject(STREAMER_TAG_OBJECT:objectid, targetid, Float:range)
 {
@@ -1658,6 +1742,12 @@ stock Float:GetObjectDistanceToDynObject(objectid, STREAMER_TAG_OBJECT:targetid)
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="targetid">The ID of the dynamic (streamer) object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given object within range of the given dyanamic object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an object and a dynamic (streamer) object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsObjectInRangeOfDynObject(objectid, STREAMER_TAG_OBJECT:targetid, Float:range)
 {
@@ -1725,6 +1815,12 @@ stock Float:GetDynObjectDistanceToVehicle(STREAMER_TAG_OBJECT:objectid, vehiclei
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given dynamic object within range of the given vehicle?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a dynamic (streamer) object and a vehicle)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsDynObjectInRangeOfVehicle(STREAMER_TAG_OBJECT:objectid, vehicleid, Float:range)
 {
@@ -1793,6 +1889,12 @@ stock Float:GetVehicleDistanceToDynObject(vehicleid, STREAMER_TAG_OBJECT:objecti
  * <param name="vehicleid">The ID of the vehicle to test.</param>
  * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given vehicle within range of the given dynamic object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a vehicle and a dynamic (streamer) object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsVehicleInRangeOfDynObject(vehicleid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -1861,6 +1963,12 @@ stock Float:GetVehicleDistanceToActor(vehicleid, actorid)
  * <param name="actorid">The ID of the actor to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given vehicle within range of the given actor?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a vehicle and an actor)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsVehicleInRangeOfActor(vehicleid, actorid, Float:range, bool:ignoreVW = false)
 {
@@ -1946,6 +2054,12 @@ stock Float:GetActorDistanceToVehicle(actorid, vehicleid)
  * <param name="vehicleid">The ID of the vehicle to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given actor within range of the given vehicle?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an actor and a vehicle)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsActorInRangeOfVehicle(actorid, vehicleid, Float:range, bool:ignoreVW = false)
 {
@@ -2031,6 +2145,12 @@ stock Float:GetActorDistanceToObject(actorid, objectid)
  * <param name="actorid">The ID of the actor to test.</param>
  * <param name="objectid">The ID of the object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given actor within range of the given object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an actor and an object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsActorInRangeOfObject(actorid, objectid, Float:range)
 {
@@ -2098,6 +2218,12 @@ stock Float:GetObjectDistanceToActor(objectid, actorid)
  * <param name="objectid">The ID of the object to test.</param>
  * <param name="actorid">The ID of the actor to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given object within range of the given actor?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an object and an actor)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsObjectInRangeOfActor(objectid, actorid, Float:range)
 {
@@ -2165,6 +2291,12 @@ stock Float:GetDynObjectDistanceToActor(STREAMER_TAG_OBJECT:objectid, actorid)
  * <param name="objectid">The ID of the dynamic (streamer) object to test.</param>
  * <param name="actorid">The ID of the actor to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given dynamic object within range of the given actor?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a dynamic (streamer) object and an actor)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsDynObjectInRangeOfActor(STREAMER_TAG_OBJECT:objectid, actorid, Float:range)
 {
@@ -2233,6 +2365,12 @@ stock Float:GetActorDistanceToDynObject(actorid, STREAMER_TAG_OBJECT:objectid)
  * <param name="actorid">The ID of the actor to test.</param>
  * <param name="objectid">The ID of the dynamic (streamer) object to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
+ * <returns>Is the given actor within range of the given dynamic object?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an actor and a dynamic (streamer) object)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsActorInRangeOfDynObject(actorid, STREAMER_TAG_OBJECT:objectid, Float:range)
 {
@@ -2301,6 +2439,12 @@ stock Float:GetActorDistanceToPlayer(actorid, playerid)
  * <param name="playerid">The ID of the player to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given actor within range of the given player?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (an actor and a player)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsActorInRangeOfPlayer(actorid, playerid, Float:range, bool:ignoreVW = false)
 {
@@ -2388,6 +2532,12 @@ stock Float:GetPlayerDistanceToActor(playerid, actorid)
  * <param name="actorid">The ID of the actor to use as the origin.</param>
  * <param name="range">The radius of the sphere around the origin.</param>
  * <param name="ignoreVW">Should entities in different virtual worlds be considered?</param>
+ * <returns>Is the given player within range of the given actor?</returns>
+ * <remarks>
+ *   Checks if the distance between two entities (a player and an actor)
+ *   is less than, or equal to, the given distance.  Also returns false if
+ *   either entity is invalid.
+ * </remarks>
  */
 stock bool:IsPlayerInRangeOfActor(playerid, actorid, Float:range, bool:ignoreVW = false)
 {
